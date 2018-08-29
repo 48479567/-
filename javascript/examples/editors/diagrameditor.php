@@ -1,7 +1,13 @@
 <?php
 session_start();
 require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
+$sql_sdp = "SELECT * FROM proyectos WHERE cod_proyecto = 'pry1'";
+$res_sdp = mysqli_query($conn, $sql_sdp);
+$dom_proyecto;
 
+while($row = mysqli_fetch_assoc($res_sdp)) {
+	$dom_proyecto = $row['dom_proyecto'];
+	}
 ?>
 
 <html>
@@ -35,9 +41,24 @@ require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
 		
 		var mxLanguage = urlParams['lang'];
 	</script>
+	<script type="text/javascript">
+		function mostrar() {
+		var valor = document.getElementById('ing');
+		return alert (valor.value);}
+
+	</script>
 	<script type="text/javascript" src="../../src/js/mxClient.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript">
+
+	
+	
+<?php 
+
+
+
+echo "
+
+	<script type='text/javascript'>
 		// Program starts here. The document.onLoad executes the
 		// createEditor function with a given configuration.
 		// In the config file, the mxEditor.onInit method is
@@ -124,10 +145,11 @@ require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
 					textNode.value = mxUtils.getPrettyXml(node);
 					textNode.originalValue = textNode.value;
 					textNode.focus();
-					<?php 
-					$sql_gpro = "SELECT "
-					?>
+					document.getElementById('ingreso').value = textNode.value;
 				}
+
+			
+			
 				else
 				{
 					graphNode.style.display = '';
@@ -260,7 +282,7 @@ require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
 					var name = 'export.svg';
 				    var xml = encodeURIComponent(mxUtils.getXml(root));
 					
-					new mxXmlRequest(editor.urlEcho, 'filename=' + name + '&format=svg' + '&xml=' + xml).simulate(document, "_blank");
+					new mxXmlRequest(editor.urlEcho, 'filename=' + name + '&format=svg' + '&xml=' + xml).simulate(document, '_blank');
 				};
 				
 				editor.addAction('exportSvg', exportSvg);
@@ -310,7 +332,9 @@ require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
 		}
 
 		window.onbeforeunload = function() { return mxResources.get('changesLost'); };
-	</script>
+	</script>";
+?>
+
 </head>
 <body onload="createEditor('config/diagrameditor.xml');">
 	<div id="page">
@@ -352,8 +376,25 @@ require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
 			<br/>
 		</div>
 		<div>
-			
+	
+
+		<form action="guardar_datos.php" method="POST">
+		<input type="text" name="ingreso" id="ingreso">
+		<input type="submit" value="Guardar">
+		<input type="button" onclick="mostrar()">
+		<?php 
+		echo '<input type="text" name="ingreso" id="ing" value="'.$dom_proyecto.'">';
+		?>
+		</form>
+		
 		</div>
+
+		
+		
+			
+		
+		
+
 	</div>
 </body>
 </html>

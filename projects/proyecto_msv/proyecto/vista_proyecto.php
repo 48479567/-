@@ -41,14 +41,7 @@ if($res_pry1->num_rows > 0){
   echo '
     <li><a href="../../../javascript/examples/editors/diagrameditor.php" id="'.$row['cod_proyecto'].'" onclick ="clickProyecto()">'.$row['nom_proyecto'].'</a></li></br>';
     
-  }
-  <script>
-    function clickProyecto () {
-      var cod_proyecto = document.getElementByTagName("a").id;
-
-      return alert(cod_proyecto);
-    }
-  </script>
+  };
 
   
   
