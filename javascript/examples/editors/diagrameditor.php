@@ -1,3 +1,9 @@
+<?php
+session_start();
+require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
+
+?>
+
 <html>
 <head>
 	<title>mxDraw Example</title>
@@ -118,6 +124,9 @@
 					textNode.value = mxUtils.getPrettyXml(node);
 					textNode.originalValue = textNode.value;
 					textNode.focus();
+					<?php 
+					$sql_gpro = "SELECT "
+					?>
 				}
 				else
 				{
@@ -341,6 +350,9 @@
 				<!-- Status Here -->Loading...
 			</p>
 			<br/>
+		</div>
+		<div>
+			
 		</div>
 	</div>
 </body>

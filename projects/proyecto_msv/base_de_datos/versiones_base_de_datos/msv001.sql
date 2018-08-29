@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-08-2018 a las 17:29:39
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.4
+-- Tiempo de generación: 29-08-2018 a las 05:48:11
+-- Versión del servidor: 10.1.35-MariaDB
+-- Versión de PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -265,18 +265,19 @@ CREATE TABLE `proyectos` (
   `cod_proyecto` varchar(30) NOT NULL,
   `nom_proyecto` varchar(80) NOT NULL,
   `cod_equipo` varchar(30) NOT NULL,
-  `cod_per_general` varchar(30) NOT NULL
+  `cod_per_general` varchar(30) NOT NULL,
+  `dom_proyecto` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `proyectos`
 --
 
-INSERT INTO `proyectos` (`cod_proyecto`, `nom_proyecto`, `cod_equipo`, `cod_per_general`) VALUES
-('pry1', 'proyecto 1', 'equ1', 'cpg1'),
-('pry2', 'proyecto 2', 'equ2', 'cpg1'),
-('pry3', 'proyecto 3', 'equ1', 'cpg2'),
-('pry4', 'proyecto 4', 'equ2', 'cpg2');
+INSERT INTO `proyectos` (`cod_proyecto`, `nom_proyecto`, `cod_equipo`, `cod_per_general`, `dom_proyecto`) VALUES
+('pry1', 'proyecto 1', 'equ1', 'cpg1', ''),
+('pry2', 'proyecto 2', 'equ2', 'cpg1', ''),
+('pry3', 'proyecto 3', 'equ1', 'cpg2', ''),
+('pry4', 'proyecto 4', 'equ2', 'cpg2', '');
 
 -- --------------------------------------------------------
 

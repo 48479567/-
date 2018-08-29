@@ -10,8 +10,9 @@ $var_resultado = $conn->query($var_consulta);
 $sql_equ1 = "SELECT usu_equipo.cod_equipo, equipos.npm_equipo FROM usu_equipo INNER JOIN equipos ON usu_equipo.cod_equipo = equipos.cod_equipo WHERE usu_equipo.cod_usuario = '$cod_usuario'";
 $res_equ1 = $conn->query($sql_equ1);
 
-$sql_pry1 = "SELECT proyectos.nom_proyecto, equipos.npm_equipo, usu_equipo.cod_equipo FROM ((proyectos INNER JOIN equipos ON proyectos.cod_equipo = equipos.cod_equipo) INNER JOIN usu_equipo ON usu_equipo.cod_equipo = equipos.cod_equipo) WHERE usu_equipo.cod_usuario = '$cod_usuario' ";
+$sql_pry1 = "SELECT proyectos.cod_proyecto, proyectos.nom_proyecto, equipos.npm_equipo, usu_equipo.cod_equipo FROM ((proyectos INNER JOIN equipos ON proyectos.cod_equipo = equipos.cod_equipo) INNER JOIN usu_equipo ON usu_equipo.cod_equipo = equipos.cod_equipo) WHERE usu_equipo.cod_usuario = '$cod_usuario' ";
 $res_pry1 = $conn->query($sql_pry1);
+
 
  
 echo'
@@ -32,11 +33,25 @@ echo'
 if($res_pry1->num_rows > 0){
   echo '
   <ul>';
+  $_SESSION['cod_proyecto'] = array();
+  $cont = 0;
   while($row = $res_pry1->fetch_assoc()) {
+    
+    
   echo '
-    <li><a href="../../../javascript/examples/editors/diagrameditor.html">'.$row['nom_proyecto'].'</a></li></br>';
-    $_SESSION['cod_proyecto'] = $row['cod_proyecto'];
+    <li><a href="../../../javascript/examples/editors/diagrameditor.php" id="'.$row['cod_proyecto'].'" onclick ="clickProyecto()">'.$row['nom_proyecto'].'</a></li></br>';
+    
   }
+  <script>
+    function clickProyecto () {
+      var cod_proyecto = document.getElementByTagName("a").id;
+
+      return alert(cod_proyecto);
+    }
+  </script>
+
+  
+  
   echo '
   </ul>';
 }
