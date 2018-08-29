@@ -35,6 +35,7 @@ if($res_pry1->num_rows > 0){
   while($row = $res_pry1->fetch_assoc()) {
   echo '
     <li><a href="../../../javascript/examples/editors/diagrameditor.html">'.$row['nom_proyecto'].'</a></li></br>';
+    $_SESSION['cod_proyecto'] = $row['cod_proyecto'];
   }
   echo '
   </ul>';
