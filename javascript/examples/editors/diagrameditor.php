@@ -8,6 +8,8 @@ $dom_proyecto;
 while($row = mysqli_fetch_assoc($res_sdp)) {
 	$dom_proyecto = $row['dom_proyecto'];
 	}
+
+$dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_proyecto);
 ?>
 
 <html>
@@ -16,7 +18,7 @@ while($row = mysqli_fetch_assoc($res_sdp)) {
  	<link rel="stylesheet" href="css/wordpress.css" type="text/css" media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<style type="text/css" media="screen">
-		#page { background: url("images/draw/drawbg.jpg") repeat-y top; border: none; }
+		#page { background: url("images/grid.gif"); }
 	</style>
 	<script type="text/javascript">
 		var mxBasePath = '../../src';
@@ -40,23 +42,18 @@ while($row = mysqli_fetch_assoc($res_sdp)) {
 		})(window.location.href);
 		
 		var mxLanguage = urlParams['lang'];
-	</script>
-	<script type="text/javascript">
-		function mostrar() {
-		var valor = document.getElementById('ing');
-		return alert (valor.value);}
 
+		function mostrarCampo() {
+			var campo = document.getElementById("ingreso");
+			return alert(campo.value);
+		}
 	</script>
+
 	<script type="text/javascript" src="../../src/js/mxClient.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 
 	
 	
-<?php 
-
-
-
-echo "
 
 	<script type='text/javascript'>
 		// Program starts here. The document.onLoad executes the
@@ -66,6 +63,8 @@ echo "
 		// last step in the editor constructor.
 		function onInit(editor)
 		{
+			
+
 			// Enables rotation handle
 			mxVertexHandler.prototype.rotationEnabled = true;
 
@@ -332,8 +331,8 @@ echo "
 		}
 
 		window.onbeforeunload = function() { return mxResources.get('changesLost'); };
-	</script>";
-?>
+	</script>
+
 
 </head>
 <body onload="createEditor('config/diagrameditor.xml');">
@@ -379,12 +378,12 @@ echo "
 	
 
 		<form action="guardar_datos.php" method="POST">
-		<input type="text" name="ingreso" id="ingreso">
-		<input type="submit" value="Guardar">
-		<input type="button" onclick="mostrar()">
 		<?php 
-		echo '<input type="text" name="ingreso" id="ing" value="'.$dom_proyecto.'">';
+		echo '
+		<textarea name=ingreso id=ingreso>'.$dom_mod_proyecto.'</textarea>';
 		?>
+		<input type="button" onclick ="mostrarCampo()" value="mostrar">
+		<input type="submit" value="Guardar">
 		</form>
 		
 		</div>
