@@ -18,7 +18,7 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
  	<link rel="stylesheet" href="css/wordpress.css" type="text/css" media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<style type="text/css" media="screen">
-		#page { background: url("images/grid.gif"); }
+		#page { background: url("images/draw/drawbg.jpg") repeat-y top; border: none; }
 	</style>
 	<script type="text/javascript">
 		var mxBasePath = '../../src';
@@ -43,10 +43,6 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
 		
 		var mxLanguage = urlParams['lang'];
 
-		function mostrarCampo() {
-			var campo = document.getElementById("ingreso");
-			return alert(campo.value);
-		}
 	</script>
 
 	<script type="text/javascript" src="../../src/js/mxClient.js"></script>
@@ -71,11 +67,7 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
 			// Enables guides
 			mxGraphHandler.prototype.guidesEnabled = true;
 			
-		    // Alt disables guides
-		    mxGuide.prototype.isEnabledForEvent = function(evt)
-		    {
-		    	return !mxEvent.isAltDown(evt);
-		    };
+		    
 			
 			// Enables snapping waypoints to terminals
 			mxEdgeHandler.prototype.snapToTerminals = true;
@@ -97,9 +89,9 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
 			
 			if (title != null)
 			{
-				var f = function(sender)
+				var f = function()
 				{
-					title.innerHTML = 'mxDraw - ' + sender.getTitle();
+					title.innerHTML = 'ISG - Diagrama';
 				};
 				
 				editor.addListener(mxEvent.ROOT, f);
@@ -134,10 +126,7 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
 			var funct = function(editor)
 			{
 				if (sourceInput.checked)
-				{
-					graphNode.style.display = 'none';
-					textNode.style.display = 'inline';
-					
+				{					
 					var enc = new mxCodec();
 					var node = enc.encode(editor.graph.getModel());
 					
@@ -174,6 +163,8 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
 					editor.graph.container.focus();
 				}
 			};
+
+			
 			
 			editor.addAction('switchView', funct);
 			
@@ -183,6 +174,31 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
 			{
 				editor.execute('switchView');
 			});
+			
+			var muestraCambio = document.getElementById('ingreso');
+			var mostrar = document.getElementById('mostrar');
+
+			var mostrarCambios = function mostrarCambios(editor){
+				var doc = mxUtils.parseXml(muestraCambio.value);
+				var dec = new mxCodec(doc);
+				dec.decode(doc.documentElement, editor.graph.getModel());
+				var enc = new mxCodec();
+				var node = enc.encode(editor.graph.getModel());
+				var texto = mxUtils.getPrettyXml(node);
+				document.getElementById('ingreso').value = texto;
+				
+
+			};
+
+			editor.addAction('cambios', mostrarCambios);
+			
+			// Defines a new action to switch between
+			// XML and graphical display
+			mxEvent.addListener(mostrar, 'click', function()
+			{
+				editor.execute('cambios');
+			});
+
 
 			// Create select actions in page
 			var node = document.getElementById('mainActions');
@@ -353,18 +369,18 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
 					<!-- Toolbar Here -->				
 				</td>
 				<td valign="top" style="border-width:1px;border-style:solid;border-color:black;">
-					<div id="graph" tabindex="-1" style="position:relative;height:480px;width:684px;overflow:hidden;cursor:default;">
+					<div id="graph" tabindex="-1" style="position:relative;height:450px;width:684px;overflow:hidden;cursor:default;">
 						<!-- Graph Here -->
 						<center id="splash" style="padding-top:230px;">
 							<img src="images/loading.gif">
 						</center>
 					</div>
-					<textarea id="xml" style="height:480px;width:684px;display:none;border-style:none;"></textarea>
+					<textarea id="xml" style="height:450px;width:684px;display:none;border-style:none;"></textarea>
 				</td>
 			</tr>
 		</table>
 		<span style="float:right;padding-right:36px;">
-			<input id="source" type="checkbox"/>Source
+			<input id="source" type="checkbox"/>Generar Cambios 
 		</span>
 		<div id="zoomActions" style="width:100%;padding-left:54px;padding-top:4px;">
 		</div>
@@ -372,21 +388,22 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
 			<p id="status">
 				<!-- Status Here -->Loading...
 			</p>
-			<br/>
 		</div>
 		<div>
-	
-
 		<form action="guardar_datos.php" method="POST">
+			<input type="button" onclick ="mostrarCampo()" value="mostrar" id="mostrar">
+			<input type="submit" value="Guardar">
 		<?php 
 		echo '
-		<textarea name=ingreso id=ingreso>'.$dom_mod_proyecto.'</textarea>';
+			<textarea name=ingreso id=ingreso style="visibility:hidden">'.$dom_mod_proyecto.'</textarea>';
 		?>
-		<input type="button" onclick ="mostrarCampo()" value="mostrar">
-		<input type="submit" value="Guardar">
 		</form>
 		
 		</div>
+
+
+
+
 
 		
 		
