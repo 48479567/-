@@ -14,45 +14,64 @@ $sql_pry1 = "SELECT proyectos.cod_proyecto, proyectos.nom_proyecto, equipos.npm_
 $res_pry1 = $conn->query($sql_pry1);
 
 
- 
+$sql_pry2 = "SELECT * FROM proyectos";
+$res_pry2 = $conn->query($sql_pry2);
+$cantidad_proyectos = $res_pry2->num_rows + 1;
+
 echo'
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ISG | '.$_SESSION['usuario'].'</title>
-</head>
-<body>
-
-  <h1>'.$_SESSION['usuario'].'</h1>
-';
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>ISG | '.$_SESSION['usuario'].'</title>';
 
 
-if($res_pry1->num_rows > 0){
+for ($i=0; $i < $cantidad_proyectos ; $i++){ 
   echo '
+  <script type="text/javascript">
+    function pry'.$i.'() {
+      var proyecto = document.getElementById("pry'.$i.'").getAttribute("id");
+      return alert(proyecto);
+    }
+  </script>';
+}
+  
+  echo'  
+  </head>
+  <body>
+  
+  <h1>'.$_SESSION['usuario'].'</h1>
+  ';
+  
+  echo $cantidad_proyectos;
+  
+  if($res_pry1->num_rows > 0){
+    echo '
   <ul>';
-  $_SESSION['cod_proyecto'] = array();
-  $cont = 0;
+  
   while($row = $res_pry1->fetch_assoc()) {
     
     
   echo '
-    <li><a href="../../../javascript/examples/editors/diagrameditor.php" id="'.$row['cod_proyecto'].'" onclick ="clickProyecto()">'.$row['nom_proyecto'].'</a></li></br>';
-    
-  };
+  <li><form action="../../../javascript/examples/editors/diagrameditor.php" method="POST">
+  <input type="text" name="cod_proyecto" value="'.$row['cod_proyecto'].'"/>
+  <input type="submit" id="'.$row['cod_proyecto'].'" onsubmit ="'.$row['cod_proyecto'].'()" value="'.$row['nom_proyecto'].'"/></form></li></br>';
+  
+};
 
-  
-  
-  echo '
-  </ul>';
+
+
+echo '
+</ul>';
 }
 echo '
 </br>
 </br>
-<a href="./creacion_de_proyecto/crear_proyecto.php" target="_blank">Crear Proyecto</a>
+<a href="./creacion_de_proyecto/crear_proyecto.php" target="_blank">Crear Proyecto</a>';
 
+echo '
 </body>
-</html>'
+</html>';
 ?>

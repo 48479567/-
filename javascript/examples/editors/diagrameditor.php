@@ -1,20 +1,22 @@
 <?php
-session_start();
 require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
-$sql_sdp = "SELECT * FROM proyectos WHERE cod_proyecto = 'pry1'";
+session_start();
+$_SESSION['cod_proyecto'] = $_POST['cod_proyecto']; 
+$cod_proyecto = $_SESSION['cod_proyecto']; 
+
+$sql_sdp = "SELECT * FROM proyectos WHERE cod_proyecto = '$cod_proyecto'";
 $res_sdp = mysqli_query($conn, $sql_sdp);
-$dom_proyecto;
 
 while($row = mysqli_fetch_assoc($res_sdp)) {
 	$dom_proyecto = $row['dom_proyecto'];
 	}
 
-$dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_proyecto);
+$dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_proyecto);
 ?>
 
 <html>
 <head>
-	<title>mxDraw Example</title>
+	<title>mxDraw <?php echo $cod_proyecto; ?></title>
  	<link rel="stylesheet" href="css/wordpress.css" type="text/css" media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<style type="text/css" media="screen">
@@ -395,7 +397,10 @@ $dom_mod_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $d
 			<input type="submit" value="Guardar">
 		<?php 
 		echo '
-			<textarea name=ingreso id=ingreso style="visibility:hidden">'.$dom_mod_proyecto.'</textarea>';
+			<textarea name=dom_proyecto id=ingreso style="visibility:hidden">'.$dom_proyecto.'</textarea>
+			<input type="text" name="cod_proyecto" value="'.$cod_proyecto.'">
+			';
+		
 		?>
 		</form>
 		
