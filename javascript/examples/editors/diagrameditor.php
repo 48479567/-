@@ -17,10 +17,10 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 <html>
 <head>
 	<title>mxDraw <?php echo $cod_proyecto; ?></title>
- 	<link rel="stylesheet" href="css/wordpress.css" type="text/css" media="screen" />
+ 	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<style type="text/css" media="screen">
-		#page { background: url("images/draw/drawbg.jpg") repeat-y top; border: none; }
+		#page { background: url("images/draw/drawbg.jpg") repeat-y top; border: none; margin: 20px 10px;}
 	</style>
 	<script type="text/javascript">
 		var mxBasePath = '../../src';
@@ -353,25 +353,25 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 
 
 </head>
-<body onload="createEditor('config/diagrameditor.xml');">
-	<div id="page">
+<body onload="createEditor('config/diagrameditor.xml');" width="100%" height="100%">
+	
 		<div id="header">
 			<div id="headerimg" style="overflow:hidden;">
 				<h1 id="title">mxDraw</h1>
 			</div>
 		</div>
 		<div id="mainActions"
-			style="width:100%;padding-top:8px;padding-left:24px;padding-bottom:8px;">
+			style="width:100%;">
 		</div>
-		<div id="selectActions" style="width:100%;padding-left:54px;padding-bottom:4px;">
+		<div id="selectActions" style="width:100%;">
 		</div>
-		<table border="0" width="730px">
+		<table border="0" width="100%" height="80%">
 			<tr>
 				<td id="toolbar" style="width:16px;padding-left:20px;" valign="top">
 					<!-- Toolbar Here -->				
 				</td>
 				<td valign="top" style="border-width:1px;border-style:solid;border-color:black;">
-					<div id="graph" tabindex="-1" style="position:relative;height:450px;width:684px;overflow:hidden;cursor:default;">
+					<div id="graph" tabindex="-1" style="position:relative;height:450px;width:100%;overflow:hidden;cursor:default;">
 						<!-- Graph Here -->
 						<center id="splash" style="padding-top:230px;">
 							<img src="images/loading.gif">
@@ -381,10 +381,10 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 				</td>
 			</tr>
 		</table>
-		<span style="float:right;padding-right:36px;">
+		<span style="float:right;">
 			<input id="source" type="checkbox"/>Generar Cambios 
 		</span>
-		<div id="zoomActions" style="width:100%;padding-left:54px;padding-top:4px;">
+		<div id="zoomActions" style="width:100%;padding-top:4px;">
 		</div>
 		<div id="footer">
 			<p id="status">
@@ -403,19 +403,6 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 		
 		?>
 		</form>
-		
-		</div>
 
-
-
-
-
-		
-		
-			
-		
-		
-
-	</div>
 </body>
 </html>
