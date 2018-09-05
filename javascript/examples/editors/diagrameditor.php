@@ -353,12 +353,12 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 
 
 </head>
-<body onload="createEditor('config/diagrameditor.xml');" width="100%" height="100%">
+<body onload="createEditor('config/diagrameditor.xml');" width="100%">
 	
-		<div id="header">
-			<div id="headerimg" style="overflow:hidden;">
-				<h1 id="title">mxDraw</h1>
-			</div>
+		
+		
+		<div>
+			<h1>Diagramador</h1>
 		</div>
 		<div id="mainActions"
 			style="width:100%;">
@@ -371,7 +371,7 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 					<!-- Toolbar Here -->				
 				</td>
 				<td valign="top" style="border-width:1px;border-style:solid;border-color:black;">
-					<div id="graph" tabindex="-1" style="position:relative;height:450px;width:100%;overflow:hidden;cursor:default;">
+					<div id="graph" tabindex="-1" style="position:relative;height:100%;width:100%;overflow:hidden;cursor:default;border-style: solid;background: url('images/grid.gif');">
 						<!-- Graph Here -->
 						<center id="splash" style="padding-top:230px;">
 							<img src="images/loading.gif">
@@ -379,17 +379,15 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 					</div>
 					<textarea id="xml" style="height:450px;width:684px;display:none;border-style:none;"></textarea>
 				</td>
+				<td style="height:100%;width:15%;background-color:yellow" >
+					Aca va el chat
+				</td>
 			</tr>
 		</table>
 		<span style="float:right;">
 			<input id="source" type="checkbox"/>Generar Cambios 
 		</span>
 		<div id="zoomActions" style="width:100%;padding-top:4px;">
-		</div>
-		<div id="footer">
-			<p id="status">
-				<!-- Status Here -->Loading...
-			</p>
 		</div>
 		<div>
 		<form action="guardar_datos.php" method="POST">
@@ -403,6 +401,6 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 		
 		?>
 		</form>
-
+		
 </body>
 </html>
