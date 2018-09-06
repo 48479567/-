@@ -16,6 +16,8 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 
 <html>
 <head>
+
+
 	<title>mxDraw <?php echo $cod_proyecto; ?></title>
  	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,7 +51,7 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 
 	<script type="text/javascript" src="../../src/js/mxClient.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
-
+	<script type="text/javascript" src="jquery_js.min.js"></script>
 	
 	
 
@@ -348,7 +350,69 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 			mxUtils.linkAction(node, 'Fit', editor, 'fit');
 		}
 
-		window.onbeforeunload = function() { return mxResources.get('changesLost'); };
+		window.onbeforeunload = function() { return mxResources.get('changesLost'); }
+
+	</script>
+	
+	
+	
+
+<script>
+$(document).ready(function()
+    {		$("#result").animate({scrollTop: $("#result")[0].scrollHeight});
+        $(document).bind('keypress', function(e) {
+            if(e.keyCode==13){
+							$("#result").animate({scrollTop: $("#result")[0].scrollHeight});
+							$('#my_form').submit();
+							
+				 			$('#comment').val("");
+							
+             }
+        });
+	});
+</script>
+<script type="text/javascript">
+function post()
+{ $("#result").animate({scrollTop: $("#result")[0].scrollHeight});
+  var comment = document.getElementById("comment").value;
+	var name = document.getElementById("username").value;
+	var proyecto = document.getElementById("cod_proyecto1").value;
+	
+    $.ajax
+    ({
+      type: 'post',
+      url: 'commentajax.php',
+      data: 
+      {
+      	user_comm:comment,
+			 	user_name:name,
+			 	cod_proyecto:proyecto
+			
+      },
+      success: function (response) 
+      {
+	    document.getElementById("comment").value="";
+      }
+    });
+  
+  
+  return false;
+}
+</script>
+<script>
+ function autoRefresh_div()
+ {
+			$("#result").load("load.php").show();
+			// a function which 
+  }
+
+	setInterval('autoRefresh_div()', 2000);
+	
+	function autoBottom(){
+			$("#result").animate({scrollTop: $("#result")[0].scrollHeight});
+	}
+
+	setInterval('autoBottom()', 2000);
 	</script>
 
 
@@ -379,8 +443,32 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 					</div>
 					<textarea id="xml" style="height:450px;width:684px;display:none;border-style:none;"></textarea>
 				</td>
-				<td style="height:100%;width:15%;background-color:yellow" >
-					Aca va el chat
+				<td style="height:100%;width:15%;background-color:yellow" valign="bottom">
+				<div id="result" style="height:70%;overflow:auto;overflow-x: hidden;">
+					<?php
+						$qry = "SELECT nom_usuario,mensaje,tiempo_mensaje FROM chats WHERE cod_proyecto = '$cod_proyecto'";
+						$result = $conn->query($qry);
+						while($row = $result->fetch_assoc()){
+							$name=$row['nom_usuario'];
+							$comment=$row['mensaje'];
+								$time=$row['tiempo_mensaje'];
+						?>
+						<div class="chats"><strong><?=$name?>:</strong> <?=$comment?> <p><?=date("j/m/Y g:i:sa", strtotime($time))?></p></div>
+						<?php
+						}
+					?>
+				</div>	
+				<form method="post" action="" onsubmit="return post();" id="my_form" name="my_form">
+					<div>
+						<input type="text" id="username" value="<?= $_SESSION['usuario'] ?>">
+						<input type="text" name="cod_proyecto" id="cod_proyecto1" value="<?=$cod_proyecto?>">
+							<textarea style="width:100%; height:79px; resize:none;" id="comment"></textarea>
+					</div>
+					<div class="form-btn">
+    			<input type="submit" value="Enviar" id="btn" name="btn"/>
+    			</div>
+				</form>
+
 				</td>
 			</tr>
 		</table>
