@@ -408,11 +408,7 @@ function post()
 
 	setInterval('autoRefresh_div()', 2000);
 	
-	function autoBottom(){
-			$("#result").animate({scrollTop: $("#result")[0].scrollHeight});
-	}
 
-	setInterval('autoBottom()', 2000);
 	</script>
 
 

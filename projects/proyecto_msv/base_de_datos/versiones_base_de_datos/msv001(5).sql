@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-09-2018 a las 03:00:12
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.4
+-- Tiempo de generación: 29-08-2018 a las 05:48:11
+-- Versión del servidor: 10.1.35-MariaDB
+-- Versión de PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -47,6 +47,29 @@ INSERT INTO `actores` (`cod_actor`, `nom_actor`, `cod_ele_perspectiva`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `archivos`
+--
+
+CREATE TABLE `archivos` (
+  `cod_archivo` varchar(30) NOT NULL,
+  `nom_archivo` varchar(80) NOT NULL,
+  `cod_tip_archivo` varchar(30) NOT NULL,
+  `cod_proyecto` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `archivos`
+--
+
+INSERT INTO `archivos` (`cod_archivo`, `nom_archivo`, `cod_tip_archivo`, `cod_proyecto`) VALUES
+('arc1', 'archivo 1', 'cta1', 'pry1'),
+('arc2', 'archivo 2', 'cta3', 'pry1'),
+('arc3', 'archivo 3', 'cta4', 'pry2'),
+('arc4', 'archivo 4', 'cta2', 'pry2');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `beneficiarios`
 --
 
@@ -65,106 +88,6 @@ INSERT INTO `beneficiarios` (`cod_beneficiario`, `nom_beneficiario`, `cod_ele_pe
 ('ben2', 'beneficiario 2', 'cep2'),
 ('ben3', 'beneficiario 3', 'cep1'),
 ('ben4', 'beneficiario 4', 'cep2');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `chats`
---
-
-CREATE TABLE `chats` (
-  `cod_chat` int(12) NOT NULL,
-  `tiempo_mensaje` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `nom_usuario` varchar(60) NOT NULL,
-  `mensaje` varchar(500) NOT NULL,
-  `cod_proyecto` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `chats`
---
-
-INSERT INTO `chats` (`cod_chat`, `tiempo_mensaje`, `nom_usuario`, `mensaje`, `cod_proyecto`) VALUES
-(17, '2018-09-05 23:44:07', 'usuario2', 'esto ahora si funciona', 'pry3'),
-(18, '2018-09-05 23:45:52', 'usuario2', 'esot es el comienzo del formato de arranque para el desarrollo del chat', 'pry1'),
-(19, '2018-09-05 23:46:03', 'usuario1', 'si tienes razon', 'pry1'),
-(20, '2018-09-05 23:46:19', 'usuario1', 'esto funciona de maravilla', 'pry1'),
-(21, '2018-09-05 23:50:48', 'usuario1', 'ahora el chat funciona', 'pry1'),
-(22, '2018-09-05 23:53:58', 'usuario1', 'esto aumenta', 'pry1'),
-(23, '2018-09-05 23:54:02', 'usuario1', 'genial', 'pry1'),
-(24, '2018-09-05 23:54:08', 'usuario1', 'ahora como se hace', 'pry1'),
-(25, '2018-09-05 23:54:15', 'usuario1', 'estuvo esto genial', 'pry1'),
-(26, '2018-09-05 23:54:23', 'usuario1', 'genial', 'pry1'),
-(27, '2018-09-05 23:54:25', 'usuario1', 'genial', 'pry1'),
-(28, '2018-09-05 23:54:28', 'usuario1', 'genia', 'pry1'),
-(29, '2018-09-05 23:54:34', 'usuario1', 'genial', 'pry1'),
-(30, '2018-09-05 23:56:12', 'usuario1', 'esto esta genial', 'pry1'),
-(31, '2018-09-06 00:05:40', 'usuario1', 'fff', 'pry1'),
-(32, '2018-09-06 00:05:50', 'usuario1', 'fff', 'pry1'),
-(33, '2018-09-06 00:07:16', 'usuario1', 'dddd', 'pry1'),
-(34, '2018-09-06 00:07:43', 'usuario1', 'hola', 'pry1'),
-(35, '2018-09-06 00:16:02', 'usuario1', 'hola\n', 'pry1'),
-(36, '2018-09-06 00:16:42', 'usuario1', 'genial\ndd', 'pry1'),
-(37, '2018-09-06 00:17:44', 'usuario1', 'ggg', 'pry1'),
-(38, '2018-09-06 00:18:59', 'usuario1', 'genial esto funciona', 'pry1'),
-(39, '2018-09-06 00:20:36', 'usuario1', 'hola', 'pry1'),
-(40, '2018-09-06 00:20:48', 'usuario1', 'genial esto funciona de maravilla', 'pry1'),
-(41, '2018-09-06 00:21:06', 'usuario1', 'wao', 'pry1'),
-(42, '2018-09-06 00:21:52', 'usuario1', 'lista de los mejores', 'pry1'),
-(43, '2018-09-06 00:22:10', 'usuario1', 'esto funciona de maravilla', 'pry1'),
-(44, '2018-09-06 00:23:17', 'usuario1', 'wao', 'pry1'),
-(45, '2018-09-06 00:24:21', 'usuario2', 'hola', 'pry1'),
-(46, '2018-09-06 00:26:57', 'usuario2', 'como es esto', 'pry1'),
-(47, '2018-09-06 00:27:48', 'usuario1', '', 'pry1'),
-(48, '2018-09-06 00:27:49', 'usuario1', '', 'pry1'),
-(49, '2018-09-06 00:27:51', 'usuario1', '', 'pry1'),
-(50, '2018-09-06 00:27:56', 'usuario1', '', 'pry1'),
-(51, '2018-09-06 00:28:07', 'usuario1', '', 'pry1'),
-(52, '2018-09-06 00:28:08', 'usuario1', '', 'pry1'),
-(53, '2018-09-06 00:29:04', 'usuario1', 'genial', 'pry1'),
-(54, '2018-09-06 00:29:13', 'usuario1', 'hola', 'pry1'),
-(55, '2018-09-06 00:29:31', 'usuario2', 'genial', 'pry1'),
-(56, '2018-09-06 00:30:20', 'usuario2', 'genial', 'pry1'),
-(57, '2018-09-06 00:30:49', 'usuario2', 'genial', 'pry1'),
-(58, '2018-09-06 00:32:59', 'usuario1', 'genial', 'pry1'),
-(59, '2018-09-06 00:33:08', 'usuario1', 'ahora si funciona de maravilla', 'pry1'),
-(60, '2018-09-06 00:33:15', 'usuario1', 'genial', 'pry1'),
-(61, '2018-09-06 00:33:34', 'usuario1', 'como hacer esto de mejor forma', 'pry1'),
-(62, '2018-09-06 00:33:38', 'usuario1', 'genial', 'pry1'),
-(63, '2018-09-06 00:34:00', 'usuario1', 'genial', 'pry1'),
-(64, '2018-09-06 00:34:28', 'usuario1', 'wao', 'pry1'),
-(65, '2018-09-06 00:38:13', 'usuario1', 'genial', 'pry1'),
-(66, '2018-09-06 00:39:20', 'usuario1', 'wao', 'pry1'),
-(67, '2018-09-06 00:39:33', 'usuario1', 'genial', 'pry1'),
-(68, '2018-09-06 00:40:35', 'usuario1', 'genial', 'pry1'),
-(69, '2018-09-06 00:40:53', 'usuario1', 'genial', 'pry1'),
-(70, '2018-09-06 00:41:00', 'usuario1', 'ahora esto si funciona', 'pry1'),
-(71, '2018-09-06 00:41:06', 'usuario1', 'tr', 'pry1'),
-(72, '2018-09-06 00:41:09', 'usuario1', 'tmr', 'pry1'),
-(73, '2018-09-06 00:41:16', 'usuario1', 'ddd', 'pry1'),
-(74, '2018-09-06 00:48:43', 'usuario1', 'ahora esto si funciona', 'pry1'),
-(75, '2018-09-06 00:48:52', 'usuario1', 'genial', 'pry1'),
-(76, '2018-09-06 00:49:25', 'usuario1', 'genial', 'pry1'),
-(77, '2018-09-06 00:50:31', 'usuario1', 'genial', 'pry1'),
-(78, '2018-09-06 00:50:38', 'usuario1', 'ddd', 'pry1'),
-(79, '2018-09-06 00:51:29', 'usuario1', 'control', 'pry1'),
-(80, '2018-09-06 00:51:33', 'usuario1', 'genial', 'pry1'),
-(81, '2018-09-06 00:51:41', 'usuario1', 'genial', 'pry1'),
-(82, '2018-09-06 00:51:55', 'usuario1', 'genial', 'pry1'),
-(83, '2018-09-06 00:52:04', 'usuario1', 'genial', 'pry1'),
-(84, '2018-09-06 00:52:18', 'usuario2', 'wao', 'pry1'),
-(85, '2018-09-06 00:52:46', 'usuario2', 'genial', 'pry1'),
-(86, '2018-09-06 00:53:35', 'usuario1', 'genial', 'pry1'),
-(87, '2018-09-06 00:53:39', 'usuario1', 'wao', 'pry1'),
-(88, '2018-09-06 00:53:56', 'usuario2', 'mira esto', 'pry1'),
-(89, '2018-09-06 00:54:00', 'usuario2', 'wao', 'pry1'),
-(90, '2018-09-06 00:56:36', 'usuario2', 'hola', 'pry1'),
-(91, '2018-09-06 00:57:23', 'usuario2', 'mira ahora como funciona esto', 'pry3'),
-(92, '2018-09-06 00:57:26', 'usuario2', 'genial', 'pry3'),
-(93, '2018-09-06 00:57:30', 'usuario2', 'wao', 'pry3'),
-(94, '2018-09-06 00:57:37', 'usuario2', 'como funciona esto', 'pry3'),
-(95, '2018-09-06 00:57:43', 'usuario2', 'esto es estupendo', 'pry3'),
-(96, '2018-09-06 00:59:36', 'usuario1', 'ahora si funciona', 'pry1');
 
 -- --------------------------------------------------------
 
@@ -351,9 +274,9 @@ CREATE TABLE `proyectos` (
 --
 
 INSERT INTO `proyectos` (`cod_proyecto`, `nom_proyecto`, `cod_equipo`, `cod_per_general`, `dom_proyecto`) VALUES
-('pry1', 'proyecto 1', 'equ1', 'cpg1', '<mxGraphModel>\r\n  <root>\r\n    <Diagram label=\"My Diagram\" href=\"http://www.jgraph.com/\" id=\"0\">\r\n      <mxCell/>\r\n    </Diagram>\r\n    <Layer label=\"Default Layer\" id=\"1\">\r\n      <mxCell parent=\"0\"/>\r\n    </Layer>\r\n    <Container label=\"Container\" href=\"\" id=\"10\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"320\" y=\"48.5\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"320\" y=\"48.5\" width=\"250\" height=\"180\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"6\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"200\" y=\"48.5\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"200\" y=\"50\" width=\"250\" height=\"180\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"2\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"75\" y=\"50\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"75\" y=\"50\" width=\"250\" height=\"180\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"15\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"90\" y=\"140\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"90\" y=\"140\" width=\"200\" height=\"200\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"17\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"210\" y=\"130\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"210\" y=\"130\" width=\"200\" height=\"200\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"18\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"320\" y=\"128.5\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"470\" y=\"120\" width=\"200\" height=\"200\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n  </root>\r\n</mxGraphModel>\r\n'),
+('pry1', 'proyecto 1', 'equ1', 'cpg1', ''),
 ('pry2', 'proyecto 2', 'equ2', 'cpg1', ''),
-('pry3', 'proyecto 3', 'equ1', 'cpg2', '<mxGraphModel>\r\n  <root>\r\n    <Diagram label=\"My Diagram\" href=\"http://www.jgraph.com/\" id=\"0\">\r\n      <mxCell/>\r\n    </Diagram>\r\n    <Layer label=\"Default Layer\" id=\"1\">\r\n      <mxCell parent=\"0\"/>\r\n    </Layer>\r\n    <Shape label=\"Shape\" href=\"\" id=\"2\">\r\n      <mxCell style=\"cloud\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"490\" y=\"100\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"3\">\r\n      <mxCell style=\"doubleEllipse\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"530\" y=\"230\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"4\">\r\n      <mxCell style=\"cloud\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"380\" y=\"310\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"5\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"2\" target=\"4\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n    <Shape label=\"Shape\" href=\"\" id=\"6\">\r\n      <mxCell style=\"cloud\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"590\" y=\"140\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"7\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"2\" target=\"6\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n  </root>\r\n</mxGraphModel>\r\n'),
+('pry3', 'proyecto 3', 'equ1', 'cpg2', ''),
 ('pry4', 'proyecto 4', 'equ2', 'cpg2', '');
 
 -- --------------------------------------------------------
@@ -502,20 +425,20 @@ ALTER TABLE `actores`
   ADD KEY `cod_ele_perspectiva_2` (`cod_ele_perspectiva`);
 
 --
+-- Indices de la tabla `archivos`
+--
+ALTER TABLE `archivos`
+  ADD PRIMARY KEY (`cod_archivo`),
+  ADD KEY `cod_tip_archivo` (`cod_tip_archivo`,`cod_proyecto`),
+  ADD KEY `cod_tip_archivo_2` (`cod_tip_archivo`,`cod_proyecto`),
+  ADD KEY `cod_proyecto` (`cod_proyecto`);
+
+--
 -- Indices de la tabla `beneficiarios`
 --
 ALTER TABLE `beneficiarios`
   ADD PRIMARY KEY (`cod_beneficiario`),
   ADD KEY `cod_ele_perspectiva` (`cod_ele_perspectiva`);
-
---
--- Indices de la tabla `chats`
---
-ALTER TABLE `chats`
-  ADD PRIMARY KEY (`cod_chat`),
-  ADD KEY `cod_tip_archivo` (`mensaje`,`cod_proyecto`),
-  ADD KEY `cod_tip_archivo_2` (`mensaje`,`cod_proyecto`),
-  ADD KEY `cod_proyecto` (`cod_proyecto`);
 
 --
 -- Indices de la tabla `dirigentes`
@@ -623,16 +546,6 @@ ALTER TABLE `usu_equipo`
   ADD KEY `cod_equipo` (`cod_equipo`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `chats`
---
-ALTER TABLE `chats`
-  MODIFY `cod_chat` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
-
---
 -- Restricciones para tablas volcadas
 --
 
@@ -643,16 +556,17 @@ ALTER TABLE `actores`
   ADD CONSTRAINT `actores_ibfk_1` FOREIGN KEY (`cod_ele_perspectiva`) REFERENCES `elementos_perspectiva` (`cod_ele_perspectiva`);
 
 --
+-- Filtros para la tabla `archivos`
+--
+ALTER TABLE `archivos`
+  ADD CONSTRAINT `archivos_ibfk_1` FOREIGN KEY (`cod_tip_archivo`) REFERENCES `tipos_archivo` (`cod_tip_archivo`),
+  ADD CONSTRAINT `archivos_ibfk_2` FOREIGN KEY (`cod_proyecto`) REFERENCES `proyectos` (`cod_proyecto`);
+
+--
 -- Filtros para la tabla `beneficiarios`
 --
 ALTER TABLE `beneficiarios`
   ADD CONSTRAINT `beneficiarios_ibfk_1` FOREIGN KEY (`cod_ele_perspectiva`) REFERENCES `elementos_perspectiva` (`cod_ele_perspectiva`);
-
---
--- Filtros para la tabla `chats`
---
-ALTER TABLE `chats`
-  ADD CONSTRAINT `chats_ibfk_2` FOREIGN KEY (`cod_proyecto`) REFERENCES `proyectos` (`cod_proyecto`);
 
 --
 -- Filtros para la tabla `dirigentes`
@@ -685,17 +599,10 @@ ALTER TABLE `productos_servicios`
   ADD CONSTRAINT `productos_servicios_ibfk_1` FOREIGN KEY (`cod_ele_perspectiva`) REFERENCES `elementos_perspectiva` (`cod_ele_perspectiva`);
 
 --
--- Filtros para la tabla `proveedores`
---
-ALTER TABLE `proveedores`
-  ADD CONSTRAINT `proveedores_ibfk_1` FOREIGN KEY (`cod_ele_perspectiva`) REFERENCES `elementos_perspectiva` (`cod_ele_perspectiva`);
-
---
 -- Filtros para la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  ADD CONSTRAINT `proyectos_ibfk_1` FOREIGN KEY (`cod_per_general`) REFERENCES `perspectivas_generales` (`cod_per_general`),
-  ADD CONSTRAINT `proyectos_ibfk_2` FOREIGN KEY (`cod_equipo`) REFERENCES `equipos` (`cod_equipo`);
+  ADD CONSTRAINT `proyectos_ibfk_1` FOREIGN KEY (`cod_per_general`) REFERENCES `perspectivas_generales` (`cod_per_general`);
 
 --
 -- Filtros para la tabla `rol_usuario`
