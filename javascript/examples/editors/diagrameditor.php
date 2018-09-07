@@ -54,7 +54,6 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 	<script type="text/javascript" src="jquery_js.min.js"></script>
 	
 	
-
 	<script type='text/javascript'>
 		// Program starts here. The document.onLoad executes the
 		// createEditor function with a given configuration.
@@ -412,14 +411,10 @@ function post()
 	</script>
 
 
+
 </head>
 <body onload="createEditor('config/diagrameditor.xml');" width="100%">
-	
-		
-		
-		<div>
-			<h1>Diagramador</h1>
-		</div>
+
 		<div id="mainActions"
 			style="width:100%;">
 		</div>
@@ -474,9 +469,42 @@ function post()
 		<div id="zoomActions" style="width:100%;padding-top:4px;">
 		</div>
 		<div>
-		<form action="guardar_datos.php" method="POST">
+
+		<?php 
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			if (empty($_POST["cod_proyecto"])) {
+			} else {
+				$cod_proyecto = $_POST["cod_proyecto"];
+			}
+			if (empty($_POST["dom_proyecto"])) {
+			} else {
+				$dom_proyecto = $_POST["dom_proyecto"];
+			}
+			
+		}
+		
+		function test_input($data) {
+			$data = trim($data);
+			$data = stripslashes($data);
+			$data = htmlspecialchars($data);
+			return $data;
+		}
+		
+		
+		
+		$sql_udp = "UPDATE proyectos SET dom_proyecto = '$dom_proyecto' WHERE cod_proyecto = '$cod_proyecto'";
+		
+		if (mysqli_query($conn, $sql_udp)) {
+				$_SESSION['cod_proyecto'] = $cod_proyecto;
+				$_SESSION['dom_proyecto'] = $dom_proyecto;
+				
+		} else {
+				echo "Error updating record: " . mysqli_error($conn);
+		}
+		?>
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
 			<input type="button" onclick ="mostrarCampo()" value="mostrar" id="mostrar">
-			<input type="submit" value="Guardar">
+			<input type="submit" value="Guardar" onmousedown="return generarCambios();">
 		<?php 
 		echo '
 			<textarea name=dom_proyecto id=ingreso style="visibility:hidden">'.$dom_proyecto.'</textarea>
