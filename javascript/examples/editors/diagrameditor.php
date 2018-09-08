@@ -124,12 +124,13 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 			var textNode = document.getElementById('xml');
 			var graphNode = editor.graph.container;
 			var sourceInput = document.getElementById('source');
+			var divGraph = document.getElementById('graph');
 			sourceInput.checked = false;
+
 
 			var funct = function(editor)
 			{
-				if (sourceInput.checked)
-				{					
+								
 					var enc = new mxCodec();
 					var node = enc.encode(editor.graph.getModel());
 					
@@ -137,34 +138,7 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 					textNode.originalValue = textNode.value;
 					textNode.focus();
 					document.getElementById('ingreso').value = textNode.value;
-				}
-
 			
-			
-				else
-				{
-					graphNode.style.display = '';
-					
-					if (textNode.value != textNode.originalValue)
-					{
-						var doc = mxUtils.parseXml(textNode.value);
-						var dec = new mxCodec(doc);
-						dec.decode(doc.documentElement, editor.graph.getModel());
-					}
-
-					textNode.originalValue = null;
-					
-					// Makes sure nothing is selected in IE
-					if (mxClient.IS_IE)
-					{
-						mxUtils.clearSelection();
-					}
-
-					textNode.style.display = 'none';
-
-					// Moves the focus back to the graph
-					editor.graph.container.focus();
-				}
 			};
 
 			
@@ -173,7 +147,7 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 			
 			// Defines a new action to switch between
 			// XML and graphical display
-			mxEvent.addListener(sourceInput, 'click', function()
+			mxEvent.addListener(divGraph, 'mouseout', function()
 			{
 				editor.execute('switchView');
 			});
@@ -410,6 +384,16 @@ function post()
 
 	</script>
 
+<script>
+function checkBoxDeselect() {
+	var checkBox = document.getElementById('source');
+	return checkBox.checked = false;
+}
+function checkBoxSelect() {
+	var checkBox = document.getElementById('source');
+	return checkBox.checked = true;
+}
+</script>
 
 
 </head>
@@ -503,8 +487,8 @@ function post()
 		}
 		?>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-			<input type="button" onclick ="mostrarCampo()" value="mostrar" id="mostrar">
-			<input type="submit" value="Guardar" onmousedown="return generarCambios();">
+			<input type="button" onclick="mostrarCampo()" value="mostrar" id="mostrar">
+			<input type="submit" value="Guardar">
 		<?php 
 		echo '
 			<textarea name=dom_proyecto id=ingreso style="visibility:hidden">'.$dom_proyecto.'</textarea>
