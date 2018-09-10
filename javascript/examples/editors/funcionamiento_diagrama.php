@@ -66,6 +66,16 @@
 
 			// Defines a new action to switch between
 			// XML and graphical display
+			
+			
+			<?php
+			
+			$sql_prp = "SELECT * FROM pro_per WHERE cod_proyecto = '$cod_proyecto'";
+			$res_prp = mysqli_query($conn, $sql_prp);
+			$cantidad_perspectivas = $res_prp->num_rows;
+			?>
+			
+
 			var textNode = document.getElementById('xml');
 			var graphNode = editor.graph.container;
 			var sourceInput = document.getElementById('source');
@@ -83,23 +93,45 @@
 					textNode.originalValue = textNode.value;
 					textNode.focus();
 					document.getElementById('ingreso').value = textNode.value;
-			
 			};
 
-			
-			
 			editor.addAction('switchView', funct);
-			
 			// Defines a new action to switch between
 			// XML and graphical display
 			mxEvent.addListener(divGraph, 'mouseout', function()
 			{
 				editor.execute('switchView');
 			});
+
 			
+			<?php
+			for ($indice = 0 ; $indice < $cantidad_perspectivas ; $indice++) {
+			?>
+			var <?="muestraCambio$indice"?> = document.getElementById('dom<?=$indice?>');
+			var <?="mostrar$indice"?> = document.getElementById('per<?=$indice?>');
+			var <?="mostrarCambios$indice"?> = function <?="mostrarCambios$indice"?>(editor){
+				var <?="doc$indice"?> = mxUtils.parseXml(<?="muestraCambio$indice"?>.value);
+				var <?="dec$indice"?> = new mxCodec(<?="doc$indice"?>);
+				<?="dec$indice"?>.decode(<?="doc$indice"?>.documentElement, editor.graph.getModel());
+				var <?="enc$indice"?> = new mxCodec();
+				var <?="node$indice"?> = <?="enc$indice"?>.encode(editor.graph.getModel());
+				var <?="texto$indice"?> = mxUtils.getPrettyXml(<?="node$indice"?>);
+				document.getElementById('dom<?=$indice?>').value = <?="texto$indice"?>;
+			};
+			editor.addAction('<?="cambios$indice"?>', <?="mostrarCambios$indice"?>);
+			
+			// Defines a new action to switch between
+			// XML and graphical display
+			mxEvent.addListener(<?="mostrar$indice"?>, 'click', function()
+			{
+				editor.execute('<?="cambios$indice"?>');
+			});
+			<?php
+			}
+			?>
+
 			var muestraCambio = document.getElementById('ingreso');
 			var mostrar = document.getElementById('mostrar');
-
 			var mostrarCambios = function mostrarCambios(editor){
 				var doc = mxUtils.parseXml(muestraCambio.value);
 				var dec = new mxCodec(doc);
@@ -268,6 +300,5 @@
 			mxUtils.linkAction(node, 'Fit', editor, 'fit');
 		}
 
-		window.onbeforeunload = function() { return mxResources.get('changesLost'); }
 
 </script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-09-2018 a las 08:14:41
+-- Tiempo de generación: 06-09-2018 a las 03:00:12
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -164,17 +164,7 @@ INSERT INTO `chats` (`cod_chat`, `tiempo_mensaje`, `nom_usuario`, `mensaje`, `co
 (93, '2018-09-06 00:57:30', 'usuario2', 'wao', 'pry3'),
 (94, '2018-09-06 00:57:37', 'usuario2', 'como funciona esto', 'pry3'),
 (95, '2018-09-06 00:57:43', 'usuario2', 'esto es estupendo', 'pry3'),
-(96, '2018-09-06 00:59:36', 'usuario1', 'ahora si funciona', 'pry1'),
-(97, '2018-09-06 01:05:25', 'usuario1', 'wao', 'pry1'),
-(98, '2018-09-07 22:46:36', 'usuario1', 'esto es la generacion de codigo fuente', 'pry1'),
-(99, '2018-09-08 00:05:40', 'usuario1', 'ggg', 'pry1'),
-(100, '2018-09-08 00:07:14', 'usuario1', 'hhh', 'pry1'),
-(101, '2018-09-08 00:07:59', 'usuario1', 'hola', 'pry1'),
-(102, '2018-09-08 00:08:11', 'usuario1', '', 'pry1'),
-(103, '2018-09-10 06:06:28', 'usuario1', 'tambien funciona', 'pry1'),
-(104, '2018-09-10 06:07:03', 'usuario2', 'si esto funciona', 'pry1'),
-(105, '2018-09-10 06:12:15', 'usuario2', '', 'pry1'),
-(106, '2018-09-10 06:12:27', 'usuario2', '', 'pry1');
+(96, '2018-09-06 00:59:36', 'usuario1', 'ahora si funciona', 'pry1');
 
 -- --------------------------------------------------------
 
@@ -281,6 +271,26 @@ INSERT INTO `perspectivas` (`cod_perspectiva`, `cod_ele_perspectiva`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `perspectivas_generales`
+--
+
+CREATE TABLE `perspectivas_generales` (
+  `cod_per_general` varchar(30) NOT NULL,
+  `nom_per_genral` varchar(80) NOT NULL,
+  `cod_perspectiva` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `perspectivas_generales`
+--
+
+INSERT INTO `perspectivas_generales` (`cod_per_general`, `nom_per_genral`, `cod_perspectiva`) VALUES
+('cpg1', 'perspectiva general 1', 'per1'),
+('cpg2', 'perspectiva general 2', 'per2');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos_servicios`
 --
 
@@ -332,6 +342,7 @@ CREATE TABLE `proyectos` (
   `cod_proyecto` varchar(30) NOT NULL,
   `nom_proyecto` varchar(80) NOT NULL,
   `cod_equipo` varchar(30) NOT NULL,
+  `cod_per_general` varchar(30) NOT NULL,
   `dom_proyecto` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -339,32 +350,11 @@ CREATE TABLE `proyectos` (
 -- Volcado de datos para la tabla `proyectos`
 --
 
-INSERT INTO `proyectos` (`cod_proyecto`, `nom_proyecto`, `cod_equipo`, `dom_proyecto`) VALUES
-('pry1', 'proyecto 1', 'equ1', '<mxGraphModel as=\"model\">\r\n  <root>\r\n    <Diagram label=\"My Diagram\" href=\"http://www.jgraph.com/\" id=\"0\">\r\n      <mxCell/>\r\n    </Diagram>\r\n    <Layer label=\"Default Layer\" id=\"1\">\r\n      <mxCell parent=\"0\"/>\r\n    </Layer>\r\n    <Image label=\"\" href=\"\" id=\"2\">\r\n      <mxCell style=\"image\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"140\" y=\"440\" width=\"80\" height=\"50\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Image>\r\n    <Shape label=\"Shape\" href=\"\" id=\"3\">\r\n      <mxCell style=\"cloud\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"420\" y=\"450\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"4\">\r\n      <mxCell style=\"actor\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"370\" y=\"280\" width=\"40\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"5\">\r\n      <mxCell style=\"rhombus\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"350\" y=\"440\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"6\">\r\n      <mxCell style=\"hexagon\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"570\" y=\"340\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"7\">\r\n      <mxCell style=\"ellipse\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"430\" y=\"200\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"8\">\r\n      <mxCell style=\"rhombus\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"220\" y=\"630\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"9\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"5\" target=\"8\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n    <Shape label=\"Shape\" href=\"\" id=\"10\">\r\n      <mxCell style=\"rhombus\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"530\" y=\"670\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"11\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"8\" target=\"10\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n    <Shape label=\"Shape\" href=\"\" id=\"12\">\r\n      <mxCell style=\"rhombus\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"270\" y=\"720\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"13\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"10\" target=\"12\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n  </root>\r\n</mxGraphModel>\r\n'),
-('pry2', 'proyecto 2', 'equ2', ''),
-('pry3', 'proyecto 3', 'equ1', '<mxGraphModel as=\"model\">\r\n  <root>\r\n    <Diagram label=\"My Diagram\" href=\"http://www.jgraph.com/\" id=\"0\">\r\n      <mxCell/>\r\n    </Diagram>\r\n    <Layer label=\"Default Layer\" id=\"1\">\r\n      <mxCell parent=\"0\"/>\r\n    </Layer>\r\n    <Shape label=\"Shape\" href=\"\" id=\"2\">\r\n      <mxCell style=\"cloud\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"490\" y=\"100\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"3\">\r\n      <mxCell style=\"doubleEllipse\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"530\" y=\"230\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"4\">\r\n      <mxCell style=\"cloud\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"380\" y=\"310\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"5\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"2\" target=\"4\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n    <Shape label=\"Shape\" href=\"\" id=\"6\">\r\n      <mxCell style=\"cloud\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"590\" y=\"140\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"7\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"2\" target=\"6\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n  </root>\r\n</mxGraphModel>\r\n'),
-('pry4', 'proyecto 4', 'equ2', '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pro_per`
---
-
-CREATE TABLE `pro_per` (
-  `cod_pro_per` varchar(30) NOT NULL,
-  `cod_proyecto` varchar(30) NOT NULL,
-  `cod_perspectiva` varchar(30) NOT NULL,
-  `dom_perspectiva` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `pro_per`
---
-
-INSERT INTO `pro_per` (`cod_pro_per`, `cod_proyecto`, `cod_perspectiva`, `dom_perspectiva`) VALUES
-('pro_per1', 'pry1', 'per1', '<mxGraphModel as=\"model\">\r\n  <root>\r\n    <Diagram label=\"My Diagram\" href=\"http://www.jgraph.com/\" id=\"0\">\r\n      <mxCell/>\r\n    </Diagram>\r\n    <Layer label=\"Default Layer\" id=\"1\">\r\n      <mxCell parent=\"0\"/>\r\n    </Layer>\r\n    <Shape label=\"Shape\" href=\"\" id=\"2\">\r\n      <mxCell style=\"cloud\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"490\" y=\"100\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"3\">\r\n      <mxCell style=\"doubleEllipse\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"530\" y=\"230\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"4\">\r\n      <mxCell style=\"cloud\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"380\" y=\"310\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"5\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"2\" target=\"4\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n    <Shape label=\"Shape\" href=\"\" id=\"6\">\r\n      <mxCell style=\"cloud\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"590\" y=\"140\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"7\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"2\" target=\"6\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n  </root>\r\n</mxGraphModel>\r\n'),
-('pro_per2', 'pry1', 'per2', '<mxGraphModel>\r\n  <root>\r\n    <Diagram label=\"My Diagram\" href=\"http://www.jgraph.com/\" id=\"0\">\r\n      <mxCell/>\r\n    </Diagram>\r\n    <Layer label=\"Default Layer\" id=\"1\">\r\n      <mxCell parent=\"0\"/>\r\n    </Layer>\r\n    <Image label=\"\" href=\"\" id=\"2\">\r\n      <mxCell style=\"image\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"230\" y=\"350\" width=\"80\" height=\"50\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Image>\r\n    <Shape label=\"Shape\" href=\"\" id=\"3\">\r\n      <mxCell style=\"cylinder\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"420\" y=\"200\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"4\">\r\n      <mxCell style=\"hexagon\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"480\" y=\"360\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"5\">\r\n      <mxCell style=\"cloud\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"230\" y=\"510\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n  </root>\r\n</mxGraphModel>\r\n');
+INSERT INTO `proyectos` (`cod_proyecto`, `nom_proyecto`, `cod_equipo`, `cod_per_general`, `dom_proyecto`) VALUES
+('pry1', 'proyecto 1', 'equ1', 'cpg1', '<mxGraphModel>\r\n  <root>\r\n    <Diagram label=\"My Diagram\" href=\"http://www.jgraph.com/\" id=\"0\">\r\n      <mxCell/>\r\n    </Diagram>\r\n    <Layer label=\"Default Layer\" id=\"1\">\r\n      <mxCell parent=\"0\"/>\r\n    </Layer>\r\n    <Container label=\"Container\" href=\"\" id=\"10\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"320\" y=\"48.5\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"320\" y=\"48.5\" width=\"250\" height=\"180\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"6\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"200\" y=\"48.5\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"200\" y=\"50\" width=\"250\" height=\"180\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"2\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"75\" y=\"50\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"75\" y=\"50\" width=\"250\" height=\"180\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"15\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"90\" y=\"140\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"90\" y=\"140\" width=\"200\" height=\"200\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"17\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"210\" y=\"130\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"210\" y=\"130\" width=\"200\" height=\"200\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n    <Container label=\"Container\" href=\"\" id=\"18\">\r\n      <mxCell style=\"swimlane\" parent=\"1\" vertex=\"1\" connectable=\"0\" collapsed=\"1\">\r\n        <mxGeometry x=\"320\" y=\"128.5\" width=\"70\" height=\"23\" as=\"geometry\">\r\n          <mxRectangle x=\"470\" y=\"120\" width=\"200\" height=\"200\" as=\"alternateBounds\"/>\r\n        </mxGeometry>\r\n      </mxCell>\r\n    </Container>\r\n  </root>\r\n</mxGraphModel>\r\n'),
+('pry2', 'proyecto 2', 'equ2', 'cpg1', ''),
+('pry3', 'proyecto 3', 'equ1', 'cpg2', '<mxGraphModel>\r\n  <root>\r\n    <Diagram label=\"My Diagram\" href=\"http://www.jgraph.com/\" id=\"0\">\r\n      <mxCell/>\r\n    </Diagram>\r\n    <Layer label=\"Default Layer\" id=\"1\">\r\n      <mxCell parent=\"0\"/>\r\n    </Layer>\r\n    <Shape label=\"Shape\" href=\"\" id=\"2\">\r\n      <mxCell style=\"cloud\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"490\" y=\"100\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"3\">\r\n      <mxCell style=\"doubleEllipse\" parent=\"1\" vertex=\"1\">\r\n        <mxGeometry x=\"530\" y=\"230\" width=\"60\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Shape label=\"Shape\" href=\"\" id=\"4\">\r\n      <mxCell style=\"cloud\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"380\" y=\"310\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"5\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"2\" target=\"4\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n    <Shape label=\"Shape\" href=\"\" id=\"6\">\r\n      <mxCell style=\"cloud\" vertex=\"1\" parent=\"1\">\r\n        <mxGeometry x=\"590\" y=\"140\" width=\"80\" height=\"60\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Shape>\r\n    <Connector label=\"\" href=\"\" id=\"7\">\r\n      <mxCell edge=\"1\" parent=\"1\" source=\"2\" target=\"6\">\r\n        <mxGeometry relative=\"1\" as=\"geometry\"/>\r\n      </mxCell>\r\n    </Connector>\r\n  </root>\r\n</mxGraphModel>\r\n'),
+('pry4', 'proyecto 4', 'equ2', 'cpg2', '');
 
 -- --------------------------------------------------------
 
@@ -562,6 +552,13 @@ ALTER TABLE `perspectivas`
   ADD KEY `cod_ele_perspectiva` (`cod_ele_perspectiva`);
 
 --
+-- Indices de la tabla `perspectivas_generales`
+--
+ALTER TABLE `perspectivas_generales`
+  ADD PRIMARY KEY (`cod_per_general`),
+  ADD KEY `cod_perspectiva` (`cod_perspectiva`);
+
+--
 -- Indices de la tabla `productos_servicios`
 --
 ALTER TABLE `productos_servicios`
@@ -580,15 +577,8 @@ ALTER TABLE `proveedores`
 --
 ALTER TABLE `proyectos`
   ADD PRIMARY KEY (`cod_proyecto`),
-  ADD KEY `cod_equipo` (`cod_equipo`);
-
---
--- Indices de la tabla `pro_per`
---
-ALTER TABLE `pro_per`
-  ADD PRIMARY KEY (`cod_pro_per`),
-  ADD KEY `cod_perspectiva` (`cod_perspectiva`),
-  ADD KEY `cod_proyecto` (`cod_proyecto`);
+  ADD KEY `cod_equipo` (`cod_equipo`,`cod_per_general`),
+  ADD KEY `cod_perspecitva` (`cod_per_general`);
 
 --
 -- Indices de la tabla `reguladores`
@@ -640,7 +630,7 @@ ALTER TABLE `usu_equipo`
 -- AUTO_INCREMENT de la tabla `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `cod_chat` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `cod_chat` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- Restricciones para tablas volcadas
@@ -683,6 +673,12 @@ ALTER TABLE `perspectivas`
   ADD CONSTRAINT `perspectivas_ibfk_1` FOREIGN KEY (`cod_ele_perspectiva`) REFERENCES `elementos_perspectiva` (`cod_ele_perspectiva`);
 
 --
+-- Filtros para la tabla `perspectivas_generales`
+--
+ALTER TABLE `perspectivas_generales`
+  ADD CONSTRAINT `perspectivas_generales_ibfk_1` FOREIGN KEY (`cod_perspectiva`) REFERENCES `perspectivas` (`cod_perspectiva`);
+
+--
 -- Filtros para la tabla `productos_servicios`
 --
 ALTER TABLE `productos_servicios`
@@ -698,14 +694,8 @@ ALTER TABLE `proveedores`
 -- Filtros para la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
+  ADD CONSTRAINT `proyectos_ibfk_1` FOREIGN KEY (`cod_per_general`) REFERENCES `perspectivas_generales` (`cod_per_general`),
   ADD CONSTRAINT `proyectos_ibfk_2` FOREIGN KEY (`cod_equipo`) REFERENCES `equipos` (`cod_equipo`);
-
---
--- Filtros para la tabla `pro_per`
---
-ALTER TABLE `pro_per`
-  ADD CONSTRAINT `pro_per_ibfk_1` FOREIGN KEY (`cod_perspectiva`) REFERENCES `perspectivas` (`cod_perspectiva`),
-  ADD CONSTRAINT `pro_per_ibfk_2` FOREIGN KEY (`cod_proyecto`) REFERENCES `proyectos` (`cod_proyecto`);
 
 --
 -- Filtros para la tabla `rol_usuario`

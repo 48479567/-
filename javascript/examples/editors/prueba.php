@@ -14,3 +14,44 @@
 	echo $dom_mod_proyectos;
 
 	?>
+
+
+				
+				<?php
+			
+			$sql_prp = "SELECT * FROM pro_per WHERE cod_proyecto = '$cod_proyecto'";
+			$res_prp = mysqli_query($conn, $sql_prp);
+			$cantidad_perspectivas = $res_prp->num_rows;
+
+			for ($indice = 0 ; $indice < $cantidad_perspectivas ; $indice++) {
+			?>
+			var <?="textNode$indice"?> = document.getElementById(<?="xml$indice"?>);
+			var <?="graphNode$indice"?> = editor.graph.container;
+			var <?="sourceInput$indice"?> = document.getElementById('source');
+			var <?="divGraph$indice"?> = document.getElementById('graph');
+			<?="sourceInput$indice"?>.checked = false;
+
+
+			var <?="funct$indice"?> = function(editor)
+			{
+								
+					var <?="enc$indice"?> = new mxCodec();
+					var <?="node$indice"?> = <?="enc$indice"?>.encode(editor.graph.getModel());
+					
+					<?="textNode$indice"?>.value = mxUtils.getPrettyXml(<?="node$indice"?>);
+					<?="textNode$indice"?>.originalValue = <?="textNode$indice"?>.value;
+					<?="textNode$indice"?>.focus();
+					document.getElementById(<?="dom$indice"?>).value = <?="textNode$indice"?>.value;
+			};
+
+			editor.addAction('<?="switchView$indice"?>', <?="funct$indice"?>);
+			// Defines a new action to switch between
+			// XML and graphical display
+			mxEvent.addListener(<?="divGraph$indice"?>, 'mouseout', function()
+			{
+				editor.execute('<?="switchView$indice"?>');
+			});
+
+			<?php
+			}
+			?>

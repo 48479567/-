@@ -103,7 +103,7 @@ setInterval('autoRefresh_div()', 2000);
 							<img src="images/loading.gif">
 						</center>
 					</div>
-
+					
 					<textarea id="xml"></textarea>
 
 				</td>
@@ -159,7 +159,7 @@ setInterval('autoRefresh_div()', 2000);
 		<div id="zoomActions"></div>
 
 
-		<?php 
+	<?php 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (empty($_POST["cod_proyecto"])) {
 			} else {
@@ -188,18 +188,27 @@ setInterval('autoRefresh_div()', 2000);
 		} else {
 				echo "Error updating record: " . mysqli_error($conn);
 		}
-		?>
 
-		<form action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+		
+	?>
+
+		<form action="<?=htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
 			<input type="button" value="mostrar" id="mostrar">
 			<input type="submit" value="Guardar">
-
-		
-
 			<textarea name=dom_proyecto id=ingreso><?=$dom_proyecto?></textarea>
-			<input type="text" name="cod_proyecto" value="<?=$cod_proyecto?>">
-		
+			<input type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
+	<?php
+			$index = 0;
+		while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
+			
+			?>
+			<input type="button" id='<?="per$index"?>' value='<?=$row_prp2["cod_pro_per"]?>'/>
+			<textarea name="" id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
+	<?php
+			$index++;
+		}
+	?>
+	
 		</form>
-		
 </body>
 </html>
