@@ -92,7 +92,8 @@
 					textNode.value = mxUtils.getPrettyXml(node);
 					textNode.originalValue = textNode.value;
 					textNode.focus();
-					document.getElementById('ingreso').value = textNode.value;
+					var encaje = document.getElementById('etiqueta').value;
+					document.getElementById(encaje).value = textNode.value;
 			};
 
 			editor.addAction('switchView', funct);

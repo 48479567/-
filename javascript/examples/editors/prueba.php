@@ -55,3 +55,19 @@
 			<?php
 			}
 			?>
+
+
+	<input id="dd1" type="button" value="Click me" onclick="msg(this)">
+	<input id="dd2" type="button" value="Click me" onclick="msg(this)">
+	<input id="dd3" type="button" value="Click me" onclick="msg(this)">
+	<input type="text" id="mostrar" value="hello">
+
+<script>
+	function msg(hola) {
+		var id = hola.id
+			var cambioId = id.replace("dd", "aassss");
+			var text = document.getElementById('mostrar');
+			return text.value = cambioId;
+	}
+</script>
+			

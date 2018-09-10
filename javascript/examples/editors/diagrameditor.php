@@ -80,6 +80,7 @@ setInterval('autoRefresh_div()', 2000);
 
 </script>
 
+
 </head>
 
 <body onload="createEditor('config/diagrameditor.xml');">
@@ -193,22 +194,33 @@ setInterval('autoRefresh_div()', 2000);
 	?>
 
 		<form action="<?=htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
-			<input type="button" value="mostrar" id="mostrar">
+			<input type="button" value="mostrar" id="mostrar" onclick="etiqueta1(this)">
 			<input type="submit" value="Guardar">
 			<textarea name=dom_proyecto id=ingreso><?=$dom_proyecto?></textarea>
 			<input type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
+		</form>
 	<?php
 			$index = 0;
 		while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
 			
 			?>
-			<input type="button" id='<?="per$index"?>' value='<?=$row_prp2["cod_pro_per"]?>'/>
+			<input type="button" id='<?="per$index"?>' value='<?=$row_prp2["cod_pro_per"]?>' onclick="etiqueta(this)"/>
 			<textarea name="" id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
 	<?php
 			$index++;
 		}
 	?>
-	
-		</form>
+
+			<input type="text" id="etiqueta" value="ingreso">
+
+<script>
+	function etiqueta(contenidoButton) {
+		var idButton = contenidoButton.id;
+		var idTextArea = idButton.replace("per", "dom");
+		var textArea = document.getElementById('etiqueta'); 
+		return textArea.value = idTextArea;
+		
+	}
+</script>
 </body>
 </html>
