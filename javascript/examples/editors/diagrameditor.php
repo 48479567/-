@@ -170,6 +170,27 @@ setInterval('autoRefresh_div()', 2000);
 			} else {
 				$dom_proyecto = $_POST["dom_proyecto"];
 			}
+			$cod_pro_per_entrante = array();
+			$dom_pro_per_entrante = array();
+			
+			for ($index=0; $index < $cantidad_perspectivas; $index++) {
+				$cod_pro_per_entrante["$index"] = "";
+				$dom_pro_per_entrante["$index"] = "";
+			}
+
+
+			for ($index=0; $index < $cantidad_perspectivas; $index++) { 
+				if (empty($_POST["cod_pro_per$index"])){
+				} else {
+					$cod_pro_per_entrante["$index"] = $_POST["cod_pro_per$index"];
+				}
+				if (empty($_POST["dom_pro_per$index"])){
+				} else {
+					$dom_pro_per_entrante["$index"] = $_POST["dom_pro_per$index"];
+				}
+
+			}
+
 			
 		}
 		
@@ -190,34 +211,49 @@ setInterval('autoRefresh_div()', 2000);
 				echo "Error updating record: " . mysqli_error($conn);
 		}
 
+		for ($index=0; $index < $cantidad_perspectivas; $index++) {
+			$sql_pro_per = "UPDATE pro_per SET dom_perspectiva = '$dom_pro_per_entrante[$index]' WHERE cod_pro_per = '$cod_pro_per_entrante[$index]'";
+			if (mysqli_query($conn, $sql_udp)) {
+				$_SESSION["cod_pro_per$index"] = $cod_pro_per_entrante["$index"];
+				$_SESSION["dom_pro_per$index"] = $dom_pro_per_entrante["$index"];
+			} else {
+				echo "Error updating record: " . mysqli_error($conn);
+			}
+		}
+
 		
 	?>
 
 		<form action="<?=htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
-			<input type="button" value="mostrar" id="mostrar" onclick="etiqueta1(this)">
+			<div class="button" id="mostrar" onclick="etiqueta(this)">mostrar</div>
 			<input type="submit" value="Guardar">
 			<textarea name=dom_proyecto id=ingreso><?=$dom_proyecto?></textarea>
 			<input type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
-		</form>
+		
 	<?php
 			$index = 0;
 		while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
 			
 			?>
-			<input type="button" id='<?="per$index"?>' value='<?=$row_prp2["cod_pro_per"]?>' onclick="etiqueta(this)"/>
-			<textarea name="" id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
+			<div class="button" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["cod_pro_per"]?></div>
+			<input class="oculto" type="text" name='<?="cod_pro_per$index"?>' id="" value="<?=$row_prp2['cod_pro_per']?>"> 
+			<textarea class="oculto" name=<?="dom_pro_per$index"?> id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
 	<?php
 			$index++;
 		}
 	?>
 
-			<input type="text" id="etiqueta" value="ingreso">
-
+			<input type="text" id="etiqueta" value="previa_carga">
+			<textarea  class="oculto" name="" id="previa_carga"><?=$cantidad_perspectivas?></textarea>
+		</form>	
 <script>
 	function etiqueta(contenidoButton) {
 		var idButton = contenidoButton.id;
 		var idTextArea = idButton.replace("per", "dom");
 		var textArea = document.getElementById('etiqueta'); 
+		if (idTextArea == "mostrar"){
+			idTextArea = "ingreso";
+		}
 		return textArea.value = idTextArea;
 		
 	}
