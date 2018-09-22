@@ -10,7 +10,7 @@ while($row = $result->fetch_assoc()){
 	$comment=$row['mensaje'];
     $time=$row['tiempo_mensaje'];
 ?>
-<div class="chats"><strong><?=$name?>:</strong> <?=$comment?> <p><?=date("j/m/Y g:i:sa", strtotime($time))?></p></div>
+<div class="texto_chat"><strong class="texto_chat"><?=$name?>:</strong> <?=$comment?> <!--<p class="texto_chat"><?php/*date("j/m/Y g:i:sa", strtotime($time))*/?></p></div>-->
 <?php
 }
 ?>

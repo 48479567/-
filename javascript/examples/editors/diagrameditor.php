@@ -18,6 +18,7 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./diagramador.css">
 <title>mxDraw <?php echo $cod_proyecto; ?></title>
 
@@ -121,10 +122,11 @@ setInterval('autoRefresh_div()', 2000);
 								$comment=$row['mensaje'];
 									$time=$row['tiempo_mensaje'];
 							?>
-							<div class="chats">
-								<strong><?=$name?>:</strong>
+							<div class="texto_chat">
+								<strong class="texto_chat"><?=$name?>:</strong>
 								<?=$comment?> 
-								<p><?=date("j/m/Y g:i:sa", strtotime($time))?></p>
+								<!--
+								<p class="texto_chat"><?php //date("j/m/Y g:i:sa", strtotime($time))?></p>-->
 							</div>
 							<?php
 							}
@@ -134,8 +136,8 @@ setInterval('autoRefresh_div()', 2000);
 					<form method="post" action="" onsubmit="return post();" id="my_form" name="my_form">
 
 						<div>
-							<input type="text" id="username" value="<?=$_SESSION['usuario']?>">
-							<input type="text" name="cod_proyecto" id="cod_proyecto1" value="<?=$cod_proyecto?>">
+							<input class="oculto" type="text" id="username" value="<?=$_SESSION['usuario']?>">
+							<input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto1" value="<?=$cod_proyecto?>">
 							<textarea id="comment"></textarea>	
 						</div>
 
@@ -151,46 +153,57 @@ setInterval('autoRefresh_div()', 2000);
 
 		</table>
 
-		<span style="float:right;}	">
-
-			<input id="source" type="checkbox"/>Generar Cambios
-
-		</span>
-
 		<div id="zoomActions"></div>
 
 
 	<?php 
+
+		$cod_pro_per_entrante = array();
+		$dom_pro_per_entrante = array();
+
+		for ($index=0; $index < $cantidad_perspectivas; $index++) {
+			$cod_pro_per_entrante["$index"] = "uno";
+			$dom_pro_per_entrante["$index"] = "cero";
+		}
+
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			if (empty($_POST["cod_proyecto"])) {
+
+			if(empty($_POST["cod_proyecto"])){	
 			} else {
-				$cod_proyecto = $_POST["cod_proyecto"];
+				$cod_proyecto = test_input($_POST["cod_proyecto"]);
 			}
-			if (empty($_POST["dom_proyecto"])) {
+			if(empty($_POST["dom_proyecto"])){
 			} else {
-				$dom_proyecto = $_POST["dom_proyecto"];
-			}
-			$cod_pro_per_entrante = array();
-			$dom_pro_per_entrante = array();
-			
-			for ($index=0; $index < $cantidad_perspectivas; $index++) {
-				$cod_pro_per_entrante["$index"] = "";
-				$dom_pro_per_entrante["$index"] = "";
+				$dom_proyecto = test_input($_POST["dom_proyecto"]);
 			}
 
+			
+			$sql_udp = "UPDATE proyectos SET dom_proyecto = '$dom_proyecto' WHERE cod_proyecto = '$cod_proyecto'";
+			
+			if (mysqli_query($conn, $sql_udp)) {
+			} else {
+					echo "Error updating record: " . mysqli_error($conn);
+			}
 
 			for ($index=0; $index < $cantidad_perspectivas; $index++) { 
-				if (empty($_POST["cod_pro_per$index"])){
+				if(empty($_POST["cod_pro_per$index"])){
 				} else {
-					$cod_pro_per_entrante["$index"] = $_POST["cod_pro_per$index"];
+					$cod_pro_per_entrante["$index"] = test_input($_POST["cod_pro_per$index"]);
 				}
-				if (empty($_POST["dom_pro_per$index"])){
+				if(empty($_POST["dom_pro_per$index"])){
 				} else {
-					$dom_pro_per_entrante["$index"] = $_POST["dom_pro_per$index"];
+					$dom_pro_per_entrante["$index"] = test_input($_POST["dom_pro_per$index"]);
 				}
-
 			}
+				for ($index=0; $index < $cantidad_perspectivas; $index++) {
+					$sql_pro_per = "UPDATE pro_per SET dom_perspectiva = '$dom_pro_per_entrante[$index]' WHERE cod_pro_per = '$cod_pro_per_entrante[$index]'";
+					if (mysqli_query($conn, $sql_pro_per)) {
+					} else {
+						echo "Error updating record: " . mysqli_error($conn);
+					}
+				}
 
+			mysqli_close($conn);
 			
 		}
 		
@@ -201,41 +214,22 @@ setInterval('autoRefresh_div()', 2000);
 			return $data;
 		}
 		
-		$sql_udp = "UPDATE proyectos SET dom_proyecto = '$dom_proyecto' WHERE cod_proyecto = '$cod_proyecto'";
-		
-		if (mysqli_query($conn, $sql_udp)) {
-				$_SESSION['cod_proyecto'] = $cod_proyecto;
-				$_SESSION['dom_proyecto'] = $dom_proyecto;
-				
-		} else {
-				echo "Error updating record: " . mysqli_error($conn);
-		}
 
-		for ($index=0; $index < $cantidad_perspectivas; $index++) {
-			$sql_pro_per = "UPDATE pro_per SET dom_perspectiva = '$dom_pro_per_entrante[$index]' WHERE cod_pro_per = '$cod_pro_per_entrante[$index]'";
-			if (mysqli_query($conn, $sql_udp)) {
-				$_SESSION["cod_pro_per$index"] = $cod_pro_per_entrante["$index"];
-				$_SESSION["dom_pro_per$index"] = $dom_pro_per_entrante["$index"];
-			} else {
-				echo "Error updating record: " . mysqli_error($conn);
-			}
-		}
 
 		
 	?>
 
 		<form action="<?=htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
-			<div class="button" id="mostrar" onclick="etiqueta(this)">mostrar</div>
-			<input type="submit" value="Guardar">
-			<textarea name=dom_proyecto id=ingreso><?=$dom_proyecto?></textarea>
-			<input type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
-		
-	<?php
-			$index = 0;
-		while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
+			<div class="button" id="mostrar" onclick="etiqueta(this)"><a href="#" class="button_a">mostrar</a></div>
+			<textarea class="oculto" name=dom_proyecto id=ingreso><?=$dom_proyecto?></textarea>
+			<input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
 			
-			?>
-			<div class="button" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["cod_pro_per"]?></div>
+			<?php
+			$index = 0;
+			while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
+				
+				?>
+			<div class="button" id='<?="per$index"?>' onclick="etiqueta(this)"/><a href="#" class="button_a"><?=$row_prp2["cod_pro_per"]?></a></div>
 			<input class="oculto" type="text" name='<?="cod_pro_per$index"?>' id="" value="<?=$row_prp2['cod_pro_per']?>"> 
 			<textarea class="oculto" name=<?="dom_pro_per$index"?> id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
 	<?php
@@ -243,10 +237,11 @@ setInterval('autoRefresh_div()', 2000);
 		}
 	?>
 
-			<input type="text" id="etiqueta" value="previa_carga">
+			<input class="oculto" type="text" id="etiqueta" value="previa_carga">
 			<textarea  class="oculto" name="" id="previa_carga"><?=$cantidad_perspectivas?></textarea>
+			<input type="submit" value="Guardar">
 		</form>	
-<script>
+		<script>
 	function etiqueta(contenidoButton) {
 		var idButton = contenidoButton.id;
 		var idTextArea = idButton.replace("per", "dom");
@@ -258,5 +253,6 @@ setInterval('autoRefresh_div()', 2000);
 		
 	}
 </script>
+<script src="../../../boostrap/js/bootstrap.min.js"></script>
 </body>
 </html>

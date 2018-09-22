@@ -47,9 +47,10 @@ table {
 
 #chat {
   height: 100%;
-  width: 15%;
+  width: 13%;
   background-color: yellow;
   vertical-align: bottom;
+  padding: 5px;
   
 }
 
@@ -57,15 +58,20 @@ table {
   height:70%;
   overflow:auto;
   overflow-x: hidden;
-  text-size-adjust: 8px;
+  text-size-adjust: 10px;
+  margin: 0;
 }
 
-.chats { font-size: small;}
+.texto_chat { 
+  font-size: 10px;
+}
 
 #comment {
-  width: 100%; 
-  height: 79px; 
+  width: 90%; 
+  height: 40%; 
+  font-size: 10px;
   resize: none;
+
 }
 
 #zoomActions {
@@ -78,8 +84,23 @@ table {
 }
 
 .button {
-  position: absolute;
   display: inline-block;
-  background-color: yellow;
+  background-color: blue;
   border: 1px solid green;
+  border-radius: 15px;
+  padding: 5px;
+  text-decoration: none;
+  cursor: pointer;
 }
+
+.oculto {
+  display: none;
+}
+
+.button_a {
+  text-decoration: none;
+}
+
+
+
+

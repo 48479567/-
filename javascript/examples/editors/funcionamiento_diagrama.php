@@ -78,9 +78,8 @@
 
 			var textNode = document.getElementById('xml');
 			var graphNode = editor.graph.container;
-			var sourceInput = document.getElementById('source');
 			var divGraph = document.getElementById('graph');
-			sourceInput.checked = false;
+		
 
 
 			var funct = function(editor)
