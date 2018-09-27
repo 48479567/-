@@ -3,8 +3,7 @@ require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
 session_start();
 
 $_SESSION['cod_proyecto'] = $_POST['cod_proyecto']; 
-$cod_proyecto = $_SESSION['cod_proyecto']; 
-
+$cod_proyecto = $_SESSION['cod_proyecto'];
 $sql_sdp = "SELECT * FROM proyectos WHERE cod_proyecto = '$cod_proyecto'";
 $res_sdp = mysqli_query($conn, $sql_sdp);
 
@@ -75,8 +74,10 @@ $.ajax ({
 
 function autoRefresh_div(){
 			$("#result").load("load.php").show();
-			// a function which 
+			// a function which
+
 }
+
 setInterval('autoRefresh_div()', 2000);
 
 </script>
@@ -195,13 +196,13 @@ setInterval('autoRefresh_div()', 2000);
 					$dom_pro_per_entrante["$index"] = test_input($_POST["dom_pro_per$index"]);
 				}
 			}
-				for ($index=0; $index < $cantidad_perspectivas; $index++) {
-					$sql_pro_per = "UPDATE pro_per SET dom_perspectiva = '$dom_pro_per_entrante[$index]' WHERE cod_pro_per = '$cod_pro_per_entrante[$index]'";
-					if (mysqli_query($conn, $sql_pro_per)) {
-					} else {
-						echo "Error updating record: " . mysqli_error($conn);
-					}
+			for ($index=0; $index < $cantidad_perspectivas; $index++) {
+				$sql_pro_per = "UPDATE pro_per SET dom_perspectiva = '$dom_pro_per_entrante[$index]' WHERE cod_pro_per = '$cod_pro_per_entrante[$index]'";
+				if (mysqli_query($conn, $sql_pro_per)) {
+				} else {
+					echo "Error updating record: " . mysqli_error($conn);
 				}
+			}
 
 			mysqli_close($conn);
 			
