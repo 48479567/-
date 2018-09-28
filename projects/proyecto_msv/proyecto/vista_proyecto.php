@@ -22,29 +22,53 @@ $sql_pry1 = "SELECT proyectos.cod_proyecto, proyectos.nom_proyecto, equipos.npm_
 $res_pry1 = $conn->query($sql_pry1);
 ?>
 <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="./style_vista_proyecto/style.css">
+
 <title>ISG | <?=$_SESSION['usuario']?></title>
 </head>
 <body>
 
-<h1><?=$_SESSION['usuario']?></h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" href="#"> <img class="logo" src="./style_vista_proyecto/menu.png" alt="ISG" height="50"> ISG</a>
+  <div class="collapse navbar-collapse" id="navbar1">
+    <ul class="navbar-nav ml-auto"> 
+<li class="nav-item active">
+<a class="nav-link" href="#"><?=$_SESSION['usuario']?></a>
+</li>
+<li class="nav-item"><a class="nav-link" href="./creacion_de_proyecto/crear_proyecto.php">Crear Proyecto</a></li>
+<li class="nav-item">
+<a class="btn ml-2 btn-warning" href="http://localhost/-/">Salir</a></li>
+    </ul>
+  </div>
+</nav>
 
-
-<ul>
+<ul class="dinamic" style="background-color:blue;">
 <?php 
 while($row = $res_pry1->fetch_assoc()) {
 ?>
-  <li><form action="../../../javascript/examples/editors/diagrameditor.php" method="POST">
-        <input type="text" name="cod_proyecto" value="<?=$row['cod_proyecto']?>"/>
-        <input type="submit" id="<?=$row['cod_proyecto']?>" onsubmit ="<?=$row['cod_proyecto']?>()" value="<?=$row['nom_proyecto']?>"/>
-      </form></li></br>
+  <li style="background-color:red;">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="proyecto_descripcion text-white">
+      <h2><?=$row['nom_proyecto']?></h2>
+      <p>Ingresando al diagramador principal de forma colaborativa, este proyecto sera manejado solo por los usuarios autorizados.</p>
+    </div>
+    <div class="content">
+      <form action="../../../javascript/examples/editors/diagrameditor.php" method="POST">
+        
+        <input type="text" class="oculto" name="cod_proyecto" value="<?=$row['cod_proyecto']?>"/>
+        <input type="submit" id="<?=$row['cod_proyecto']?>" value="<?=$row['nom_proyecto']?>"/>
+      </form>
+    </div>
+  </li>
 <?php
 }
 ?>
+<div class="bg-light"></div>
 </ul>
-
-</br>
-</br>
-<a href="./creacion_de_proyecto/crear_proyecto.php">Crear Proyecto</a>
 
 <script src="../../../bootstrap/js/bootstrap.min.js"></script>
 </body>
