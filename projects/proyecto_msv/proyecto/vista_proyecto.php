@@ -38,7 +38,7 @@ $res_pry1 = $conn->query($sql_pry1);
 </li>
 <li class="nav-item"><a class="nav-link" href="./creacion_de_proyecto/crear_proyecto.php">Crear Proyecto</a></li>
 <li class="nav-item">
-<a class="btn ml-2 btn-warning" href="http://localhost/-/">Salir</a></li>
+<a class="btn ml-2 btn-warning" href="../../../">Salir</a></li>
     </ul>
   </div>
 </nav>
@@ -56,13 +56,10 @@ while($row = $res_pry1->fetch_assoc()) {
       <h2><?=$row['nom_proyecto']?></h2>
       <p>Ingresando al diagramador principal de forma colaborativa, este proyecto sera manejado solo por los usuarios autorizados.</p>
     </div>
-    <div class="content">
       <form action="../../../javascript/examples/editors/diagrameditor.php" method="POST">
-        
         <input type="text" class="oculto" name="cod_proyecto" value="<?=$row['cod_proyecto']?>"/>
         <input type="submit" id="<?=$row['cod_proyecto']?>" value="<?=$row['nom_proyecto']?>"/>
       </form>
-    </div>
   </li>
 <?php
 }

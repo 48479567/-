@@ -85,8 +85,10 @@ setInterval('autoRefresh_div()', 2000);
 
 </head>
 
-<body onload="createEditor('config/diagrameditor.xml');">
+<body style="background-image:url('background_diagram.jpg')" onload="createEditor('config/diagrameditor.xml');">
 
+
+	
 		<div id="mainActions"></div>
 		<div id="selectActions"></div>
 		
@@ -98,7 +100,7 @@ setInterval('autoRefresh_div()', 2000);
 					<!-- Toolbar Here -->				
 				</td>
 
-				<td id="graph_td">
+				<td id="graph_td" style="background-color:white;">
 
 					<div id="graph" tabindex="-1">
 						<!-- Graph Here -->
@@ -111,7 +113,7 @@ setInterval('autoRefresh_div()', 2000);
 
 				</td>
 
-				<td id="chat">
+				<td id="chat" style="background-image:url('background_chat.jpg')">
 
 					<div id="result">
 						<?php
@@ -123,12 +125,13 @@ setInterval('autoRefresh_div()', 2000);
 								$comment=$row['mensaje'];
 									$time=$row['tiempo_mensaje'];
 							?>
-							<div class="texto_chat">
+							<div class="texto_chat" style="background-color:#dcf8c5; margin:5px;">
 								<strong class="texto_chat"><?=$name?>:</strong>
 								<?=$comment?> 
 								<!--
 								<p class="texto_chat"><?php //date("j/m/Y g:i:sa", strtotime($time))?></p>-->
 							</div>
+							
 							<?php
 							}
 						?>
@@ -155,7 +158,7 @@ setInterval('autoRefresh_div()', 2000);
 		</table>
 
 		<div id="zoomActions"></div>
-
+	
 
 	<?php 
 
@@ -242,6 +245,8 @@ setInterval('autoRefresh_div()', 2000);
 			<textarea  class="oculto" name="" id="previa_carga"><?=$cantidad_perspectivas?></textarea>
 			<input type="submit" value="Guardar">
 		</form>	
+
+
 		<script>
 	function etiqueta(contenidoButton) {
 		var idButton = contenidoButton.id;

@@ -48,7 +48,7 @@ table {
 #chat {
   height: 100%;
   width: 13%;
-  background-color: yellow;
+  background-image: url("./background_chat.jpg");
   vertical-align: bottom;
   padding: 5px;
   
@@ -64,6 +64,8 @@ table {
 
 .texto_chat { 
   font-size: 10px;
+  background-color:#dcf8c5;
+  padding: 2px;
 }
 
 #comment {
