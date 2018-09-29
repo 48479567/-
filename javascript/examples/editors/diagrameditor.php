@@ -87,10 +87,26 @@ setInterval('autoRefresh_div()', 2000);
 
 <body style="background-image:url('background_diagram.jpg')" onload="createEditor('config/diagrameditor.xml');">
 
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" href="#"> <img class="logo" src="../../../projects/proyecto_msv/proyecto/style_vista_proyecto/menu.png" alt="ISG" height="40px"> ISG</a>
+	<ul class="navbar-nav ml-auto">
+		<li class="nav-item active" style="padding-left: 50px;"><div id="mainActions"></li>
+	</ul>
+	<div class="collapse navbar-collapse" id="navbar1">
+    <ul class="navbar-nav ml-auto"> 
+<li class="nav-item active">
+<a class="nav-link" href="#"><?=$_SESSION['usuario']?></a>
+</li>
+<li class="nav-item active"></li>	
+<li class="nav-item"><a class="nav-link" href="../../../projects/proyecto_msv/proyecto/vista_proyecto.php">Proyectos</a></li>
+<li class="nav-item">
+<a class="btn ml-2 btn-warning" href="../../../../-">Salir</a></li>
+    </ul>
+  </div>
+</nav>
+<div id="selectActions"></div>
 	
-		<div id="mainActions"></div>
-		<div id="selectActions"></div>
+		
 		
 		<table>
 

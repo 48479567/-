@@ -30,7 +30,7 @@ $res_pry1 = $conn->query($sql_pry1);
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<a class="navbar-brand" href="#"> <img class="logo" src="./style_vista_proyecto/menu.png" alt="ISG" height="50"> ISG</a>
+	<a class="navbar-brand" href="#"> <img class="logo" src="./style_vista_proyecto/menu.png" alt="ISG" height="40px"> ISG</a>
   <div class="collapse navbar-collapse" id="navbar1">
     <ul class="navbar-nav ml-auto"> 
 <li class="nav-item active">
@@ -43,7 +43,8 @@ $res_pry1 = $conn->query($sql_pry1);
   </div>
 </nav>
 
-<ul class="dinamic" style="background-color:blue;">
+<div>
+<ul class="dinamic" style="background-image: url(bg7.jpg);">
 <?php 
 while($row = $res_pry1->fetch_assoc()) {
 ?>
@@ -58,15 +59,20 @@ while($row = $res_pry1->fetch_assoc()) {
     </div>
       <form action="../../../javascript/examples/editors/diagrameditor.php" method="POST">
         <input type="text" class="oculto" name="cod_proyecto" value="<?=$row['cod_proyecto']?>"/>
-        <input type="submit" id="<?=$row['cod_proyecto']?>" value="<?=$row['nom_proyecto']?>"/>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="btn_oculto">
+          <input style="position:absolute; bottom:150px; left: 40%;" class="alert" type="submit" id="<?=$row['cod_proyecto']?>" value="Ingresar"/>
+        </div>
       </form>
   </li>
 <?php
 }
 ?>
-<div class="bg-light"></div>
 </ul>
-
+</div>
 <script src="../../../bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
