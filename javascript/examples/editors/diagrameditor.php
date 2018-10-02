@@ -240,7 +240,7 @@ setInterval('autoRefresh_div()', 2000);
 	?>
 
 		<form action="<?=htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
-			<div class="button" id="mostrar" onclick="etiqueta(this)"><a href="#" class="button_a">mostrar</a></div>
+			<div class="button" id="mostrar" onclick="etiqueta(this)">General</div>
 			<textarea class="oculto" name=dom_proyecto id=ingreso><?=$dom_proyecto?></textarea>
 			<input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
 			
@@ -249,7 +249,7 @@ setInterval('autoRefresh_div()', 2000);
 			while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
 				
 				?>
-			<div class="button" id='<?="per$index"?>' onclick="etiqueta(this)"/><a href="#" class="button_a"><?=$row_prp2["cod_pro_per"]?></a></div>
+			<div class="button" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["cod_pro_per"]?></div>
 			<input class="oculto" type="text" name='<?="cod_pro_per$index"?>' id="" value="<?=$row_prp2['cod_pro_per']?>"> 
 			<textarea class="oculto" name=<?="dom_pro_per$index"?> id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
 	<?php
