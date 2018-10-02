@@ -7,12 +7,17 @@ body
 
 }
 
+.navegador {
+	z-index:1;
+}
+
 .dinamic
 {
 	position: absolute;
-	
+	top:0;
 	left:0;
 	width: 100%;
+	z-index:0;
 	height: 100%;
 	background: #ccc;
 	margin: 0;
@@ -31,9 +36,6 @@ body
 	text-align: center;
 	
 }
-
-
-
 
 .dinamic li:nth-child(1)
 {
@@ -103,24 +105,13 @@ body
 .dinamic li .btn_oculto
 {
 	position: absolute;
-	bottom: -100%;
-	display: none;
+	top:0;
 	left:0;
-	width: 100%;
-	background: rgba(0,0,0,.8);
+	width:100%;
+	height:100%;
+	opacity:0;
 	box-sizing: border-box;
 	color:#fff;
-}
-
-
-
-.dinamic li:hover .btn_oculto
-{
-	bottom: 0;
-	display:"";
-	transition: 0.5s;
-	transition-delay: 0.5s;
-	
 }
 
 .oculto {

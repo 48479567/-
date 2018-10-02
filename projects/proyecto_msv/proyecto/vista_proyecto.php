@@ -29,7 +29,7 @@ $res_pry1 = $conn->query($sql_pry1);
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navegador">
 	<a class="navbar-brand" href="#"> <img class="logo" src="./style_vista_proyecto/menu.png" alt="ISG" height="40px"> ISG</a>
   <div class="collapse navbar-collapse" id="navbar1">
     <ul class="navbar-nav ml-auto"> 
@@ -59,13 +59,8 @@ while($row = $res_pry1->fetch_assoc()) {
     </div>
       <form action="../../../javascript/examples/editors/diagrameditor.php" method="POST">
         <input type="text" class="oculto" name="cod_proyecto" value="<?=$row['cod_proyecto']?>"/>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="btn_oculto">
-          <input style="position:absolute; bottom:150px; left: 40%;" class="alert" type="submit" id="<?=$row['cod_proyecto']?>" value="Ingresar"/>
-        </div>
+        <input style="" class="alert btn_oculto" type="submit" id="<?=$row['cod_proyecto']?>" value="Ingresar"/>
+        
       </form>
   </li>
 <?php
