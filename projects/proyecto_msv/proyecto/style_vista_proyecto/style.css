@@ -11,98 +11,9 @@ body
 	z-index:1;
 }
 
-.dinamic
-{
-	position: absolute;
-	top:0;
-	left:0;
-	width: 100%;
-	z-index:0;
-	height: 100%;
-	background: #ccc;
-	margin: 0;
-	padding: 0;
-}
-.dinamic li
-{
-	list-style: none;
-	position: relative;
-	width: 8%;
-	height: 100%;
-	border-right: 1px solid #000;
-	float: left;
-	box-sizing: border-box;
-	transition: 1s;
-	text-align: center;
-	
-}
-
-.dinamic li:nth-child(1)
-{
-	background: url(bg2.jpg);
-	background-size: cover;
-	background-position: left;
-}
-
-.dinamic li:nth-child(2)
-{
-	background: url(bg1.jpg);
-	background-size: cover;
-	background-position: left;
-}
-
-.dinamic li:nth-child(3)
-{
-	background: url(bg3.jpg);
-	background-size: cover;
-	background-position: left;
-}
-
-.dinamic li:nth-child(4)
-{
-	background: url(bg4.jpg);
-	background-size: cover;
-	background-position: left;
-}
-
-.dinamic li:nth-child(5)
-{
-	background: url(bg5.jpg);
-	background-size: cover;
-	background-position: left;
-}
-
-.dinamic li:nth-child(6)
-{
-	background: url(bg6.jpg);
-	background-size: cover;
-	background-position: left;
-}
-
-.dinamic li:nth-child(7)
-{
-	background: url(bg7.jpg);
-	background-size: cover;
-	background-position: left;
-}
-
-.dinamic li:nth-child(7)
-{
-	background: url(bg7.jpg);
-	background-size: cover;
-	background-position: left;
-}
 
 
-
-
-
-.dinamic li:hover
-{
-	width: 30%;
-}
-
-.dinamic li .btn_oculto
+.btn_oculto
 {
 	position: absolute;
 	top:0;

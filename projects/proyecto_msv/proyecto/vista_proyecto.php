@@ -22,52 +22,76 @@ $sql_pry1 = "SELECT proyectos.cod_proyecto, proyectos.nom_proyecto, equipos.npm_
 $res_pry1 = $conn->query($sql_pry1);
 ?>
 <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
-
 <link rel="stylesheet" href="./style_vista_proyecto/style.css">
+<link rel="stylesheet" href="style_vista_proyecto/slider/swiper.min.css">
+<link rel="stylesheet" href="style_vista_proyecto/slider/style.css">
 
 <title>ISG | <?=$_SESSION['usuario']?></title>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navegador">
-	<a class="navbar-brand" href="#"> <img class="logo" src="./style_vista_proyecto/menu.png" alt="ISG" height="40px"> ISG</a>
+       <a class="navbar-brand" href="#"> <img class="logo" src="./style_vista_proyecto/menu.png" alt="ISG" height="40px"> ISG</a>
   <div class="collapse navbar-collapse" id="navbar1">
-    <ul class="navbar-nav ml-auto"> 
+    <ul class="navbar-nav ml-auto">
 <li class="nav-item active">
 <a class="nav-link" href="#"><?=$_SESSION['usuario']?></a>
 </li>
 <li class="nav-item"><a class="nav-link" href="./creacion_de_proyecto/crear_proyecto.php">Crear Proyecto</a></li>
 <li class="nav-item">
 <a class="btn ml-2 btn-warning" href="../../../">Salir</a></li>
-    </ul>
+   </ul>
   </div>
 </nav>
 
-<div>
-<ul class="dinamic" style="background-image: url(bg7.jpg);">
+<div class="swiper-container">
+  <div class="swiper-wrapper">
 <?php 
 while($row = $res_pry1->fetch_assoc()) {
 ?>
-  <li style="background-color:red;">
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <div class="proyecto_descripcion text-white">
-      <h2><?=$row['nom_proyecto']?></h2>
-      <p>Ingresando al diagramador principal de forma colaborativa, este proyecto sera manejado solo por los usuarios autorizados.</p>
+    <div class="swiper-slide">
+
+    
+    <div class="imgBx">
+      <img src="./style_vista_proyecto/slider/img3.jpg">
     </div>
+    <div class="details">
+      <h3><?=$row['nom_proyecto']?></h3>
+      <span>Ingresando al diagramador principal de forma colaborativa, este proyecto sera manejado solo por los usuarios autorizados.</span>
       <form action="../../../javascript/examples/editors/diagrameditor.php" method="POST">
         <input type="text" class="oculto" name="cod_proyecto" value="<?=$row['cod_proyecto']?>"/>
         <input style="" class="alert btn_oculto" type="submit" id="<?=$row['cod_proyecto']?>" value="Ingresar"/>
-        
       </form>
-  </li>
+    </div>
+ </div>
 <?php
 }
-?>
-</ul>
+?>  
 </div>
+
+    <div class="swiper-pagination"></div>
+</div>
+
+
+
+<script src="style_vista_proyecto/slider/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 60,
+        stretch: 0,
+        depth: 300,
+        modifier: 3,
+        slideShadows : true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+  </script>
 <script src="../../../bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
