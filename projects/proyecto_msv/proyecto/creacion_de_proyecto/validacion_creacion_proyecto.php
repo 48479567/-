@@ -28,3 +28,5 @@ if (mysqli_query($conn, $ins_pry1)) {
 }
 
 ?>
+
+

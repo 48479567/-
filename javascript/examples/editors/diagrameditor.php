@@ -19,6 +19,7 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./diagramador.css">
+<link rel="stylesheet" href="./estilo_perspectiva.css">
 <title>mxDraw <?php echo $cod_proyecto; ?></title>
 
 <script type="text/javascript" src="./iniciacion_diagrama.js"></script>
@@ -27,7 +28,7 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="jquery_js.min.js"></script> 
 
-<?php require_once './funcionamiento_diagrama.php' ?>
+<?php require_once './funcionamiento_diagrama.php'; ?>
 	
 
 <script>
@@ -132,7 +133,7 @@ setInterval('autoRefresh_div()', 2000);
 				<td id="chat" style="background-image:url('background_chat.jpg')">
 
 					<div id="result">
-						<?php
+<?php
 							$qry = "SELECT nom_usuario,mensaje,tiempo_mensaje FROM chats WHERE cod_proyecto = '$cod_proyecto'";
 							$result = $conn->query($qry);
 
@@ -140,7 +141,7 @@ setInterval('autoRefresh_div()', 2000);
 								$name=$row['nom_usuario'];
 								$comment=$row['mensaje'];
 									$time=$row['tiempo_mensaje'];
-							?>
+?>
 							<div class="texto_chat" style="background-color:#dcf8c5; margin:5px;">
 								<strong class="texto_chat"><?=$name?>:</strong>
 								<?=$comment?> 
@@ -148,9 +149,9 @@ setInterval('autoRefresh_div()', 2000);
 								<p class="texto_chat"><?php //date("j/m/Y g:i:sa", strtotime($time))?></p>-->
 							</div>
 							
-							<?php
+<?php
 							}
-						?>
+?>
 					</div>	
 
 					<form method="post" action="" onsubmit="return post();" id="my_form" name="my_form">
@@ -222,25 +223,14 @@ setInterval('autoRefresh_div()', 2000);
 					echo "Error updating record: " . mysqli_error($conn);
 				}
 			}
-
-			mysqli_close($conn);
-			
-		}
-		
-		function test_input($data) {
-			$data = trim($data);
-			$data = stripslashes($data);
-			$data = htmlspecialchars($data);
-			return $data;
-		}
-		
-
-
-		
+			mysqli_close($conn);		
+		}		
 	?>
 
+
+	<div style="display:inline-block;">
 		<form action="<?=htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
-			<div class="button" id="mostrar" onclick="etiqueta(this)">General</div>
+			<div class="btn btn-success" id="mostrar" onclick="etiqueta(this)">General</div>
 			<textarea class="oculto" name=dom_proyecto id=ingreso><?=$dom_proyecto?></textarea>
 			<input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
 			
@@ -249,7 +239,7 @@ setInterval('autoRefresh_div()', 2000);
 			while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
 				
 				?>
-			<div class="button" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["cod_pro_per"]?></div>
+			<div class="btn btn-success" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["cod_pro_per"]?></div>
 			<input class="oculto" type="text" name='<?="cod_pro_per$index"?>' id="" value="<?=$row_prp2['cod_pro_per']?>"> 
 			<textarea class="oculto" name=<?="dom_pro_per$index"?> id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
 	<?php
@@ -259,11 +249,54 @@ setInterval('autoRefresh_div()', 2000);
 
 			<input class="oculto" type="text" id="etiqueta" value="previa_carga">
 			<textarea  class="oculto" name="" id="previa_carga"><?=$cantidad_perspectivas?></textarea>
-			<input type="submit" value="Guardar">
+			<input type="submit" class="btn btn-warning" value="Guardar" name="guardar">
 		</form>	
+	</div>
+
+<!--De esta parte se saca la variable $dom_perspectiva-->
 
 
-		<script>
+<button type='button' class="btn btn-success" data-toggle="modal" data-target="#popUpWindow">+</button>
+
+<div class="modal fade" id="popUpWindow">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- header -->
+			
+			<!-- body -->
+			<div class="box">
+
+
+				<form action="<?=htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+						<div class="inputBox">
+							<input type="text" name="nom_perspectiva" required="">
+							<label>Nombre de la Perspectiva</label>
+						</div>
+						<div class="inputBox">
+							<input type="text" name="usu_perspectiva" required="">
+							<label>Encargado</label>
+						</div>
+						<div>
+							<input type="submit" name="" value="Submit">
+						</div>
+				</form>
+			</div>
+			<!-- footer -->
+			
+		</div>
+	</div>
+</div>
+
+<?php
+	function test_input($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+?>
+
+<script>
 	function etiqueta(contenidoButton) {
 		var idButton = contenidoButton.id;
 		var idTextArea = idButton.replace("per", "dom");
@@ -275,6 +308,6 @@ setInterval('autoRefresh_div()', 2000);
 		
 	}
 </script>
-<script src="../../../boostrap/js/bootstrap.min.js"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

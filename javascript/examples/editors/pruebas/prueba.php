@@ -1,4 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Prueba</title>
+
+		<script src="../jquery_js.min.js"></script>
+
+		<script type="text/javascript">
 <?php
+	
+	for ($i=0; $i < 5; $i++) { ?>
+		
+	
+		function post<?=$i?>() {
+			var usuario<?=$i?> = document.getElementById("usuario<?=$i?>").value;
+			var direccion<?=$i?> = document.getElementById("direccion<?=$i?>").value;
+
+			$.ajax ({
+				type: 'post',
+				url: 'prueba_envio.php',
+				data: {
+					usuario_entrante: usuario<?=$i?>,
+					direccion_entrante: direccion<?=$i?>
+				},
+				success: function (response) {
+				}
+			});
+			return false;
+		}
+	
+<?php
+	} ?>
+		</script>
+
+		<script>
+		$(document).ready(function(){
+		$("#enlaceajax").mousedown(function(evento){
+		evento.preventDefault();
+		$("#cargando").css("display", "inline");
+		$("#ingreso").value = "hola";
+		$("#destino").load("prueba_vista.php", function(){
+		$("#cargando").css("display", "none");
+		});
+		});
+		})
+		</script>
+
+		<script>
+		$(document).ready(function(){
+		var valor = $("#ingreso").value;
+		$("#enlaceajax").click(function(evento2){
+		evento2.preventDefault();
+		alert(document.getElementById("ingreso").value);
+		});
+		})
+		</script>
+</head>
+
+
+<body>
+	
+	<?php
+	for ($i=0; $i < 5; $i++) { ?>
+		<form method="post" action="" onsubmit="return post<?=$i?>()">
+		usuario<?=$i?> <input type="text" id="usuario<?=$i?>"><br>
+		direccion<?=$i?> <input type="text" id="direccion<?=$i?>"><br>
+		<input type="submit" value="ingresar<?=$i?>" id="btn<?=$i?>" name="btn<?=$i?>"/>
+		</form>
+	<?php
+	}
+	?>
+
+		Esto es un Ajax con un mensaje de cargando...
+		<br>
+		<br>
+		<a href="#" id="enlaceajax">Haz clic!</a>
+		<div id="cargando" style="display:none; color: green;">Cargando...</div>
+
+		<br><br><br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<textarea name="ingreso" id="ingreso" cols="30" rows="10"></textarea>
+		<br>
+		<div id="destino"></div>
+	
+
+	
+</body>
+</html>
+
+
+
+
+
+<?php  /*
 	session_start();
 	require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
 	$sql_sdp = "SELECT * FROM proyectos WHERE cod_proyecto = 'pry1'";
@@ -70,4 +169,6 @@
 			return text.value = cambioId;
 	}
 </script>
-			
+*/			
+?>
+
