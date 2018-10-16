@@ -72,20 +72,24 @@ $res_equ1 = $conn->query($sql_equ1);
                                 <input type="text" id="nom_proyecto" name="nom_proyecto" class="form-control" placeholder="Nombre del Proyecto"><br/>
                             </div>
                             <div class="form-group">
-                            <label for="nom_equipo" style="float:left">Nombre del Equipo:</label>
-                            
-                            <input list="nom_equipo" name="nom_equipo" class="form-control">
-                            <datalist id="nom_equipo" >
-                                <?php
-                            if($res_equ1->num_rows > 0){            
-                                while($row1 = $res_equ1->fetch_array()) {  
+                                <label for="nom_equipo" style="float:left">Nombre del Equipo:</label>
+                                
+                                <input list="nom_equipo" name="nom_equipo" class="form-control">
+                                    <datalist id="nom_equipo" >
+                                        <?php
+                                    if($res_equ1->num_rows > 0){            
+                                        while($row1 = $res_equ1->fetch_array()) {  
+                                            ?>            
+                                    <option class="form-control" value="<?=$row1['npm_equipo']?>">      
+                                            <?php
+                                        }
+                                    }
                                     ?>            
-                            <option class="form-control" value="<?=$row1['npm_equipo']?>">      
-                                    <?php
-                                }
-                            }
-                            ?>            
-                            </datalist>
+                                    </datalist>
+                            </div>
+                            <div class="form-group">
+                                <p>No tienes un equipo?<p>
+                                <a type="button" href="equipos/crear_equipo.php" class="btn btn-secondary" value="Crear Equipo">Crear Equipo</a>
                             </div>
                             <br>
                             <br>
@@ -105,55 +109,6 @@ $res_equ1 = $conn->query($sql_equ1);
                 </div>
     </div>
 </div>
-
-<div class="form-group">
-                            
-</section>
-
-<section class="aboutus py-5" id="aboutus">
-    <div class="container">
-        <div class="row">
-
-            
-            <div class="col-md-8" style="overflow:auto;">
-            <br>
-            <br>
-            <br>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="perspectiva1">
-                    <label class="form-check-label" for="perspectiva1">Perspectiva 1</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="perspectiva2">
-                    <label class="form-check-label" for="perspectiva2">Perspectiva 2</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="perspectiva3">
-                    <label class="form-check-label" for="perspectiva3">Perspectiva 3</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="perspectiva4">
-                    <label class="form-check-label" for="perspectiva4">Perspectiva 4</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="perspectiva5">
-                    <label class="form-check-label" for="perspectiva5">Perspectiva 5</label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pb-5"></div>
-                <h2>Perspectivas</h2>
-                <div class="py-2"></div>
-                <p>Despues de seleccionar las perspectivas necesarias uds puede crear el proyecto.</p>
-                <div class="py-2"></div>
-                <input type="submit" value="Crear Proyecto" class="btn btn-primary">  
-                            </div>
-                </form>
-        
-            </div>
-        </div>
-    </div>
-</section>
 
 <script src="../../../../bootstrap/js/bootstrap.min.js"></script>
 </body>
