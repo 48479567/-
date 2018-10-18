@@ -1,118 +1,148 @@
 <?php
-$dom_perspectiva = "&lt;mxGraphModel&gt;
-&lt;root&gt;
-  &lt;Diagram label=&quot;My Diagram&quot; href=&quot;http://www.jgraph.com/&quot; id=&quot;0&quot;&gt;
-    &lt;mxCell/&gt;
-  &lt;/Diagram&gt;
-  &lt;Layer label=&quot;Default Layer&quot; id=&quot;1&quot;&gt;
-    &lt;mxCell parent=&quot;0&quot;/&gt;
-  &lt;/Layer&gt;
-  &lt;Shape label=&quot;Shape&quot; href=&quot;&quot; id=&quot;2&quot;&gt;
-    &lt;mxCell style=&quot;doubleEllipse&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;100&quot; y=&quot;250&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Shape&gt;
-  &lt;Shape label=&quot;Shape&quot; href=&quot;&quot; id=&quot;3&quot;&gt;
-    &lt;mxCell style=&quot;doubleEllipse&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;600&quot; y=&quot;330&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Shape&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;4&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;2&quot; target=&quot;3&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Shape label=&quot;Shape&quot; href=&quot;&quot; id=&quot;5&quot;&gt;
-    &lt;mxCell style=&quot;doubleEllipse&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;540&quot; y=&quot;60&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Shape&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;6&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;2&quot; target=&quot;5&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;7&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;5&quot; target=&quot;3&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Shape label=&quot;Shape&quot; href=&quot;&quot; id=&quot;8&quot;&gt;
-    &lt;mxCell style=&quot;doubleEllipse&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;770&quot; y=&quot;230&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Shape&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;9&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;3&quot; target=&quot;8&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Shape label=&quot;Shape&quot; href=&quot;&quot; id=&quot;10&quot;&gt;
-    &lt;mxCell style=&quot;doubleEllipse&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;430&quot; y=&quot;210&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Shape&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;11&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;3&quot; target=&quot;10&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Shape label=&quot;Shape&quot; href=&quot;&quot; id=&quot;12&quot;&gt;
-    &lt;mxCell style=&quot;doubleEllipse&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;220&quot; y=&quot;360&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Shape&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;13&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;2&quot; target=&quot;12&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Roundrect label=&quot;Rounded&quot; href=&quot;&quot; id=&quot;14&quot;&gt;
-    &lt;mxCell style=&quot;rounded&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;100&quot; y=&quot;420&quot; width=&quot;80&quot; height=&quot;40&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Roundrect&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;15&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;2&quot; target=&quot;14&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Roundrect label=&quot;Rounded&quot; href=&quot;&quot; id=&quot;16&quot;&gt;
-    &lt;mxCell style=&quot;rounded&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;180&quot; y=&quot;100&quot; width=&quot;80&quot; height=&quot;40&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Roundrect&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;17&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;14&quot; target=&quot;16&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Roundrect label=&quot;Rounded&quot; href=&quot;&quot; id=&quot;18&quot;&gt;
-    &lt;mxCell style=&quot;rounded&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;810&quot; y=&quot;70&quot; width=&quot;80&quot; height=&quot;40&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Roundrect&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;19&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;16&quot; target=&quot;18&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Shape label=&quot;Shape&quot; href=&quot;&quot; id=&quot;20&quot;&gt;
-    &lt;mxCell style=&quot;doubleEllipse&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;1050&quot; y=&quot;250&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Shape&gt;
-  &lt;Connector label=&quot;&quot; href=&quot;&quot; id=&quot;21&quot;&gt;
-    &lt;mxCell parent=&quot;1&quot; source=&quot;8&quot; target=&quot;20&quot; edge=&quot;1&quot;&gt;
-      &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Connector&gt;
-  &lt;Shape label=&quot;Shape&quot; href=&quot;&quot; id=&quot;22&quot;&gt;
-    &lt;mxCell style=&quot;actor&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;
-      &lt;mxGeometry x=&quot;480&quot; y=&quot;430&quot; width=&quot;250&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;
-    &lt;/mxCell&gt;
-  &lt;/Shape&gt;
-&lt;/root&gt;
-&lt;/mxGraphModel&gt;";
+$dom_perspectiva = '
+<mxGraphModel as="model">
+<root>
+  <Diagram label="My Diagram" href="http://www.jgraph.com/" id="0">
+    <mxCell/>
+  </Diagram>
+  <Layer label="Default Layer" id="1">
+    <mxCell parent="0"/>
+  </Layer>
+  <Rect label="Insertar Insumos" href="" id="364">
+    <mxCell vertex="1" parent="1">
+      <mxGeometry x="80.72327426268339" y="189.97044334975362" width="100" height="70" as="geometry"/>
+    </mxCell>
+  </Rect>
+  <Text label="INSUMOS" href="" id="365">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="100.72327426268339" y="160.97044334975362" width="60" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Roundrect label="" href="" id="366">
+    <mxCell style="rounded;strokeColor=orange;fillColor=orange;" vertex="1" parent="1">
+      <mxGeometry x="244.7232742626834" y="53.97044334975362" width="272" height="342" as="geometry"/>
+    </mxCell>
+  </Roundrect>
+  <Connector label="" href="" id="367">
+    <mxCell style="arrowConnector" edge="1" source="364" target="366" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </Connector>
+  <Roundrect label="" href="" id="368">
+    <mxCell style="rounded;strokeColor=yellow;fillColor=yellow;" vertex="1" parent="1">
+      <mxGeometry x="244.7232742626834" y="140.97044334975362" width="260" height="160" as="geometry"/>
+    </mxCell>
+  </Roundrect>
+  <Text label="DIRIGEN / ORGANIZACION" href="" id="369">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="314.7232742626834" y="53.97044334975362" width="160" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Text label="ACTORES" href="" id="370">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="314.7232742626834" y="305.9704433497536" width="60" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Text label="Insertar Directores" href="" id="371">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="303.2232742626834" y="70.97044334975362" width="100" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Text label="Insertar Actores" href="" id="372">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="313.2232742626834" y="340.9704433497536" width="90" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Rect label="Función" href="" id="373">
+    <mxCell vertex="1" parent="1">
+      <mxGeometry x="264.2232742626834" y="170.97044334975362" width="80" height="40" as="geometry"/>
+    </mxCell>
+  </Rect>
+  <Rect label="FunciÃ³n 2" href="" id="374">
+    <mxCell vertex="1" parent="1">
+      <mxGeometry x="394.2232742626834" y="170.97044334975362" width="80" height="40" as="geometry"/>
+    </mxCell>
+  </Rect>
+  <Rect label="FunciÃ³n 3" href="" id="375">
+    <mxCell vertex="1" parent="1">
+      <mxGeometry x="264.2232742626834" y="220.97044334975362" width="80" height="40" as="geometry"/>
+    </mxCell>
+  </Rect>
+  <Rect label="FunciÃ³n 4" href="" id="376">
+    <mxCell style="strokeColor=orange;shadow=1;" vertex="1" parent="1">
+      <mxGeometry x="394.2232742626834" y="220.97044334975362" width="80" height="40" as="geometry"/>
+    </mxCell>
+  </Rect>
+  <Rect label="Inserte Productos o Servicios" href="" id="377">
+    <mxCell vertex="1" parent="1">
+      <mxGeometry x="597.7232742626834" y="190.97044334975362" width="150" height="70" as="geometry"/>
+    </mxCell>
+  </Rect>
+  <Rect label="Insertar Reguladores" href="" id="378">
+    <mxCell vertex="1" parent="1">
+      <mxGeometry x="597.7232742626834" y="73.97044334975362" width="140" height="40" as="geometry"/>
+    </mxCell>
+  </Rect>
+  <Connector label="" href="" id="379">
+    <mxCell style="straightConnector" edge="1" source="366" target="378" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="546.7232742626834" y="93.97044334975362"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+  </Connector>
+  <Connector label="" href="" id="380">
+    <mxCell style="arrowConnector" edge="1" source="366" target="377" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </Connector>
+  <Text label="BENEFICIARIOS" href="" id="381">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="622.7232742626834" y="300.9704433497536" width="100" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Image label="" href="" id="382">
+    <mxCell style="image" vertex="1" parent="1">
+      <mxGeometry x="622.7232742626834" y="325.9704433497536" width="90" height="50" as="geometry"/>
+    </mxCell>
+  </Image>
+  <Text label="Insertar Beneficiarios" href="" id="383">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="612.7232742626834" y="395.9704433497536" width="120" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Text label="PRODUCTOS / SERVICIOS" href="" id="384">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="597.7232742626834" y="160.97044334975362" width="160" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Text label="REGULADORES" href="" id="385">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="627.7232742626834" y="73.97044334975362" width="100" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Connector label="" href="" id="386">
+    <mxCell style="straightConnector" edge="1" source="377" target="381" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </Connector>
+  <Image label="" href="" id="387">
+    <mxCell style="image" vertex="1" parent="1">
+      <mxGeometry x="-45.27672573731661" y="170.97044334975362" width="60" height="110" as="geometry"/>
+    </mxCell>
+  </Image>
+  <Text label="PROVEEDORES" href="" id="388">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="-65.27672573731661" y="175.97044334975362" width="100" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+  <Text label="Inserte proveedores" href="" id="389">
+    <mxCell style="text" vertex="1" parent="1">
+      <mxGeometry x="-70.27672573731661" y="270.9704433497536" width="110" height="20" as="geometry"/>
+    </mxCell>
+  </Text>
+</root>
+</mxGraphModel>';
 
 ?>

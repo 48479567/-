@@ -2,13 +2,18 @@
 require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
 session_start();
 
-$_SESSION['cod_proyecto'] = $_POST['cod_proyecto']; 
-$cod_proyecto = $_SESSION['cod_proyecto'];
+if(isset($_POST['cod_proyecto'])) {
+	$cod_proyecto = $_POST['cod_proyecto'];
+} else {
+	$cod_proyecto = $_SESSION['cod_proyecto'];
+}
 $sql_sdp = "SELECT * FROM proyectos WHERE cod_proyecto = '$cod_proyecto'";
 $res_sdp = mysqli_query($conn, $sql_sdp);
 
+
 while($row = mysqli_fetch_assoc($res_sdp)) {
 	$dom_proyecto = $row['dom_proyecto'];
+	$nom_proyecto = $row['nom_proyecto'];
 	}
 
 $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_proyecto);
@@ -20,7 +25,7 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./diagramador.css">
 <link rel="stylesheet" href="./estilo_perspectiva.css">
-<title>mxDraw <?php echo $cod_proyecto; ?></title>
+<title><?=$nom_proyecto?></title>
 
 <script type="text/javascript" src="./iniciacion_diagrama.js"></script>
 
@@ -28,8 +33,11 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="jquery_js.min.js"></script> 
 
-<?php require_once './funcionamiento_diagrama.php'; ?>
-	
+<?php 
+require_once 'funcionamiento_diagrama.php';
+require_once 'funcionamiento_perspectiva.php';			
+?>
+
 
 <script>
 
@@ -179,6 +187,27 @@ setInterval('autoRefresh_div()', 2000);
 
 	<?php 
 
+		if(isset($_POST['crear_perspectiva'])) {
+		$cod_proyecto_perspectiva = $_POST['cod_proyecto'];
+		$nom_perspectiva = $_POST['nom_perspectiva'];
+		$usu_perspectiva = $_POST['usu_perspectiva'];
+		$cant_pers_cod = $cantidad_perspectivas_total + 1;
+		$cod_perspectiva_proyecto = "pro_per".$cant_pers_cod;
+		$sql_pro_per = "INSERT INTO pro_per values ('$cod_perspectiva_proyecto', '$nom_perspectiva', '$cod_proyecto_perspectiva', '$usu_perspectiva', '$dom_perspectiva')";
+		$res_pro_per = $conn->query($sql_pro_per);
+		if($res_pro_per) { 
+			$_SESSION['cod_proyecto'] = $cod_proyecto_perspectiva;
+		?>
+		<script>location.replace('../../../projects/proyecto_msv/proyecto/vista_proyecto.php');
+						location.replace('../../../javascript/examples/editors/diagrameditor.php');
+						</script>
+	<?php 
+		} else {
+			echo 'no se pudo crear'.$conn->error;
+		}
+	
+		}
+
 		$cod_pro_per_entrante = array();
 		$dom_pro_per_entrante = array();
 
@@ -187,7 +216,7 @@ setInterval('autoRefresh_div()', 2000);
 			$dom_pro_per_entrante["$index"] = "cero";
 		}
 
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		if (isset($_POST['guardar_cambios'])) {
 
 			if(empty($_POST["cod_proyecto"])){	
 			} else {
@@ -201,11 +230,7 @@ setInterval('autoRefresh_div()', 2000);
 			
 			$sql_udp = "UPDATE proyectos SET dom_proyecto = '$dom_proyecto' WHERE cod_proyecto = '$cod_proyecto'";
 			
-			if (mysqli_query($conn, $sql_udp)) {
-			} else {
-					echo "Error updating record: " . mysqli_error($conn);
-			}
-
+			
 			for ($index=0; $index < $cantidad_perspectivas; $index++) { 
 				if(empty($_POST["cod_pro_per$index"])){
 				} else {
@@ -219,17 +244,28 @@ setInterval('autoRefresh_div()', 2000);
 			for ($index=0; $index < $cantidad_perspectivas; $index++) {
 				$sql_pro_per = "UPDATE pro_per SET dom_perspectiva = '$dom_pro_per_entrante[$index]' WHERE cod_pro_per = '$cod_pro_per_entrante[$index]'";
 				if (mysqli_query($conn, $sql_pro_per)) {
+
 				} else {
 					echo "Error updating record: " . mysqli_error($conn);
 				}
 			}
+			
+			if (mysqli_query($conn, $sql_udp)) { 
+				$_SESSION['cod_proyecto'] = $cod_proyecto;?>
+				<script>location.replace('../../../projects/proyecto_msv/proyecto/vista_proyecto.php');
+				location.replace('../../../javascript/examples/editors/diagrameditor.php');</script>
+	<?php 
+			} else {
+					echo "Error updating record: " . mysqli_error($conn);
+			}
+
 			mysqli_close($conn);		
 		}		
 	?>
 
 
 	<div style="display:inline-block;">
-		<form action="<?=htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+		<form action="" method="POST">
 			<div class="btn btn-success" id="mostrar" onclick="etiqueta(this)">General</div>
 			<textarea class="oculto" name=dom_proyecto id=ingreso><?=$dom_proyecto?></textarea>
 			<input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
@@ -239,7 +275,7 @@ setInterval('autoRefresh_div()', 2000);
 			while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
 				
 				?>
-			<div class="btn btn-success" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["cod_pro_per"]?></div>
+			<div class="btn btn-success" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["nom_perspectiva"]?></div>
 			<input class="oculto" type="text" name='<?="cod_pro_per$index"?>' id="" value="<?=$row_prp2['cod_pro_per']?>"> 
 			<textarea class="oculto" name=<?="dom_pro_per$index"?> id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
 	<?php
@@ -249,7 +285,7 @@ setInterval('autoRefresh_div()', 2000);
 
 			<input class="oculto" type="text" id="etiqueta" value="previa_carga">
 			<textarea  class="oculto" name="" id="previa_carga"><?=$cantidad_perspectivas?></textarea>
-			<input type="submit" class="btn btn-warning" value="Guardar" name="guardar">
+			<input type="submit" class="btn btn-warning" value="Guardar" name="guardar_cambios">
 		</form>	
 	</div>
 
@@ -267,7 +303,7 @@ setInterval('autoRefresh_div()', 2000);
 			<div class="box">
 
 
-				<form action="<?=htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+				<form action="" method="POST">
 						<div class="inputBox">
 							<input type="text" name="nom_perspectiva" required="">
 							<label>Nombre de la Perspectiva</label>
@@ -277,7 +313,9 @@ setInterval('autoRefresh_div()', 2000);
 							<label>Encargado</label>
 						</div>
 						<div>
-							<input type="submit" name="" value="Submit">
+							<input type="text" class="oculto" name="cod_proyecto" value="<?=$cod_proyecto?>">
+							<input type="submit" name="crear_perspectiva" value="Submit">
+							
 						</div>
 				</form>
 			</div>

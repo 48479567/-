@@ -69,7 +69,11 @@
 			
 			
 			<?php
-			
+
+			$sql_pro_per_total = "SELECT * FROM pro_per";
+			$res_pro_per_total = mysqli_query($conn, $sql_pro_per_total);
+			$cantidad_perspectivas_total = $res_pro_per_total->num_rows;
+
 			$sql_prp = "SELECT * FROM pro_per WHERE cod_proyecto = '$cod_proyecto'";
 			$res_prp = mysqli_query($conn, $sql_prp);
 			$cantidad_perspectivas = $res_prp->num_rows;
