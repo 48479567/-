@@ -200,15 +200,14 @@ setInterval('autoRefresh_div()', 2000);
 		$cant_pers_cod = $cantidad_perspectivas_total + 1;
 		$cod_perspectiva_proyecto = "pro_per".$cant_pers_cod;
 
-		$sql_pro_per = "";
-
 for ($i=0; $i < $cont_put_pro_per ; $i++) { 
 		$nom_perspectiva = $_POST["nom_perspectiva$i"];
 		$usu_perspectiva = $_POST["usu_perspectiva$i"];
 		
-		$sql_pro_per .= "INSERT INTO pro_per values ('$cod_perspectiva_proyecto', '$nom_perspectiva', '$cod_proyecto_perspectiva', '$usu_perspectiva', '$dom_perspectiva');";
+		$sql_pro_per .= "INSERT INTO pro_per (cod_pro_per, nom_perspectiva, cod_proyecto, cod_usuario, dom_perspectiva) values ('$cod_perspectiva_proyecto', '$nom_perspectiva', '$cod_proyecto_perspectiva', '$usu_perspectiva', '$dom_perspectiva');";
+		$cod_perspectiva_proyecto++;
 }
-
+			
 		$sql_pro_per = substr($sql_pro_per, 0, -1);
 
 		if(mysqli_multi_query($conn, $sql_pro_per)) { 
