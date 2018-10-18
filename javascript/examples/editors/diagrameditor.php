@@ -16,7 +16,11 @@ $res_sdp = mysqli_query($conn, $sql_sdp);
 while($row = mysqli_fetch_assoc($res_sdp)) {
 	$dom_proyecto = $row['dom_proyecto'];
 	$nom_proyecto = $row['nom_proyecto'];
+	$cod_equipo = $row['cod_equipo'];
 	}
+
+$sql_usu_equipo = "SELECT usuarios.nom_usuario, usuarios.cor_usuario, usu_equipo.cod_usuario FROM usuarios INNER JOIN usu_equipo ON usuarios.cod_usuario = usu_equipo.cod_usuario WHERE usu_equipo.cod_equipo = '$cod_equipo'";
+$res_usu_equipo = mysqli_query($conn, $sql_usu_equipo);
 
 $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_proyecto);
 ?>
@@ -191,16 +195,27 @@ setInterval('autoRefresh_div()', 2000);
 
 		if(isset($_POST['crear_perspectiva'])) {
 		$cod_proyecto_perspectiva = $_POST['cod_proyecto'];
-		$nom_perspectiva = $_POST['nom_perspectiva'];
-		$usu_perspectiva = $_POST['usu_perspectiva'];
+		$cont_put_pro_per = $_POST['cont_usu_equipo'];
+
 		$cant_pers_cod = $cantidad_perspectivas_total + 1;
 		$cod_perspectiva_proyecto = "pro_per".$cant_pers_cod;
-		$sql_pro_per = "INSERT INTO pro_per values ('$cod_perspectiva_proyecto', '$nom_perspectiva', '$cod_proyecto_perspectiva', '$usu_perspectiva', '$dom_perspectiva')";
-		$res_pro_per = $conn->query($sql_pro_per);
-		if($res_pro_per) { 
+
+		$sql_pro_per = "";
+
+for ($i=0; $i < $cont_put_pro_per ; $i++) { 
+		$nom_perspectiva = $_POST["nom_perspectiva$i"];
+		$usu_perspectiva = $_POST["usu_perspectiva$i"];
+		
+		$sql_pro_per .= "INSERT INTO pro_per values ('$cod_perspectiva_proyecto', '$nom_perspectiva', '$cod_proyecto_perspectiva', '$usu_perspectiva', '$dom_perspectiva');";
+}
+
+		$sql_pro_per = substr($sql_pro_per, 0, -1);
+
+		if(mysqli_multi_query($conn, $sql_pro_per)) { 
 			$_SESSION['cod_proyecto'] = $cod_proyecto_perspectiva;
 		?>
-		<script>location.replace('../../../projects/proyecto_msv/proyecto/vista_proyecto.php');
+		<script>
+						location.replace('../../../projects/proyecto_msv/proyecto/vista_proyecto.php');
 						location.replace('../../../javascript/examples/editors/diagrameditor.php');
 						</script>
 	<?php 
@@ -303,19 +318,23 @@ setInterval('autoRefresh_div()', 2000);
 			
 			<!-- body -->
 			<div class="box">
-
-
 				<form action="" method="POST">
+													
+<!--Esto Viene de la linea 23 -->
+<?php  
+	$cont_usu_equipo = 0;
+	while($row_usu_equipo = mysqli_fetch_assoc($res_usu_equipo)) { ?>
 						<div class="inputBox">
-							<input type="text" name="nom_perspectiva" required="">
-							<label>Nombre de la Perspectiva</label>
-						</div>
-						<div class="inputBox">
-							<input type="text" name="usu_perspectiva" required="">
-							<label>Encargado</label>
-						</div>
+						<input type="text" name="nom_perspectiva<?=$cont_usu_equipo?>" required="">
+						<label>Nombre de la Perspectiva para <?=$row_usu_equipo['nom_usuario']?></label>
+						<input type="text" name="usu_perspectiva<?=$cont_usu_equipo?>" value="<?=$row_usu_equipo['cod_usuario']?>">
+						</div>				
+<?php 
+	$cont_usu_equipo++;	
+	} ?>
 						<div>
 							<input type="text" class="oculto" name="cod_proyecto" value="<?=$cod_proyecto?>">
+							<input type="text" name="cont_usu_equipo" value="<?=$cont_usu_equipo?>">
 							<input type="submit" name="crear_perspectiva" value="Submit">
 							
 						</div>
