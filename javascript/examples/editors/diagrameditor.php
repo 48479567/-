@@ -7,6 +7,8 @@ if(isset($_POST['cod_proyecto'])) {
 } else {
 	$cod_proyecto = $_SESSION['cod_proyecto'];
 }
+$_SESSION['cod_proyecto'] = $cod_proyecto;
+
 $sql_sdp = "SELECT * FROM proyectos WHERE cod_proyecto = '$cod_proyecto'";
 $res_sdp = mysqli_query($conn, $sql_sdp);
 
