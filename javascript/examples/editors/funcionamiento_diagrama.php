@@ -15,7 +15,11 @@
 			// Enables guides
 			mxGraphHandler.prototype.guidesEnabled = true;
 			
-		    
+		 // Alt disables guides
+		 mxGuide.prototype.isEnabledForEvent = function(evt)
+		    {
+		    	return !mxEvent.isAltDown(evt);
+		    };   
 			
 			// Enables snapping waypoints to terminals
 			mxEdgeHandler.prototype.snapToTerminals = true;
@@ -37,9 +41,9 @@
 			
 			if (title != null)
 			{
-				var f = function()
+				var f = function(sender)
 				{
-					title.innerHTML = 'ISG - Diagrama';
+					title.innerHTML = 'mxDraw - ' + sender.getTitle();
 				};
 				
 				editor.addListener(mxEvent.ROOT, f);
@@ -74,7 +78,20 @@
 			$res_pro_per_total = mysqli_query($conn, $sql_pro_per_total);
 			$cantidad_perspectivas_total = $res_pro_per_total->num_rows;
 
-			$sql_prp = "SELECT * FROM pro_per WHERE cod_proyecto = '$cod_proyecto'";
+			$sql_rol = "SELECT * FROM pro_rol WHERE cod_proyecto = '$cod_proyecto' AND cod_usuario = '$cod_usu_proyecto'";
+			$res_rol = mysqli_query($conn, $sql_rol);
+
+			while ($row_rol = mysqli_fetch_assoc($res_rol)) {
+				$rol_usuario = $row_rol['nom_pro_rol'];
+			}
+
+			if ($rol_usuario == "gestor") {
+				$sql_prp = "SELECT * FROM pro_per WHERE cod_proyecto = '$cod_proyecto'";	
+			} else {
+				$sql_prp = "SELECT * FROM pro_per WHERE cod_proyecto = '$cod_proyecto' AND cod_usuario = '$cod_usu_proyecto'";
+			}
+
+			
 			$res_prp = mysqli_query($conn, $sql_prp);
 			$cantidad_perspectivas = $res_prp->num_rows;
 			?>

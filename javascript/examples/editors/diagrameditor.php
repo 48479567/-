@@ -1,6 +1,7 @@
 <?php
 require_once '../../../projects/proyecto_msv/base_de_datos/conexion.php';
 session_start();
+$cod_usu_proyecto = $_SESSION['cod_usuario'];
 
 if(isset($_POST['cod_proyecto'])) {
 	$cod_proyecto = $_POST['cod_proyecto'];
@@ -11,7 +12,6 @@ $_SESSION['cod_proyecto'] = $cod_proyecto;
 
 $sql_sdp = "SELECT * FROM proyectos WHERE cod_proyecto = '$cod_proyecto'";
 $res_sdp = mysqli_query($conn, $sql_sdp);
-
 
 while($row = mysqli_fetch_assoc($res_sdp)) {
 	$dom_proyecto = $row['dom_proyecto'];
@@ -103,7 +103,8 @@ setInterval('autoRefresh_div()', 2000);
 <body style="background-image:url('background_diagram.jpg')" onload="createEditor('config/diagrameditor.xml');">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<a class="navbar-brand" href="#"> <img class="logo" src="../../../projects/proyecto_msv/proyecto/style_vista_proyecto/menu.png" alt="ISG" height="40px"> ISG</a>
+	<img class="logo" src="../../../projects/proyecto_msv/proyecto/style_vista_proyecto/menu.png" alt="ISG" height="40px">
+	<a class="navbar-brand" id="perspectiva" href="#"></a>
 	<ul class="navbar-nav ml-auto">
 		<li class="nav-item active" style="padding-left: 50px;"><div id="mainActions"></li>
 	</ul>
@@ -307,6 +308,8 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
 
 <!--De esta parte se saca la variable $dom_perspectiva-->
 
+<?php 
+if ($rol_usuario == "gestor") { ?>
 
 <button type='button' class="btn btn-success" data-toggle="modal" data-target="#popUpWindow">+</button>
 
@@ -324,17 +327,17 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
 	$cont_usu_equipo = 0;
 	while($row_usu_equipo = mysqli_fetch_assoc($res_usu_equipo)) { ?>
 						<div class="inputBox">
-						<input type="text" name="nom_perspectiva<?=$cont_usu_equipo?>" required="">
+						<input type="text" name="nom_perspectiva<?=$cont_usu_equipo?>" required="" autocomplete="off">
 						<label>Nombre de la Perspectiva para <?=$row_usu_equipo['nom_usuario']?></label>
-						<input type="text" name="usu_perspectiva<?=$cont_usu_equipo?>" value="<?=$row_usu_equipo['cod_usuario']?>">
+						<input type="text" class="oculto" name="usu_perspectiva<?=$cont_usu_equipo?>" value="<?=$row_usu_equipo['cod_usuario']?>">
 						</div>				
 <?php 
 	$cont_usu_equipo++;	
 	} ?>
 						<div>
 							<input type="text" class="oculto" name="cod_proyecto" value="<?=$cod_proyecto?>">
-							<input type="text" name="cont_usu_equipo" value="<?=$cont_usu_equipo?>">
-							<input type="submit" name="crear_perspectiva" value="Submit">
+							<input type="text" class="oculto" name="cont_usu_equipo" value="<?=$cont_usu_equipo?>">
+							<input type="submit" name="crear_perspectiva" value="Asignar Perspectiva">
 							
 						</div>
 				</form>
@@ -344,6 +347,9 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
 		</div>
 	</div>
 </div>
+
+<?php 
+} ?>
 
 <?php
 	function test_input($data) {
@@ -357,11 +363,14 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
 <script>
 	function etiqueta(contenidoButton) {
 		var idButton = contenidoButton.id;
+		var valButton = contenidoButton.innerHTML;
 		var idTextArea = idButton.replace("per", "dom");
-		var textArea = document.getElementById('etiqueta'); 
+		var textArea = document.getElementById('etiqueta');
+		var perspectiva = document.getElementById('perspectiva'); 
 		if (idTextArea == "mostrar"){
 			idTextArea = "ingreso";
 		}
+		perspectiva.innerHTML = valButton;
 		return textArea.value = idTextArea;
 		
 	}

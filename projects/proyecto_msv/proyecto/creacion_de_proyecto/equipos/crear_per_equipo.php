@@ -11,7 +11,7 @@ $usuario_actual = $_SESSION['cod_usuario'];
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<title> <?=$_SESSION['npm_equipo']?>-<?=$_SESSION['cod_equipo']?> | ISG</title>
+	<title> <?=$_SESSION['npm_equipo']?> | ISG</title>
 	<script src="../../../../../javascript/examples/editors/jquery_js.min.js"></script>
 
 	<script type="text/javascript">
@@ -55,13 +55,13 @@ $usuario_actual = $_SESSION['cod_usuario'];
 
 <body>
 
-	<h2>Equipo <?=$_SESSION['npm_equipo']?></h2>
-	<h2>Equipo <?=$_SESSION['cod_equipo']?></h2>
+
 <div class="box">
+<h2>Equipo <?=$_SESSION['npm_equipo']?></h2>
 		<form action="enviar_per_equipo.php" method="post">
 			<div id="input1" style="margin-bottom:4px;color: #fff;" class="clonedInput">
 Analista: 
-				<input list="Analistas" name="name1" id="name1">
+				<input list="Analistas" name="name1" id="name1" autocomplete="off">
 
         	<datalist id="Analistas">
 <?php
