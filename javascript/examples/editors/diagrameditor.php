@@ -291,7 +291,7 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
 			while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
 				
 				?>
-			<div class="btn btn-success" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["nom_perspectiva"]?></div>
+			<div class="btn btn-primary" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["nom_perspectiva"]?></div>
 			<input class="oculto" type="text" name='<?="cod_pro_per$index"?>' id="" value="<?=$row_prp2['cod_pro_per']?>"> 
 			<textarea class="oculto" name=<?="dom_pro_per$index"?> id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
 	<?php

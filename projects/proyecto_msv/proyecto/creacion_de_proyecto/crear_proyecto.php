@@ -89,19 +89,15 @@ $res_equ1 = $conn->query($sql_equ1);
                             </div>
                             <div class="form-group">
                                 <p>No tienes un equipo?<p>
-                                <a type="button" href="equipos/crear_equipo.php" class="btn btn-secondary" value="Crear Equipo">Crear Equipo</a>
+                                <a type="button" href="equipos/crear_nom_equipo.php" class="btn btn-secondary" value="Crear Equipo">Crear Equipo</a>
                             </div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
+                            
+
+
                             <textarea style="display:none;" name="dom_proyecto" id="dom_proyecto" cols="30" rows="20">&lt;mxGraphModel&gt;   &lt;root&gt;     &lt;Diagram label=&quot;My Diagram&quot; href=&quot;http://www.jgraph.com/&quot; id=&quot;0&quot;&gt;       &lt;mxCell/&gt;     &lt;/Diagram&gt;     &lt;Layer label=&quot;Default Layer&quot; id=&quot;1&quot;&gt;       &lt;mxCell parent=&quot;0&quot;/&gt;     &lt;/Layer&gt;     &lt;Image label=&quot;&quot; href=&quot;&quot; id=&quot;2&quot;&gt;       &lt;mxCell style=&quot;image&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;         &lt;mxGeometry x=&quot;130&quot; y=&quot;360&quot; width=&quot;80&quot; height=&quot;50&quot; as=&quot;geometry&quot;/&gt;       &lt;/mxCell&gt;     &lt;/Image&gt;   &lt;/root&gt; &lt;/mxGraphModel&gt;</textarea>
                         
-
-                            
+                        <input class="btn btn-primary" type="submit" value="Crear Proyecto">
+                    </form>        
                     </div>
                 </div>    
             </div>
