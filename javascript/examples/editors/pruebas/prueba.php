@@ -6,14 +6,13 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Prueba</title>
 
-		<script src="../jquery_js.min.js"></script>
+	<script src="../jquery_js.min.js"></script>
 
-		<script type="text/javascript">
+	<script type="text/javascript">
 <?php
 	
 	for ($i=0; $i < 5; $i++) { ?>
-		
-	
+			
 		function post<?=$i?>() {
 			var usuario<?=$i?> = document.getElementById("usuario<?=$i?>").value;
 			var direccion<?=$i?> = document.getElementById("direccion<?=$i?>").value;
@@ -40,7 +39,8 @@
 		$("#enlaceajax").mousedown(function(evento){
 		evento.preventDefault();
 		$("#cargando").css("display", "inline");
-		$("#ingreso").value = "hola";
+		$("#ingreso").load("prueba_vista.php", function(){	
+		});
 		$("#destino").load("prueba_vista.php", function(){
 		$("#cargando").css("display", "none");
 		});
@@ -50,7 +50,6 @@
 
 		<script>
 		$(document).ready(function(){
-		var valor = $("#ingreso").value;
 		$("#enlaceajax").click(function(evento2){
 		evento2.preventDefault();
 		alert(document.getElementById("ingreso").value);
@@ -92,9 +91,6 @@
 	
 </body>
 </html>
-
-
-
 
 
 <?php  /*
