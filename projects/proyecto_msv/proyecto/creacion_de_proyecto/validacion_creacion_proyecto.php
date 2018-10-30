@@ -7,6 +7,7 @@ $cod_proyecto = $_POST["cod_proyecto"];
 $nom_proyecto = $_POST["nom_proyecto"];
 $nom_equipo = $_POST["nom_equipo"];
 $dom_proyecto = $_POST["dom_proyecto"];
+$img_proyecto = $_POST['img_proyecto'];
 
 $ins_pry1 = "";
 
@@ -24,7 +25,7 @@ $sql_pr = "SELECT * FROM pro_rol";
 $res_pr = mysqli_query($conn, $sql_pr);
 $cantidad_roles = $res_pr->num_rows + 1;
 
-$ins_pry = "INSERT INTO proyectos (cod_proyecto, nom_proyecto, cod_equipo, dom_proyecto) VALUES ('$cod_proyecto', '$nom_proyecto', '$cod_equipo', '$dom_proyecto')";
+$ins_pry = "INSERT INTO proyectos (cod_proyecto, nom_proyecto, cod_equipo, dom_proyecto, img_proyecto) VALUES ('$cod_proyecto', '$nom_proyecto', '$cod_equipo', '$dom_proyecto', '$img_proyecto')";
 
 if (mysqli_query($conn, $ins_pry)) {
   while ($row_ue = mysqli_fetch_assoc($res_ue)) {

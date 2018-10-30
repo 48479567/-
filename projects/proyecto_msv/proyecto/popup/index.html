@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+  <title></title>
+</head>
+<body>
+<div class="container">
+
+  <h3>Log In Demo</h3>
+  <button type='button' class="btn btn-success" data-toggle="modal" data-target="#popUpWindow">Open Log In Window</button>
+  
+  <div class="modal fade" id="popUpWindow">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- header -->
+        
+        <!-- body -->
+        <div class="box">
+          <form>
+            <div class="image">
+              <img src="img1.jpg" height="150px" alt="" onclick="obtener_src(this)">
+              <img src="img2.jpg" height="150px" alt="" onclick="obtener_src(this)">
+              <img src="img3.jpg" height="150px" alt="" onclick="obtener_src(this)">
+              <img src="img1.jpg" height="150px" alt="" onclick="obtener_src(this)">
+              <img src="img2.jpg" height="150px" alt="" onclick="obtener_src(this)">
+              <img src="img3.jpg" height="150px" alt="" onclick="obtener_src(this)">
+            </div>
+          
+            <input type="text" id="demo" height="150px">
+          </form>
+              <div>
+                <input type="submit" name="" value="Submit">
+              </div>
+        </div>
+        <!-- footer -->
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script>
+    function obtener_src(img) {
+      var src_img = img.src;
+      var input_vista = document.getElementById("demo");
+      return input_vista.value = src_img;
+    }
+    </script>
+  
+</body>
+
+</html>

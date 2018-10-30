@@ -23,6 +23,8 @@ $res_equ1 = $conn->query($sql_equ1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../../../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../popup/style.css">
+    <script type="text/javascript" src="../popup/jquery_js.min.js"></script> 
     <title>Document</title>
 </head>
 <body>
@@ -85,17 +87,46 @@ $res_equ1 = $conn->query($sql_equ1);
                                     }
                                     ?>            
                                     </datalist>
-                                    
+                                <label for="nom_equipo" style="float:left">Elige una imagen: </label>
                             </div>
-                            <input class="btn btn-primary" type="submit" value="Crear Proyecto">
                             <br>
-                            <br>
+                            <img src="" height="150px" id="img_previa" >
+                            <div class="form-group">
+                            <button type='button' class="btn btn-warning" data-toggle="modal" data-target="#popUpWindow">Lista de Imágenes</button>
+                            <div class="modal fade" id="popUpWindow">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <!-- header -->
+                                      
+                                      <!-- body -->
+                                      <div class="box">
+                                       
+                                          <div class="image ">
+                                            <img src="../popup/img1.jpg" height="150px" width="150px" alt="" onclick="obtener_src(this)">
+                                            <img src="../popup/img2.jpg" height="150px" width="150px" alt="" onclick="obtener_src(this)">
+                                            <img src="../popup/img3.jpg" height="150px" width="150px" alt="" onclick="obtener_src(this)">
+                                            <img src="../popup/img4.jpg" height="150px" width="150px" alt="" onclick="obtener_src(this)">
+                                            <img src="../popup/img5.jpg" height="150px" width="150px" alt="" onclick="obtener_src(this)">
+                                            <img src="../popup/img6.jpg" height="150px" width="150px" alt="" onclick="obtener_src(this)">
+                                          </div>
+                                          <input type="text" id="demo" style="display:none;"name="img_proyecto">
+                                          </div>
+                                      <!-- footer -->
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                                <div>
+
                             <div class="form-group">
                                 <p>No tienes un equipo?<p>
                                 <a type="button" href="equipos/crear_nom_equipo.php" class="btn btn-secondary" value="Crear Equipo">Crear Equipo</a>
                             </div>
-                            
-
+                         <div class="form-group">
+                           <input type="submit" class="btn btn-primary" value="Crear Proyecto">
+                         </div>   
+                        </form>
+                                  
 
                             <textarea style="display:none;" name="dom_proyecto" id="dom_proyecto" cols="30" rows="20">&lt;mxGraphModel&gt;
   &lt;root&gt;
@@ -242,17 +273,20 @@ $res_equ1 = $conn->query($sql_equ1);
   &lt;/root&gt;
 &lt;/mxGraphModel&gt;</textarea>
                         
-                        
-                    </form>        
-                    </div>
-                </div>    
-            </div>
-            
-                </div>
-    </div>
-</div>
 
-<script src="../../../../bootstrap/js/bootstrap.min.js"></script>
+    <script>
+    function obtener_src(img) {
+      var src_img = img.src;
+      var src_img_int = src_img.split("/");
+      var input_vista = document.getElementById("demo");
+      var img_previa = document.getElementById("img_previa");
+     $('#popUpWindow').modal('toggle');
+     img_previa.src=src_img;
+      return input_vista.value = src_img_int[8];
+    }
+    </script>
+  <script src="../../../../bootstrap/js/bootstrap.min.js"></script>
+  
 </body>
 </html>
 

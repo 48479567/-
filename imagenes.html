@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css"> 
+      .circulo {
+        background-image: url("images/img3.jpg");
+        height: 200px;
+        width: 150px;
+        background-repeat: no-repeat;
+      }
+      .triangulo{
+        background-image: url("images/img4.jpgg");
+        height: 50px;
+        width: 50px;
+        background-repeat: no-repeat;
+      }
+      .cuadrado{
+        background-image: url("images/img2.png");
+        height: 50px;
+        width: 50px;
+        background-repeat: no-repeat;
+      }
+    </style>
+    <script type="text/javascript">
+    function changeTheme()
+    {document.getElementById("shelf").style.backgroundImage = "url("+theme+")";
+      var e = document.getElementById("themes");
+      var theme = e.options[e.selectedIndex].value;
+    }  
+    </script>
+  </head>
+    
+    <body>
+        <select>
+            <option class="cuadrado">Cuadrado</option>
+            <option class="circulo">Circulo</option>
+            <option class="triangulo">Triangulo</option>
+          </select>
+        
+        </body>  
+</html>  

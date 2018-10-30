@@ -1,7 +1,8 @@
 <?php
 require_once './conexion_prueba.php';
 
-$sql_clt = "SELECT * FROM cliente";
+$nombre = $_POST['nombre'];
+$sql_clt = "SELECT * FROM cliente WHERE nombre = '$nombre'";
 $res_clt = mysqli_query($conn, $sql_clt); ?>
 
 <table>

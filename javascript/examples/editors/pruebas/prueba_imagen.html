@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .image {
+    display: inline-block;
+    background-color: red;
+  }
+  </style>
+</head>
+<body>
+  <div class="image">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXBrigd0b9TGympSfUJzLXeSKcoonNZ1sLh4mcgFnt0XT18X7f" height="80px" alt="" onclick="obtener_src(this)">
+  </div>
+  <div class="image">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ9efQ59vEWJDsgFRd9VZzBnurvuh_g8OL2vbpX9J6Bly1MrZ1" height="80px" alt="" onclick="obtener_src(this)">
+  </div>
+  <div class="image">
+    <img src="https://www.mundodeportivo.com/r/GODO/MD/p5/MasQueDeporte/Imagenes/2018/05/10/Recortada/img_nmunoz_20180510-133450_imagenes_md_otras_fuentes_collage_paisajes_naturales-115-kb1F-U443469800203j7D-980x554@MundoDeportivo-Web.jpg" height="80px" alt="" onclick="obtener_src(this)">
+  </div>
+
+  <input type="text" id="demo">
+  <script>
+  function obtener_src(img) {
+    var src_img = img.src;
+    var input_vista = document.getElementById("demo");
+    return input_vista.value = src_img;
+  }
+  </script>
+</body>
+</html>

@@ -18,7 +18,7 @@ $var_resultado = $conn->query($var_consulta);
 $sql_equ1 = "SELECT usu_equipo.cod_equipo, equipos.npm_equipo FROM usu_equipo INNER JOIN equipos ON usu_equipo.cod_equipo = equipos.cod_equipo WHERE usu_equipo.cod_usuario = '$cod_usuario'";
 $res_equ1 = $conn->query($sql_equ1);
 
-$sql_pry1 = "SELECT proyectos.cod_proyecto, proyectos.nom_proyecto, equipos.npm_equipo, usu_equipo.cod_equipo, proyectos.tmc_proyecto FROM ((proyectos INNER JOIN equipos ON proyectos.cod_equipo = equipos.cod_equipo) INNER JOIN usu_equipo ON usu_equipo.cod_equipo = equipos.cod_equipo) WHERE usu_equipo.cod_usuario = '$cod_usuario' ORDER BY proyectos.tmc_proyecto DESC";
+$sql_pry1 = "SELECT proyectos.cod_proyecto, proyectos.nom_proyecto, equipos.npm_equipo, usu_equipo.cod_equipo, proyectos.img_proyecto, proyectos.tmc_proyecto FROM ((proyectos INNER JOIN equipos ON proyectos.cod_equipo = equipos.cod_equipo) INNER JOIN usu_equipo ON usu_equipo.cod_equipo = equipos.cod_equipo) WHERE usu_equipo.cod_usuario = '$cod_usuario' ORDER BY proyectos.tmc_proyecto DESC";
 $res_pry1 = $conn->query($sql_pry1);
 ?>
 <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
@@ -49,10 +49,8 @@ $res_pry1 = $conn->query($sql_pry1);
 while($row = $res_pry1->fetch_assoc()) {
 ?>
     <div class="swiper-slide">
-
-    
     <div class="imgBx">
-      <img src="./style_vista_proyecto/slider/img3.jpg">
+      <img src="./popup/<?=$row['img_proyecto']?>">
     </div>
     <div class="details">
       <h3><?=$row['nom_proyecto']?></h3>

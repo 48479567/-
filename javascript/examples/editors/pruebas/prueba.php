@@ -16,7 +16,6 @@
 		function post<?=$i?>() {
 			var usuario<?=$i?> = document.getElementById("usuario<?=$i?>").value;
 			var direccion<?=$i?> = document.getElementById("direccion<?=$i?>").value;
-
 			$.ajax ({
 				type: 'post',
 				url: 'prueba_envio.php',
@@ -38,24 +37,15 @@
 		$(document).ready(function(){
 		$("#enlaceajax").mousedown(function(evento){
 		evento.preventDefault();
+		var entrada = "perro 23";
 		$("#cargando").css("display", "inline");
-		$("#ingreso").load("prueba_vista.php", function(){	
-		});
-		$("#destino").load("prueba_vista.php", function(){
+		$("#destino").load("prueba_vista.php", {nombre: entrada}, function(){
 		$("#cargando").css("display", "none");
 		});
 		});
 		})
 		</script>
 
-		<script>
-		$(document).ready(function(){
-		$("#enlaceajax").click(function(evento2){
-		evento2.preventDefault();
-		alert(document.getElementById("ingreso").value);
-		});
-		})
-		</script>
 </head>
 
 
