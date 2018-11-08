@@ -49,13 +49,13 @@ require_once 'funcionamiento_perspectiva.php';
 
 $(document).ready(function() {
     $("#result").animate({scrollTop: $("#result")[0].scrollHeight});
-  $(document).bind('keypress', function(e) {
-    if(e.keyCode==13) {
+ $(document).bind('keypress', function(e) {
+ if(e.keyCode==13) {
             $("#result").animate({scrollTop: $("#result")[0].scrollHeight});
             $('#my_form').submit();
             $('#comment').val("");
         }
-  });
+ });
 });
 
 </script>
@@ -69,17 +69,17 @@ var name = document.getElementById("username").value;
 var proyecto = document.getElementById("cod_proyecto1").value;
     
 $.ajax ({
-    type: 'post',
-    url: 'commentajax.php',
-    data: {
-        user_comm:comment,
+ type: 'post',
+ url: 'commentajax.php',
+ data: {
+     user_comm:comment,
             user_name:name,
             cod_proyecto:proyecto
-    },
-    success: function (response) {
-    document.getElementById("comment").value="";
+ },
+ success: function (response) {
+ document.getElementById("comment").value="";
         }
-  });
+ });
     return false;
 }
 
@@ -109,7 +109,7 @@ setInterval('autoRefresh_div()', 2000);
         <li class="nav-item active" style="padding-left: 50px;"><div id="mainActions"></li>
     </ul>
     <div class="collapse navbar-collapse" id="navbar1">
-    <ul class="navbar-nav ml-auto"> 
+ <ul class="navbar-nav ml-auto"> 
 <li class="nav-item active">
 <a class="nav-link" href="#"><?=$_SESSION['usuario']?></a>
 </li>
@@ -117,8 +117,8 @@ setInterval('autoRefresh_div()', 2000);
 <li class="nav-item"><a class="nav-link" href="../../../projects/proyecto_msv/proyecto/vista_proyecto.php">Proyectos</a></li>
 <li class="nav-item">
 <a class="btn ml-2 btn-warning" href="../../../../-">Salir</a></li>
-    </ul>
-  </div>
+ </ul>
+ </div>
 </nav>
 <div id="selectActions"></div>
     
@@ -157,7 +157,15 @@ setInterval('autoRefresh_div()', 2000);
                                 $comment=$row['mensaje'];
                                     $time=$row['tiempo_mensaje'];
 ?>
-                            <div class="texto_chat" style="background-color:#dcf8c5; margin:5px;">
+                            <div class="texto_chat" style="
+<?php 
+                                if($name==$_SESSION['usuario']){ ?> 
+                                background-color:#dcf8c5; margin:5px;
+<?php 
+                                } else { ?> 
+                                background-color:#fff; margin:5px;
+<?php                           } 
+                                ?>"> 
                                 <strong class="texto_chat"><?=$name?>:</strong>
                                 <?=$comment?> 
                                 <!--
@@ -288,9 +296,11 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
                 <div id="mostrar" onclick="etiqueta(this)" style="display:inline-block">General</div>
                 <div class="btn btn-dark" onclick="alert('hola')">»</div>
             </div>
-            <textarea class="oculto" name=dom_proyecto id=ingreso><?=$dom_proyecto?></textarea>
-            <input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
             
+            <input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
+            <textarea class="oculto" col="200" row="100" name=dom_proyecto id=ingreso></textarea>
+            <textarea class="oculto" id="ingreso_out"><?=$dom_proyecto?></textarea>
+
             <?php
             $index = 0;
             while($row_prp2 = mysqli_fetch_assoc($res_prp)) {
@@ -298,24 +308,26 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
                 ?>
         <!--Perspectivas Especificas-->
             <div class="btn btn-primary" style="display:inline-block">
-                <div style="display:inline-block" class="<?=$row_prp2['cod_pro_per']?> dom<?=$index?>" id='<?="per$index"?>' onmousedown="cargar(this)" onclick="etiqueta(this)"/><?=$row_prp2["nom_perspectiva"]?></div>
-            <div class="btn btn-dark" onclick="alert('hola')">»</div>
+                <div style="display:inline-block" class="<?=$row_prp2['cod_pro_per']?>" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["nom_perspectiva"]?></div>
+            <div class="btn btn-dark" id="btn_guardar<?=$index?>">»</div>
             </div>
-            <input class="oculto" type="text" name='<?="cod_pro_per$index"?>' id="" value="<?=$row_prp2['cod_pro_per']?>">
-            <textarea class="" name=<?="dom_pro_per$index"?> id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
+            <input class="oculto" type="text" name='<?="cod_pro_per$index"?>' id="<?="cod_pro_per$index"?>" value="<?=$row_prp2['cod_pro_per']?>">
+            <textarea class="oculto" name=<?="dom_pro_per$index"?> id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
+            <textarea class="oculto" name="" id=<?="dom_out$index"?>></textarea>
     <?php
             $index++;
         }
     ?>
 
             <input class="oculto" type="text" id="etiqueta" value="previa_carga">
-            <textarea  class="oculto" name="" id="previa_carga"><?=$cantidad_perspectivas?></textarea>
+            <input class="oculto" type="text" id="codigo_campo">
+            <textarea class="oculto" name="" id="previa_carga"><?=$cantidad_perspectivas?></textarea>
             <input type="submit" class="btn btn-warning" value="Guardar" name="guardar_cambios">
         </form> 
     </div>
 
-
 <!--De esta parte se saca la variable $dom_perspectiva-->
+
 <?php 
 if ($rol_usuario == "gestor") { ?>
 
@@ -331,7 +343,7 @@ if ($rol_usuario == "gestor") { ?>
                 <form action="" method="POST">
                                                     
 <!--Esto Viene de la linea 23 -->
-<?php  
+<?php 
     $cont_usu_equipo = 0;
     while($row_usu_equipo = mysqli_fetch_assoc($res_usu_equipo)) { ?>
                         <div class="inputBox">
@@ -371,12 +383,15 @@ if ($rol_usuario == "gestor") { ?>
 <script>
     function etiqueta(contenidoButton) {
         var idButton = contenidoButton.id;
+        var classButton = contenidoButton.className;
         var valButton = contenidoButton.innerHTML;
         var idTextArea = idButton.replace("per", "dom");
         var textArea = document.getElementById('etiqueta');
-        var perspectiva = document.getElementById('perspectiva'); 
+        var perspectiva = document.getElementById('perspectiva');
+        $("#codigo_campo").val(classButton)
         if (idTextArea == "mostrar"){
             idTextArea = "ingreso";
+            $("#codigo_campo").val(""+$("#cod_proyecto").val())
         }
         perspectiva.innerHTML = valButton;
         return textArea.value = idTextArea;
@@ -384,16 +399,51 @@ if ($rol_usuario == "gestor") { ?>
     }
 </script>
 
+
 <script>
-function cargar(objeto) {
-    var btn_perspectiva_id = objeto.id;
-    var dom_perspectiva_id = btn_perspectiva_id.replace("per", "dom");
-    var btn_perspectiva_class = objeto.className;
-    var btn_perspectiva_class_unit = btn_perspectiva_class.split(" ");
-    var cod_pro_per = btn_perspectiva_class_unit[0];
-		var dom_perspectiva = btn_perspectiva_class_unit[1];
-		return document.getElementById(dom_perspectiva).load("perspectiva.php", {codigo: cod_pro_per}, function() {});
-}
+<?php 
+for($index_out=0; $index_out<$cantidad_perspectivas; $index_out++){ ?>
+
+$("#per"+"<?=$index_out?>").mousedown(function(evento){
+    evento.preventDefault()
+    var cod_pro_per = $("#cod_pro_per"+"<?=$index_out?>").val()
+    $("#dom_out"+"<?=$index_out?>").load("obtener_dom.php", {cod_pro_per: cod_pro_per}, function(){
+    })
+})
+
+<?php
+} ?>
+</script>
+
+<script>
+$("#mostrar").mousedown(function(evento){
+    evento.preventDefault()
+    var cod_proyecto = $("#cod_proyecto").val()
+    $("#ingreso_out").load("obtener_dom_proyecto.php", {cod_proyecto: cod_proyecto}, function(){
+    })
+})
+</script>
+
+<script>
+$(window).bind('keydown', function(event) {
+ if (event.ctrlKey || event.metaKey) {
+ if (String.fromCharCode(event.which).toLowerCase()=="g") {
+            event.preventDefault()
+            var dom_muestra = $("#"+$("#etiqueta").val()).val()
+            var codigo_campo = $("#codigo_campo").val()
+            $.ajax({
+                type: "post",
+                url: "guardar_datos.php",
+                data: {
+                    dom_muestra: dom_muestra,
+                    codigo_campo: codigo_campo
+                },
+                success: function(response){
+                }
+            })
+ }
+ }
+})
 </script>
 <script src="../../../bootstrap/js/bootstrap.min.js"></script>
 </body>

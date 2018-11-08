@@ -64,7 +64,6 @@ table {
 
 .texto_chat { 
   font-size: 10px;
-  background-color:#dcf8c5;
   padding: 2px;
 }
 
@@ -73,7 +72,6 @@ table {
   height: 40%; 
   font-size: 10px;
   resize: none;
-
 }
 
 #zoomActions {

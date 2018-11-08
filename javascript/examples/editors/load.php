@@ -10,7 +10,16 @@ while($row = $result->fetch_assoc()){
 	$comment=$row['mensaje'];
     $time=$row['tiempo_mensaje'];
 ?>
-<div class="texto_chat" style="background-color:#dcf8c5; margin:5px;"><strong class="texto_chat"><?=$name?>:</strong> <?=$comment?> <!--<p class="texto_chat"><?php/*date("j/m/Y g:i:sa", strtotime($time))*/?></p>--></div>
+<div class="texto_chat" style="
+<?php 
+if($name==$_SESSION['usuario']){ ?> 
+background-color:#dcf8c5; margin:5px;
+<?php 
+} else { ?> 
+background-color:#fff; margin:5px;
+<?php } 
+?>"> <strong class="texto_chat"><?=$name?>:</strong> <?=$comment?> <!--<p class=""><?php/*date("j/m/Y g:i:sa", strtotime($time))*/?></p>--></div>
+
 
 
 <?php

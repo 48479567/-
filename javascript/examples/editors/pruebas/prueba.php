@@ -10,7 +10,7 @@
 
 	<script type="text/javascript">
 <?php
-	
+	session_start();
 	for ($i=0; $i < 5; $i++) { ?>
 			
 		function post<?=$i?>() {
@@ -36,11 +36,11 @@
 		<script>
 		$(document).ready(function(){
 		$("#enlaceajax").mousedown(function(evento){
-		evento.preventDefault();
 		var entrada = "perro 23";
 		$("#cargando").css("display", "inline");
 		$("#destino").load("prueba_vista.php", {nombre: entrada}, function(){
 		$("#cargando").css("display", "none");
+		$("#ingreso").val("5555");
 		});
 		});
 		})
