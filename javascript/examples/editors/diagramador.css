@@ -1,3 +1,7 @@
+* {
+  padding: 0;
+  margin: 0;
+}
 body {
   width: 100%;
 }
@@ -8,35 +12,37 @@ body {
   margin: 10px 20px;
 }
 
-#mainActions { width: 100%; }
-#selectActions { width: 100%; }
-
-table {
-  border: 0;
-  width: 100%;
-  height: 80%;
-}
-
 #toolbar {
-  width: 8px;
-  padding-left: 0px;
-  vertical-align: top;
-}
-
-#graph_td {
-  vertical-align: top;
-  border: 1px solid black;
-
-}
-
-#graph {
   position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  cursor: default;
-  border-style: solid;
+  display: inline-block;
+  padding-left: 0px;
+  padding-top: 5%;
+  width: 2%;
+  padding: 0;
+  margin: 0;
+}
+
+#zoomActions {
+  position: absolute;
+  bottom: 2%;
+  left: 2.5%;
+}
+
+#selectActions {
+  color: white;
+}
+
+#graph {  
   background: url('images/grid.gif');
+  background-color:white;
+  position: absolute;
+  right: 16%;
+  left: 2%;
+  top: 60px;
+  bottom: 0;
+  display: inline-block;
+  overflow: auto;
+  cursor: default;
 }
 
 #splash { padding-top: 230px; }
@@ -46,20 +52,26 @@ table {
 }
 
 #chat {
-  height: 100%;
-  width: 13%;
   background-image: url("./background_chat.jpg");
   vertical-align: bottom;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 10%;
+  width: 16%;
   padding: 5px;
-  
+  float: right;
 }
 
 #result {
-  height:70%;
+  position: relative;
+  top: 15px;
+  height:100%;
   overflow:auto;
   overflow-x: hidden;
   text-size-adjust: 10px;
   margin: 0;
+  margin-bottom: 0;
 }
 
 .texto_chat { 
@@ -68,17 +80,11 @@ table {
 }
 
 #comment {
-  width: 90%; 
-  height: 40%; 
   font-size: 10px;
+  width: 80%;
   resize: none;
+  border: none;
 }
-
-#zoomActions {
-  width: 100%;
-  padding-top: 4px;
-}
-
 
 .button {
   display: inline-block;
@@ -98,6 +104,12 @@ table {
   text-decoration: none;
 }
 
+#btn {
+  position: absolute;
+  width: 15%;
+  height: 90%;
+
+}
 
 
 

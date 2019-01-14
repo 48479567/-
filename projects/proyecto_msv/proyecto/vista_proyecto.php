@@ -58,6 +58,7 @@ while($row = $res_pry1->fetch_assoc()) {
       <form action="../../../javascript/examples/editors/diagrameditor.php" method="POST">
         <input type="text" class="oculto" name="cod_proyecto" value="<?=$row['cod_proyecto']?>"/>
         <input style="" class="alert btn_oculto" type="submit" id="<?=$row['cod_proyecto']?>" value="Ingresar"/>
+        <input type="text" class="oculto" name="nom_proyecto" value="<?=$row['nom_proyecto']?>"/>
       </form>
     </div>
  </div>

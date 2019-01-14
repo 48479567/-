@@ -16,7 +16,7 @@
 		{
 			// Fades-out the splash screen
 			var splash = document.getElementById('splash');
-			
+			// La vista cargando
 			if (splash != null)
 			{
 				try
@@ -35,7 +35,7 @@
 		{
 			if (!mxClient.isBrowserSupported())
 			{
-				mxUtils.error('Browser is not supported!', 200, false);
+				mxUtils.error('El Navegador no es Compatible!', 200, false);
 			}
 			else
 			{
@@ -55,6 +55,8 @@
 				
 				editor.graph.allowAutoPanning = true;
 				editor.graph.timerAutoScroll = true;
+
+				// Esto es para la desedicion editor.graph.setEnabled(false)
 				
 				// Updates the window title after opening new files
 				var title = document.title;
@@ -71,7 +73,7 @@
 				funct(editor);
 				
 				// Displays version in statusbar
-				editor.setStatus('mxGraph '+mxClient.VERSION);
+				editor.setStatus('ISG '+mxClient.VERSION);
 
 				// Shows the application
 				hideSplash();
@@ -82,7 +84,7 @@
 			hideSplash();
 
 			// Shows an error message if the editor cannot start
-			mxUtils.alert('Cannot start application: ' + e.message);
+			mxUtils.alert('Falla en la Carga de la Aplicación: ' + e.message);
 			throw e; // for debugging
 		}
 

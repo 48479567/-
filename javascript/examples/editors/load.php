@@ -8,17 +8,14 @@ $result = $conn->query($qry);
 while($row = $result->fetch_assoc()){
 	$name=$row['nom_usuario'];
 	$comment=$row['mensaje'];
-    $time=$row['tiempo_mensaje'];
+		$time=$row['tiempo_mensaje'];
+		if($name==$_SESSION['usuario']){
+			$estilo_chat = 'background-color:#dcf8c5; margin:5px;';
+		} else {
+			$estilo_chat = 'background-color:#fff; margin:5px;';
+		}
 ?>
-<div class="texto_chat" style="
-<?php 
-if($name==$_SESSION['usuario']){ ?> 
-background-color:#dcf8c5; margin:5px;
-<?php 
-} else { ?> 
-background-color:#fff; margin:5px;
-<?php } 
-?>"> <strong class="texto_chat"><?=$name?>:</strong> <?=$comment?> <!--<p class=""><?php/*date("j/m/Y g:i:sa", strtotime($time))*/?></p>--></div>
+<div class="texto_chat" style="<?=$estilo_chat?>"> <strong class="texto_chat"><?=$name?>:</strong> <?=$comment?> <!--<p class=""><?php/*date("j/m/Y g:i:sa", strtotime($time))*/?></p>--></div>
 
 
 

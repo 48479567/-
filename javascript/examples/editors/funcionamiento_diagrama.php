@@ -7,14 +7,10 @@
 
         function onInit(editor)
         {
-            
-
             // Enables rotation handle
             mxVertexHandler.prototype.rotationEnabled = true;
-
             // Enables guides
             mxGraphHandler.prototype.guidesEnabled = true;
-            
          // Alt disables guides
          mxGuide.prototype.isEnabledForEvent = function(evt)
          {
@@ -45,7 +41,6 @@
                 {
                     title.innerHTML = 'mxDraw - ' + sender.getTitle();
                 };
-                
                 editor.addListener(mxEvent.ROOT, f);
                 f(editor);
             }
@@ -62,8 +57,7 @@
                     else
                     {
                         editor.execute('zoomOut');
-                    }
-                    
+                    }    
                     mxEvent.consume(evt);
              }
          });
@@ -71,9 +65,7 @@
             // Defines a new action to switch between
             // XML and graphical display
             
-            
             <?php
-
             $sql_pro_per_total = "SELECT * FROM pro_per";
             $res_pro_per_total = mysqli_query($conn, $sql_pro_per_total);
             $cantidad_perspectivas_total = $res_pro_per_total->num_rows;
@@ -91,21 +83,15 @@
                 $sql_prp = "SELECT * FROM pro_per WHERE cod_proyecto = '$cod_proyecto' AND cod_usuario = '$cod_usu_proyecto'";
             }
 
-            
             $res_prp = mysqli_query($conn, $sql_prp);
-            $cantidad_perspectivas = $res_prp->num_rows;
-            ?>
+            $cantidad_perspectivas = $res_prp->num_rows; ?>
             
-
             var textNode = document.getElementById('xml');
             var graphNode = editor.graph.container;
             var divGraph = document.getElementById('graph');
-        
-
 
             var funct = function(editor)
-            {
-                                
+            {                 
                 var enc = new mxCodec();
                 var node = enc.encode(editor.graph.getModel());
                 
@@ -140,11 +126,9 @@
             mxEvent.addListener(divGraph, 'keyup', function(){
                 editor.execute('switchView')
             })
-
-            
-            <?php
-            for ($indice = 0 ; $indice < $cantidad_perspectivas ; $indice++) {
-            ?>
+           
+<?php
+            for ($indice = 0 ; $indice < $cantidad_perspectivas ; $indice++) { ?>
             var <?="muestraCambio$indice"?> = document.getElementById('dom_out<?=$indice?>');
             var <?="mostrar$indice"?> = document.getElementById('per<?=$indice?>');
             var <?="mostrarCambios$indice"?> = function <?="mostrarCambios$indice"?>(editor){
@@ -163,9 +147,8 @@
             {
                 editor.execute('<?="cambios$indice"?>');
             });
-            <?php
-            }
-            ?>
+<?php
+            } ?>
 
             var muestraCambio = document.getElementById('ingreso_out');
             var mostrar = document.getElementById('mostrar');
@@ -186,7 +169,6 @@
             {
                 editor.execute('cambios');
             });
-
 
             // Create select actions in page
             var node = document.getElementById('mainActions');
@@ -287,9 +269,7 @@
                     
                     new mxXmlRequest(editor.urlEcho, 'filename=' + name + '&format=svg' + '&xml=' + xml).simulate(document, '_blank');
                 };
-                
                 editor.addAction('exportSvg', exportSvg);
-                
                 buttons.push('exportImage');
                 buttons.push('exportSvg');
             };
@@ -298,7 +278,6 @@
             {
                 var button = document.createElement('button');
                 mxUtils.write(button, mxResources.get(buttons[i]));
-            
                 var factory = function(name)
                 {
                     return function()
@@ -306,7 +285,6 @@
                         editor.execute(name);
                     };
                 };
-            
                 mxEvent.addListener(button, 'click', factory(buttons[i]));
                 node.appendChild(button);
             }
@@ -324,7 +302,7 @@
 
             // Create select actions in page
             var node = document.getElementById('zoomActions');
-            mxUtils.write(node, 'Zoom: ');
+            mxUtils.write(node, '');
             mxUtils.linkAction(node, 'Acercar', editor, 'zoomIn');
             mxUtils.write(node, ', ');
             mxUtils.linkAction(node, 'Alejar', editor, 'zoomOut');
@@ -333,6 +311,5 @@
             mxUtils.write(node, ', ');
             mxUtils.linkAction(node, 'Ajustar', editor, 'fit');
         }
-
-
+        
 </script>

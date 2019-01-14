@@ -5,10 +5,13 @@ $cod_usu_proyecto = $_SESSION['cod_usuario'];
 
 if(isset($_POST['cod_proyecto'])) {
     $cod_proyecto = $_POST['cod_proyecto'];
+    $nom_proyecto = $_POST['nom_proyecto'];
 } else {
     $cod_proyecto = $_SESSION['cod_proyecto'];
+    $nom_proyecto = $_SESSION['nom_proyecto'];
 }
 $_SESSION['cod_proyecto'] = $cod_proyecto;
+$_SESSION['nom_proyecto'] = $nom_proyecto;
 
 $sql_sdp = "SELECT * FROM proyectos WHERE cod_proyecto = '$cod_proyecto'";
 $res_sdp = mysqli_query($conn, $sql_sdp);
@@ -25,19 +28,23 @@ $res_usu_equipo = mysqli_query($conn, $sql_usu_equipo);
 $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_proyecto);
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="./diagramador.css">
-<link rel="stylesheet" href="./estilo_perspectiva.css">
-<title><?=$nom_proyecto?></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./diagramador.css">
+    <link rel="stylesheet" href="./estilo_perspectiva.css">
+    <title><?=$nom_proyecto?></title>
 
-<script type="text/javascript" src="./iniciacion_diagrama.js"></script>
+    <script type="text/javascript" src="./iniciacion_diagrama.js"></script>
 
-<script type="text/javascript" src="../../src/js/mxClient.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
-<script type="text/javascript" src="jquery_js.min.js"></script> 
+    <script type="text/javascript" src="../../src/js/mxClient.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="jquery_js.min.js"></script> 
 
 <?php 
 require_once 'funcionamiento_diagrama.php';
@@ -67,7 +74,8 @@ $("#result").animate({scrollTop: $("#result")[0].scrollHeight});
 var comment = document.getElementById("comment").value;
 var name = document.getElementById("username").value;
 var proyecto = document.getElementById("cod_proyecto1").value;
-    
+
+if(comment != ""){
 $.ajax ({
  type: 'post',
  url: 'commentajax.php',
@@ -80,7 +88,8 @@ $.ajax ({
  document.getElementById("comment").value="";
         }
  });
-    return false;
+}   
+return false;
 }
 
 </script>
@@ -102,50 +111,91 @@ setInterval('autoRefresh_div()', 2000);
 
 <body style="background-image:url('background_diagram.jpg')" onload="createEditor('config/diagrameditor.xml');">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:60px">
     <img class="logo" src="../../../projects/proyecto_msv/proyecto/style_vista_proyecto/menu.png" alt="ISG" height="40px">
     <a class="navbar-brand" id="perspectiva" href="#"></a>
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item active" style="padding-left: 50px;"><div id="mainActions"></li>
+        <li class="nav-item active" style="padding-left: 50px;"><div id="selectActions"></div>
+    </li>
     </ul>
     <div class="collapse navbar-collapse" id="navbar1">
  <ul class="navbar-nav ml-auto"> 
 <li class="nav-item active">
-<a class="nav-link" href="#"><?=$_SESSION['usuario']?></a>
-</li>
-<li class="nav-item active"></li>   
+<a class="btn btn-success" href="./reporte.php" target="_blank">reporte</a>
+</li>  
 <li class="nav-item"><a class="nav-link" href="../../../projects/proyecto_msv/proyecto/vista_proyecto.php">Proyectos</a></li>
 <li class="nav-item">
 <a class="btn ml-2 btn-warning" href="../../../../-">Salir</a></li>
  </ul>
  </div>
 </nav>
-<div id="selectActions"></div>
-    
-        
-        
-        <table>
 
-            <tr>
 
-                <td id="toolbar">
-                    <!-- Toolbar Here -->               
-                </td>
+<?php /*
+<div>
+    <div id="toolbar"></div>
+    <div id="graph_td" style="background-color:white">
+        <div id="graph" tabindex="-1">
+            <center id="splash">
+                <img src="./images/loading.gif">
+            </center>
+        </div>
+        <textarea id="xml"></textarea>
+    </div>
+    <div id="chat" style="background-image:url('background_chat.jpg');">
+        <div id="result">
+            <?php   
+                $qry = "SELECT nom_usuario, mensaje, tiempo_mensaje FROM chats WHERE cod_proyecto = '$cod_proyecto'";
+                $result = $conn->query($qry);
+                while($row = $result->fetch_assoc()) {
+                    $name = $row['nom_usuario'];
+                    $comment = $row['mensaje'];
+                    $time = $row['tiempo_mensaje'];   
+                    if($name==$_SESSION['usuario']) {
+                        $estilo_chat = 'background-color:#dcf8c5; margin:5px;';
+                    } else {
+                        $estilo_chat = 'background-color:#fff; margin:5px;';
+                    }         
+            ?>
+            <div class="texto_chat" style="<?=$estilo_chat?>">
+                <strong class="texto_chat"><?=$name?>: </strong><?=$comment?>
+                <!--
+                <p class="texto_chat"><?php //date("j/m/Y g:i:sa", strtotime($time))?></p>-->
+            </div>
+            <?php
+                }
+            ?>
+        </div>
+        <div>
+            <form action="" method="post" onsubmit="return post();" id="my_form" name="my_form">
+                <div>
+                    <input type="text" class="oculto" id="username" value="<?=$_SESSION['usuario']?>"/>
+                    <input type="text" class="oculto" id="cod_proyecto" name="cod_proyecto1" value="<?=$cod_proyecto?>"/>
+                    <textarea id="comment"></textarea>
+                </div>
+                <div class="form-btn">
+                    <input type="submit" value="enviar" id="btn" name="btn"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-                <td id="graph_td" style="background-color:white;">
 
-                    <div id="graph" tabindex="-1">
+*/
+?>
+<div class="oculto" id="mainActions"></div>
+                <div  id="toolbar">       
+                </div>
+                    <div id="graph"> 
                         <!-- Graph Here -->
                         <center id="splash">
                             <img src="images/loading.gif">
                         </center>
                     </div>
-                    
-                    <textarea id="xml"></textarea>
+                    <textarea id="xml" class="oculto"></textarea>
 
-                </td>
-
-                <td id="chat" style="background-image:url('background_chat.jpg')">
+                <div id="chat" style="background-image:url('background_chat.jpg');">
 
                     <div id="result">
 <?php
@@ -155,17 +205,14 @@ setInterval('autoRefresh_div()', 2000);
                             while($row = $result->fetch_assoc()) {
                                 $name=$row['nom_usuario'];
                                 $comment=$row['mensaje'];
-                                    $time=$row['tiempo_mensaje'];
+                                $time=$row['tiempo_mensaje'];
+                                if($name==$_SESSION['usuario']){
+                                    $estilo_chat = 'background-color:#dcf8c5; margin:5px;';
+                                } else {
+                                    $estilo_chat = 'background-color:#fff; margin:5px;';
+                                }
 ?>
-                            <div class="texto_chat" style="
-<?php 
-                                if($name==$_SESSION['usuario']){ ?> 
-                                background-color:#dcf8c5; margin:5px;
-<?php 
-                                } else { ?> 
-                                background-color:#fff; margin:5px;
-<?php                           } 
-                                ?>"> 
+                            <div class="texto_chat" style="<?=$estilo_chat?>"> 
                                 <strong class="texto_chat"><?=$name?>:</strong>
                                 <?=$comment?> 
                                 <!--
@@ -175,29 +222,67 @@ setInterval('autoRefresh_div()', 2000);
 <?php
                             }
 ?>
-                    </div>  
+                    </div>
+            
+</div> 
+                <div style="position:absolute;left:85%;right:0;bottom:0;">
+                        <form method="post" action="" onsubmit="return post();" id="my_form" name="my_form">
+                                <input class="oculto" type="text" id="username" value="<?=$_SESSION['usuario']?>">
+                                <input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto1" value="<?=$cod_proyecto?>">
+                                    <textarea type="text" id="comment" rows="3"></textarea>
+                                    <input type="submit" value="»" id="btn" name="btn"/>
+                        </form>
+                </div>  
+<div id="zoomActions" style="color:red;list-style: none;"></div>
 
-                    <form method="post" action="" onsubmit="return post();" id="my_form" name="my_form">
 
+<div style="position:absolute; top:60px;right:16%;">
+<!--De esta parte se saca la variable $dom_perspectiva-->
+
+<?php 
+if ($rol_usuario == "gestor") { ?>
+
+<button type='button' class="btn btn-dark btn-sm" data-toggle="modal" data-target="#popUpWindow">Aumentar Perspectiva</button>
+
+<div class="modal fade" id="popUpWindow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- header -->
+            
+            <!-- body -->
+            <div class="box">
+                <form action="" method="POST">
+                                                    
+<!--Esto Viene de la linea 23 -->
+<?php 
+    $cont_usu_equipo = 0;
+    while($row_usu_equipo = mysqli_fetch_assoc($res_usu_equipo)) { ?>
+                        <div class="inputBox">
+                        <input type="text" class="input" name="nom_perspectiva<?=$cont_usu_equipo?>" required="" autocomplete="off">
+                        <label>Nombre de la Perspectiva para <?=$row_usu_equipo['nom_usuario']?></label>
+                        <input type="text" class="oculto" name="usu_perspectiva<?=$cont_usu_equipo?>" value="<?=$row_usu_equipo['cod_usuario']?>">
+                        </div>              
+<?php 
+    $cont_usu_equipo++; 
+    } ?>
                         <div>
-                            <input class="oculto" type="text" id="username" value="<?=$_SESSION['usuario']?>">
-                            <input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto1" value="<?=$cod_proyecto?>">
-                            <textarea id="comment"></textarea>  
+                            <input type="text" class="oculto" name="cod_proyecto" value="<?=$cod_proyecto?>">
+                            <input type="text" class="oculto" name="cont_usu_equipo" value="<?=$cont_usu_equipo?>">
+                            <input type="submit" name="crear_perspectiva" value="Asignar Perspectiva">
+                            
                         </div>
+                </form>
+            </div>
+            <!-- footer -->
+            
+        </div>
+    </div>
+</div>
 
-                        <div class="form-btn">
-                        <input type="submit" value="Enviar" id="btn" name="btn"/>
-                        </div>
-
-                    </form>
-
-                </td>
-
-            </tr>
-
-        </table>
-
-        <div id="zoomActions"></div>
+<?php 
+} ?>       
+    
+</div>
     
 
     <?php 
@@ -289,12 +374,13 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
     ?>
 
 
-    <div style="display:inline-block;">
-        <form action="" method="POST">
+    <div style="display:inline-block;position:absolute;top:60px;left:2%">
+    <!--
+        <form action="" method="POST"> 
+    -->
         <!--Perspectiva General-->
-            <div class="btn btn-success" style="display:inline-block">
+            <div class="btn btn-success btn-sm" style="display:inline-block;margin:0">
                 <div id="mostrar" onclick="etiqueta(this)" style="display:inline-block">General</div>
-                <div class="btn btn-dark" onclick="alert('hola')">»</div>
             </div>
             
             <input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
@@ -307,9 +393,8 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
                 
                 ?>
         <!--Perspectivas Especificas-->
-            <div class="btn btn-primary" style="display:inline-block">
+            <div class="btn btn-primary btn-sm" style="display:inline-block">
                 <div style="display:inline-block" class="<?=$row_prp2['cod_pro_per']?>" id='<?="per$index"?>' onclick="etiqueta(this)"/><?=$row_prp2["nom_perspectiva"]?></div>
-            <div class="btn btn-dark" id="btn_guardar<?=$index?>">»</div>
             </div>
             <input class="oculto" type="text" name='<?="cod_pro_per$index"?>' id="<?="cod_pro_per$index"?>" value="<?=$row_prp2['cod_pro_per']?>">
             <textarea class="oculto" name=<?="dom_pro_per$index"?> id=<?="dom$index"?>><?=$row_prp2['dom_perspectiva']?></textarea>
@@ -322,54 +407,13 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
             <input class="oculto" type="text" id="etiqueta" value="previa_carga">
             <input class="oculto" type="text" id="codigo_campo">
             <textarea class="oculto" name="" id="previa_carga"><?=$cantidad_perspectivas?></textarea>
-            <input type="submit" class="btn btn-warning" value="Guardar" name="guardar_cambios">
-        </form> 
+            <!--
+            <input type="submit" class="btn btn-warning btn-sm" value="Guardar" name="guardar_cambios">
+            
+        </form>--> 
     </div>
 
-<!--De esta parte se saca la variable $dom_perspectiva-->
 
-<?php 
-if ($rol_usuario == "gestor") { ?>
-
-<button type='button' class="btn btn-success" data-toggle="modal" data-target="#popUpWindow">+</button>
-
-<div class="modal fade" id="popUpWindow">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- header -->
-            
-            <!-- body -->
-            <div class="box">
-                <form action="" method="POST">
-                                                    
-<!--Esto Viene de la linea 23 -->
-<?php 
-    $cont_usu_equipo = 0;
-    while($row_usu_equipo = mysqli_fetch_assoc($res_usu_equipo)) { ?>
-                        <div class="inputBox">
-                        <input type="text" name="nom_perspectiva<?=$cont_usu_equipo?>" required="" autocomplete="off">
-                        <label>Nombre de la Perspectiva para <?=$row_usu_equipo['nom_usuario']?></label>
-                        <input type="text" class="oculto" name="usu_perspectiva<?=$cont_usu_equipo?>" value="<?=$row_usu_equipo['cod_usuario']?>">
-                        </div>              
-<?php 
-    $cont_usu_equipo++; 
-    } ?>
-                        <div>
-                            <input type="text" class="oculto" name="cod_proyecto" value="<?=$cod_proyecto?>">
-                            <input type="text" class="oculto" name="cont_usu_equipo" value="<?=$cont_usu_equipo?>">
-                            <input type="submit" name="crear_perspectiva" value="Asignar Perspectiva">
-                            
-                        </div>
-                </form>
-            </div>
-            <!-- footer -->
-            
-        </div>
-    </div>
-</div>
-
-<?php 
-} ?>
 
 <?php
     function test_input($data) {

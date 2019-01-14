@@ -1,5 +1,6 @@
-#popUpWindow{
-  //background: lightblue; 
+* {
+  padding: 0;
+  margin: 0;
 }
 
 .box
@@ -68,7 +69,7 @@
 {
   background: transparent;
   border: none;
-  outline: none,
+  outline: none;
   color:#fff;
   background: #03a9f4;
   padding: 10px 20px;
