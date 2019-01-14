@@ -34,7 +34,6 @@ $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_p
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
     <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./diagramador.css">
     <link rel="stylesheet" href="./estilo_perspectiva.css">
@@ -115,14 +114,11 @@ setInterval('autoRefresh_div()', 2000);
     <img class="logo" src="../../../projects/proyecto_msv/proyecto/style_vista_proyecto/menu.png" alt="ISG" height="40px">
     <a class="navbar-brand" id="perspectiva" href="#"></a>
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item active" style="padding-left: 50px;"><div id="selectActions"></div>
+        <li class="nav-item active" style="position:absolute;top:13px;right:16%"><div id="selectActions" style="display:none"></div><a class="btn btn-success" href="./reporte.php" target="_blank">Reporte</a>
     </li>
     </ul>
     <div class="collapse navbar-collapse" id="navbar1">
  <ul class="navbar-nav ml-auto"> 
-<li class="nav-item active">
-<a class="btn btn-success" href="./reporte.php" target="_blank">reporte</a>
-</li>  
 <li class="nav-item"><a class="nav-link" href="../../../projects/proyecto_msv/proyecto/vista_proyecto.php">Proyectos</a></li>
 <li class="nav-item">
 <a class="btn ml-2 btn-warning" href="../../../../-">Salir</a></li>
@@ -185,7 +181,7 @@ setInterval('autoRefresh_div()', 2000);
 */
 ?>
 <div class="oculto" id="mainActions"></div>
-                <div  id="toolbar">       
+                <div id="toolbar">       
                 </div>
                     <div id="graph"> 
                         <!-- Graph Here -->
@@ -233,8 +229,7 @@ setInterval('autoRefresh_div()', 2000);
                                     <input type="submit" value="»" id="btn" name="btn"/>
                         </form>
                 </div>  
-<div id="zoomActions" style="color:red;list-style: none;"></div>
-
+<div class="bg bg-warning" id="zoomActions" style="color:red;list-style: none;"></div>
 
 <div style="position:absolute; top:60px;right:16%;">
 <!--De esta parte se saca la variable $dom_perspectiva-->
@@ -242,7 +237,7 @@ setInterval('autoRefresh_div()', 2000);
 <?php 
 if ($rol_usuario == "gestor") { ?>
 
-<button type='button' class="btn btn-dark btn-sm" data-toggle="modal" data-target="#popUpWindow">Aumentar Perspectiva</button>
+<button type='button' class="btn btn-danger btn-sm" data-toggle="modal" data-target="#popUpWindow">Aumentar Perspectiva</button>
 
 <div class="modal fade" id="popUpWindow">
     <div class="modal-dialog">
@@ -374,14 +369,12 @@ for ($i=0; $i < $cont_put_pro_per ; $i++) {
     ?>
 
 
-    <div style="display:inline-block;position:absolute;top:60px;left:2%">
+    <div style="display:inline-block;position:absolute;top:60px;">
     <!--
         <form action="" method="POST"> 
     -->
         <!--Perspectiva General-->
-            <div class="btn btn-success btn-sm" style="display:inline-block;margin:0">
-                <div id="mostrar" onclick="etiqueta(this)" style="display:inline-block">General</div>
-            </div>
+            <div  class="btn btn-success btn-sm" id="mostrar" onclick="etiqueta(this)" style="display:inline-block">General</div>
             
             <input class="oculto" type="text" name="cod_proyecto" id="cod_proyecto" value="<?=$cod_proyecto?>">
             <textarea class="oculto" col="200" row="100" name=dom_proyecto id=ingreso></textarea>

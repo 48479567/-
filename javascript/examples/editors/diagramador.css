@@ -13,10 +13,8 @@ body {
 }
 
 #toolbar {
-  position: relative;
-  display: inline-block;
-  padding-left: 0px;
-  padding-top: 5%;
+  position: absolute;
+  top: 15%;
   width: 2%;
   padding: 0;
   margin: 0;
@@ -24,8 +22,8 @@ body {
 
 #zoomActions {
   position: absolute;
-  bottom: 2%;
-  left: 2.5%;
+  bottom: 2.5%;
+  padding: 3px 5px;
 }
 
 #selectActions {
