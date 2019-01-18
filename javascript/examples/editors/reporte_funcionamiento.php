@@ -34,66 +34,60 @@ if ($cant_res_pro_per > 0) {
 
 <script>
   function onInit(editor) {
-    mxVertexHandler.prototype.rotationEnabled = true
-    mxGraphHandler.prototype.guidesEnabled = true
+    editor.graph.setEnabled(false) 
+  <?php
+  for ($i=1; $i < $index; $i++) { ?> 
+    var <?="funct$i"?> = function(editor) {
+    
+      var textNode = document.getElementById('xml_per<?=$i?>')
+      var doc = mxUtils.parseXml(textNode.value)
+			var dec = new mxCodec(doc)
+      dec.decode(doc.documentElement, editor.graph.getModel())
+      var decodificado = editor.graph.container.innerHTML
+      document.getElementById('graph_per<?=$i?>').innerHTML = decodificado
+		}
+    editor.addAction('<?="switchView$i"?>', <?="funct$i"?>)
+    editor.execute('<?="switchView$i"?>')
+  <?php
+  } ?>
 
-    mxGuide.prototype.isEnabledForEvent = function (evt) {
-      return !mxEvent.isAltDown(evt)
+    var functZero = function (editor) {
+      var textNode = document.getElementById('xml_per0')
+      var doc = mxUtils.parseXml(textNode.value)
+      var dec = new mxCodec(doc)
+      dec.decode(doc.documentElement, editor.graph.getModel())
+      editor.graph.fit()
+      var decodificado = editor.graph.container.innerHTML
+      document.getElementById('graph_per0').innerHTML = decodificado
     }
-    mxEdgeHandler.prototype.snapToTerminals = true
-    //Esta es la parte  principal de conexion para que los componentes de los graficos puedan establecer relaciones entre ellos mismos
-    mxConnectionHandler.prototype.connectImage = new mxImage('images/connector.gif', 16, 16)
-    editor.graph.setConnectable(true)
-    editor.graph.connectionHandler.setCreateTarget(true)
-    editor.graph.setEnabled(false)
-    var title = document.getElementById('title');
-		if (title != null) {
-			var f = function (sender) {
-				title.innerHTML = `mxDraw - ${sender.getTitle()}`
-			}
-			editor.addListener(mxEvent.ROOT, f)
-			f(editor)
+    editor.addAction('switchViewZero', functZero)
+    editor.execute('switchViewZero')
+
+    var functEnd = function (editor) {
+      var textNode = document.getElementById('xml')
+      var doc = mxUtils.parseXml(textNode.value)
+      var dec = new mxCodec(doc)
+      dec.decode(doc.documentElement, editor.graph.getModel())
+      editor.graph.fit()
+      var decodificado = editor.graph.container.innerHTML
+      document.getElementById('general').innerHTML = decodificado
     }
+    editor.addAction('switchViewEnd', functEnd)
+    editor.execute('switchViewEnd')
+    
+    var functVoid = function(editor) {
+      var textNode = document.getElementById('xml')
+      var doc = mxUtils.parseXml(textNode.value)
+      var dec = new mxCodec(doc)
+      dec.decode(doc.documentElement, editor.graph.getModel())
+      editor.graph.fit()
+      editor.graph.container.style.display = 'none'  
+    }
+    editor.addAction('switchViewVoid', functVoid)
+    editor.execute('switchViewVoid')
       
-    var textNode = document.getElementById('xml')
-    var graphNode = editor.graph.container
-    var sourceInput = document.getElementById('source')
-    sourceInput.checked = false
-    var funct = function(editor) {
-      if (sourceInput.checked) {
-        graphNode.style.display = 'none'
-        textNode.style.display = 'inline'
-
-        var enc = new mxCodec()
-        var node = enc.encode(editor.graph.getModel())
-
-        textNode.value = mxUtils.getPrettyXml(node)
-        textNode.originalValue = textNode.value
-        textNode.focus()
-      } else {
-        graphNode.style.display = ''
-
-        if (textNode.value != textNode.originasValue) {
-          var doc = mxUtils.parseXml(textNode.value)
-          var dec = new mxCodec(doc)
-          dec.decode(doc.documentElement, editor.graph.getModel())
-        }
-        textNode.originalValue = null
-
-        if (mxClient.IS_IE) {
-          mxUtils.clearSelection()
-        }
-
-        textNode.style.display = 'none'
-
-        editor.graph.container.focus()
-      }
-
-      editor.addAction('switchView', funct)
-      mxEvent.addListener(sourceInput, 'click', function () {
-        editor.execute('switchView')
-      })
-    }
+      
+    
   }
-  
+  window.onbeforeunload = function() { return mxResources.get('changesLost') }
 </script>

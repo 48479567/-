@@ -26,6 +26,7 @@ $sql_usu_equipo = "SELECT usuarios.nom_usuario, usuarios.cor_usuario, usu_equipo
 $res_usu_equipo = mysqli_query($conn, $sql_usu_equipo);
 
 $dom_proyecto = str_replace('<mxGraphModel>','<mxGraphModel as="model">', $dom_proyecto);
+$_SESSION['dom_proyecto'] = $dom_proyecto;
 ?>
 
 <!DOCTYPE html>
@@ -108,7 +109,7 @@ setInterval('autoRefresh_div()', 2000);
 
 </head>
 
-<body style="background-image:url('background_diagram.jpg')" onload="createEditor('config/diagrameditor.xml');">
+<body style="background-image:url('background_diagram.jpg')" onload="createEditor('config/diagrameditor.xml'); ">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:60px">
     <img class="logo" src="../../../projects/proyecto_msv/proyecto/style_vista_proyecto/menu.png" alt="ISG" height="40px">

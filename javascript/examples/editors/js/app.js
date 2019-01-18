@@ -30,7 +30,6 @@
 				}
 			}
 		};
-		
 		try
 		{
 			if (!mxClient.isBrowserSupported())

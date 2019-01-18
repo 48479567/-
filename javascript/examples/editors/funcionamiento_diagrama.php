@@ -5,6 +5,9 @@
         // overridden to invoke this global function as the
         // last step in the editor constructor.
 
+        var body = document.body
+
+        
         function onInit(editor)
         {
             // Enables rotation handle
@@ -169,6 +172,21 @@
             {
                 editor.execute('cambios');
             });
+
+            /*var inicioDiagrama = function inicioDiagrama(editor) {
+                var doc = mxUtils.parseXml(<?=$dom_proyecto?>)
+                var dec = new mxCodec(doc)
+                dec.decode(doc.documentElement, editor.graph.getModel());
+                var enc = new mxCodec()
+                var node = enc.encode(editor.graph.getModel())
+                var texto = mxUtils.getPrettyXml(node)
+
+            }
+            editor.addAction('inicioDiagrama', inicioDiagrama)
+            var body = document.body
+            mxEvent.addListener(body, 'load', function () {
+                setTimeout(editor.execute('inicioDiagrama'), 5000)
+            })*/
 
             // Create select actions in page
             var node = document.getElementById('mainActions');
