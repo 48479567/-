@@ -20,12 +20,14 @@
                 <div class="py-2"></div>
                 <p>Sitio Web para el desarrollo de proyectos basado en el Modelo de Sistema Viable de forma Colaborativa.</p>
                 <div class="py-2"></div>
-                <button type="button" class="btn btn-outline-light">Detalles</button>
+                <a href="registro/registrar.html" class="btn btn-outline-light">Registrarme</a>
             </div>
             <div class="clearfix visible-sm"></div>
             <div class="col-md-4 cod-sm-6 col-xs-12">
                 <div class="card bg-success">
                     <div class="card-body">
+                        <h4 class="card-title text-center">Iniciar Sesión</h4>
+                        <div class="py-2"></div> 
                         <form action="./projects/proyecto_msv/login/validacion_usuario.php" method="POST">
                         <div class="form-group">
                             <div class="input-group-addon">
@@ -36,8 +38,12 @@
                         <div class="form-group">
                             <input type="password" name="psw_contrasenna" class="form-control" placeholder="Contraseña" required>
                         </div>
-                        <input type="submit" class="btn btn-primary" value="Ingresar">
-                        <a type="submit" href="registro/registrar.html" class="btn btn-secondary" >Registrarme</a>
+                        <div class="py-2"></div> 
+                        <div style="display:flex;align-items:flex-start;">
+                            <div style="flex:1"></div>
+                            <input style="align-self:center" type="submit" class="btn btn-primary btn-lg btn-block" value="Ingresar">
+                            <div style="flex:1"></div>
+                        </div>
                         </form>
                     </div>
                 </div>

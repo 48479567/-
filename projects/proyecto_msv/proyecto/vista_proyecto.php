@@ -30,16 +30,19 @@ $res_pry1 = $conn->query($sql_pry1);
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navegador">
-       <a class="navbar-brand" href="#"> <img class="logo" src="./style_vista_proyecto/menu.png" alt="ISG" height="40px"> ISG</a>
+  <a class="navbar-brand" href="#"> <img class="logo" src="./style_vista_proyecto/menu.png" alt="ISG" height="40px"> ISG</a>
   <div class="collapse navbar-collapse" id="navbar1">
     <ul class="navbar-nav ml-auto">
-<li class="nav-item active">
-<a class="nav-link" href="#"><?=$_SESSION['usuario']?></a>
-</li>
-<li class="nav-item"><a class="nav-link" href="./creacion_de_proyecto/crear_proyecto.php">Crear Proyecto</a></li>
-<li class="nav-item">
-<a class="btn ml-2 btn-warning" href="../../../">Salir</a></li>
-   </ul>
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><?=$_SESSION['usuario']?></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./creacion_de_proyecto/crear_proyecto.php">Crear Proyecto</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn ml-2 btn-warning" href="../../../">Salir</a>
+      </li>
+    </ul>
   </div>
 </nav>
 
@@ -67,7 +70,7 @@ while($row = $res_pry1->fetch_assoc()) {
 ?>  
 </div>
 
-    <div class="swiper-pagination"></div>
+<div class="swiper-pagination"></div>
 </div>
 
 
