@@ -15,7 +15,7 @@ while($row = $result->fetch_assoc()){
 			$estilo_chat = 'background-color:#fff; margin:5px;';
 		}
 ?>
-<div class="texto_chat" style="<?=$estilo_chat?>"> <strong class="texto_chat"><?=$name?>:</strong> <?=$comment?> <!--<p class=""><?php/*date("j/m/Y g:i:sa", strtotime($time))*/?></p>--></div>
+<div class="texto_chat" style="<?=$estilo_chat?>"> <strong class="texto_chat"><?=$name?>:</strong> <?=$comment?> <!--<p class=""><?php /*date("j/m/Y g:i:sa", strtotime($time))*/?></p>--></div>
 
 
 

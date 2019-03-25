@@ -7,15 +7,21 @@ $cod = $_POST['codigo_campo'];
 $filtro_codigo = substr("$cod", 0, 3);
 
 if($filtro_codigo == "pry") {
- $sql_udp = "UPDATE proyectos SET dom_proyecto = '$dom' WHERE cod_proyecto = '$cod'"; 
+ $sql_udp = 
+  " UPDATE proyectos 
+    SET dom_proyecto = '$dom' 
+    WHERE cod_proyecto = '$cod'"; 
 } else {
- $sql_udp = "UPDATE pro_per SET dom_perspectiva = '$dom' WHERE cod_pro_per = '$cod'";
+ $sql_udp = 
+  " UPDATE pro_per 
+    SET dom_perspectiva = '$dom', estado = 0 
+    WHERE cod_pro_per = '$cod'";
 }
 
 if (mysqli_query($conn, $sql_udp)) {
  
 } else {
- echo "Error updating record: " . mysqli_error($conn);
+ echo "Error al Enviar el cambio en la Perspectiva: " . mysqli_error($conn);
 }
 
 ?>
