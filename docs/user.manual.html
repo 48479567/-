@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,70 +9,88 @@
   <link rel="stylesheet" href="../index_style/index_style.css">
   <title>Manual de Usuario | ISG</title>
 </head>
+
 <body>
   <section class="aboutus bg-dark text-white py-5" id="aboutus">
     <div class="container my-5 py-5">
-        <h2 class="text-center">Guía de Uso de ISG</h2>
-        <p class="text-center">Se hace énfasis a la navegación, desde la creación del usuario hasta la creación de proyectos, la guía conceptual se denotará en otra sección.</p>
-        <div class="py-2">
-          <center>
-            <button type="button" class="btn btn-outline-warning" onclick="imprimirDocumento();">Imprimir Documento</button>
-          </center>
-        </div>
+      <h2 class="text-center">Guía de Uso de ISG</h2>
+      <p class="text-center">Se hace énfasis a la navegación, desde la creación del usuario hasta la creación de
+        proyectos, la guía conceptual se denotará en otra sección.</p>
+      <div class="pt-4 d-flex justify-content-center">
+        <button type="button" id="btn-print" class="btn btn-outline-warning" onclick="printDocument(this);">Imprimir
+          Documento</button>
+      </div>
       <div class="row">
+
         <div class="py-2"></div>
-        </div>
+
       </div>
     </div>
+    </div>
   </section>
+
   <section class="aboutus2 py-3 bg-light" id="aboutus1">
     <div class="container">
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-4">
           <h4>Vista Inicial</h4>
+
           <div class="py-2"></div>
+
           <p class="text-justify">
-            Cuando ingresa por el navegador web a "mercurio sistemico" o a: 
+            Cuando ingresa por el navegador web a "mercurio sistemico" o a:
           </p>
           <a href="https://www.mercuriosistemico.com/">www.mercuriosistemico.com</a>
+
           <div class="py-2"></div>
+
           <p class="text-justify">
-            Está la informacion basica como los de contacto, en la parte superior esta la lista de direcciones, para acceder al diagramador presionar en el boton ISG (vease la figura).
+            Está la informacion basica como los de contacto, en la parte superior esta la lista de direcciones, para
+            acceder al diagramador presionar en el boton ISG (vease la figura).
           </p>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-5">
-          <img src="../images/docs/user_manual/vistainicial.jpg" alt="vista inicial" />
+          <img src="../images/docs/user-manual/initial-view.user-manual.jpg" alt="vista inicial" />
         </div>
         <div class="col-md-1"></div>
       </div>
     </div>
   </section>
+
   <section class="aboutus2 py-3" id="aboutus2">
     <div class="container">
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-5">
-          <img src="../images/docs/user_manual/vistaprincipal.jpg" alt="vista principal" />
+          <img src="../images/docs/user-manual/projects-view.user-manual.jpg" alt="vista principal" />
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-4">
+
           <div class="py-2"></div>
+
           <h4>Ingreso a ISG </h4>
+
           <div class="py-2"></div>
+
           <p class="text-justify">
             La vista principal se obtiene cuando se ingresa al link de la vista Inicial.
           </p>
+
           <div class="py-2"></div>
+
           <p class="text-justify">
-            Con una cuenta se puede acceder directamente, si eso no es el caso se debe crear presionando en el boton registrar. Para la creación del usuario.
+            Con una cuenta se puede acceder directamente, si eso no es el caso se debe crear presionando en el boton
+            registrar. Para la creación del usuario.
           </p>
         </div>
         <div class="col-md-1"></div>
       </div>
     </div>
   </section>
+
   <section class="aboutus2 py-3 bg-light" id="aboutus3">
     <div class="container">
       <div class="row">
@@ -79,37 +98,50 @@
         <div class="col-md-10">
           <h4>Creacíón de Usuario </h4>
           <p class="text-justify">Cuando Accede a la vista inicial le aparece lo siguiente:</p>
-          <img src="../images/docs/user_manual/registrousuario.jpg" alt="registro usuario" />
+          <img src="../images/docs/user-manual/user-register.user-manual.jpg" alt="registro usuario" />
+
           <div class="py-2"></div>
+
           <p class="text-justify">Para la creación del Usuario, debe tener en cuenta:</p>
           <ul class="list-group">
-            <li class="list-group-item">La cuenta debe tener la caracteristica de ser de dificil acceso para los que no son dueños (la contraseña debe tener de preferencia diferentes tipos de caracteres).</li>
-            <li class="list-group-item"> La cuenta debe ser accesible para el usuario dueño (debe tener alguna forma de recordar el nombre de usuario o contraseña).</li>
-            <li class="list-group-item">Ahora si por alguna razón se tiene problemas al acceder, se debe contactar con el número que está en la parte inicial del Sitio Web.</li>
+            <li class="list-group-item">La cuenta debe tener la caracteristica de ser de dificil acceso para los que no
+              son dueños (la contraseña debe tener de preferencia diferentes tipos de caracteres).</li>
+            <li class="list-group-item"> La cuenta debe ser accesible para el usuario dueño (debe tener alguna forma de
+              recordar el nombre de usuario o contraseña).</li>
+            <li class="list-group-item">Ahora si por alguna razón se tiene problemas al acceder, se debe contactar con
+              el número que está en la parte inicial del Sitio Web.</li>
           </ul>
         </div>
         <div class="col-md-1"></div>
       </div>
+
       <div class="py-3"></div>
+
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-4">
           <p class="text-justify">
-            Cuando ya haya creado su cuenta o haya accedido a ella el sitio le dirigira a la vista principal, donde se hallan los proyectos a las cuales pertenece, si no tiene proyectos le aparecera vacío, para ello tiene que crearlos, o esperar a ser incluido en uno de ellos.
+            Cuando ya haya creado su cuenta o haya accedido a ella el sitio le dirigira a la vista principal, donde se
+            hallan los proyectos a las cuales pertenece, si no tiene proyectos le aparecera vacío, para ello tiene que
+            crearlos, o esperar a ser incluido en uno de ellos.
           </p>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-5">
-          <img src="../images/docs/user_manual/vistaproyectosvacio.jpg" alt="vista de proyectos vacío" />
+          <img src="../images/docs/user-manual/empty-view.project.user-manual.jpg" alt="vista de proyectos vacío" />
         </div>
         <div class="col-md-1"></div>
       </div>
+
       <div class="py-3"></div>
+
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
           <p class="text-justify">
-            Entonces, cuando hay proyectos a los que pertenece se le mostrara una lista interactiva de proyectos donde se le muestra las perspectivas pertenecientes al proyecto, ademas si eres el creador del proyecto (gestor del proyecto) se le denotara por colores de la siguiente forma:
+            Entonces, cuando hay proyectos a los que pertenece se le mostrara una lista interactiva de proyectos donde
+            se le muestra las perspectivas pertenecientes al proyecto, ademas si eres el creador del proyecto (gestor
+            del proyecto) se le denotara por colores de la siguiente forma:
           </p>
         </div>
         <div class="col-md-1"></div>
@@ -118,15 +150,17 @@
         <div class="col-md-2"></div>
         <div class="col-md-4">
           <p class="text-justify">a) Color Blanco, los proyectos donde el usuario es analista.</p>
-          <img src="../images/docs/user_manual/proyectorolanalista.jpg" alt="proyecto de rol analista" />
+          <img src="../images/docs/user-manual/project-analyst.user-manual.jpg" alt="proyecto de rol analista" />
         </div>
         <div class="col-md-4">
           <p class="text-justify">b) Color Gris, los proyectos donde el usuario es gestor.</p>
-          <img src="../images/docs/user_manual/proyectorolgestor.jpg" alt="proyecto de rol gestor" />
+          <img src="../images/docs/user-manual/project-management.user-manual.jpg" alt="proyecto de rol gestor" />
         </div>
         <div class="col-md-2"></div>
       </div>
+
       <div class="py-3"></div>
+
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
@@ -138,6 +172,7 @@
       </div>
     </div>
   </section>
+
   <section class="aboutus2 py-3" id="aboutus4">
     <div class="container">
       <div class="row">
@@ -145,52 +180,68 @@
         <div class="col-md-10">
           <h4 class="text.text-justify">Creación de Proyecto</h4>
           <p class="text-justify">
-            En un proyecto los roles en un Equipo de Intervencion son las siguientes: 
+            En un proyecto los roles en un Equipo de Intervencion son las siguientes:
           </p>
         </div>
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
-          <div class="col-md-10">
-            <ul class="list-group">
-              <li class="list-group-item">
-                <b>a) Los Gestores:</b> En una organizacion son los que revisan el funcionamiento en general de esta son los que habilitan y hacen la conformacion de los equipos. En el sitio web tienen alto privilegio para acceder a los cambios y revisar el avance de las perspectivas.
-              </li>
-              <li class="list-group-item">
-                <b>b) Los Analistas:</b> Son los encargados de hacer una revisión de cada perspectiva que existen en la organización y editarlo segun la organizacion.
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="py-3"></div>
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-10">
-            <img src="../images/docs/user_manual/creacionproyecto.jpg" alt="creación de proyectos inicialmente" />
-            <div class="py-3"></div>
-            <p class="text-justify">
-              Para crear un proyecto es de suma importancia pertenecer a un equipo o crear un equipo. Si tienes un equipo y deseas crear el proyecto con este equipo puedes ya acceder a una imagen de portada que representa al proyecto. Tener en cuenta si deseas que el equipo tenga unos usuarios mas o menos tienes que crear otro equipo.
-            </p>
-          </div>
-          <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <b>a) Los Gestores:</b> En una organizacion son los que revisan el funcionamiento en general de esta son
+              los que habilitan y hacen la conformacion de los equipos. En el sitio web tienen alto privilegio para
+              acceder a los cambios y revisar el avance de las perspectivas.
+            </li>
+            <li class="list-group-item">
+              <b>b) Los Analistas:</b> Son los encargados de hacer una revisión de cada perspectiva que existen en la
+              organización y editarlo segun la organizacion.
+            </li>
+          </ul>
         </div>
       </div>
+
+      <div class="py-3"></div>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <img src="../images/docs/user-manual/creation-project-initial.user-manual.jpg"
+            alt="creación de proyectos inicialmente" />
+
+          <div class="py-3"></div>
+
+          <p class="text-justify">
+            Para crear un proyecto es de suma importancia pertenecer a un equipo o crear un equipo. Si tienes un equipo
+            y deseas crear el proyecto con este equipo puedes ya acceder a una imagen de portada que representa al
+            proyecto. Tener en cuenta si deseas que el equipo tenga unos usuarios mas o menos tienes que crear otro
+            equipo.
+          </p>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
     </div>
   </section>
-  <section class="aboutus2 py-3" id="aboutus4">
+
+  <section class="aboutus2 py-3 bg-light" id="aboutus5">
     <div class="container">
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
           <h4 class="text-justify">Creación de Equipo</h4>
           <p class="text-justify">
-            Si el gestor no tiene un equipo, tiene que crear uno. Para ello tiene que poner el nombre del equipo, inicialmente.
+            Si el gestor no tiene un equipo, tiene que crear uno. Para ello tiene que poner el nombre del equipo,
+            inicialmente.
           </p>
-          <img src="../images/docs/user_manual/equiponombre.jpg" alt="nombre del equipo a crear" />
+          <img src="../images/docs/user-manual/team-name.user-manual.jpg" alt="nombre del equipo a crear" />
+
           <div class="py-2"></div>
+
           <p class="text-justify">
-            Cuando creas el nombre del equipo el sitio web redirigirá al campo para rellenar intregrantes de este equipo.
+            Cuando creas el nombre del equipo el sitio web redirigirá al campo para rellenar intregrantes de este
+            equipo.
           </p>
         </div>
         <div class="col-md-1"></div>
@@ -198,39 +249,55 @@
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-5">
-          <img src="../images/docs/user_manual/equipointegrantes.jpg" alt="equipos integrantes" />
+          <img src="../images/docs/user-manual/team-members.user-manual.jpg" alt="equipos integrantes" />
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-4">
           <p class="text-justify">
-            Después tiene que agregar al equipo creado usuarios para que pertenezcan a el. Tener en cuenta que se debe tener sumo cuidado ya que todos los que esten ahi tendran acceso al proyecto,desde sus perspectivas y la vista del chat (esto se verá mas adelante).
+            Después tiene que agregar al equipo creado usuarios para que pertenezcan a el. Tener en cuenta que se debe
+            tener sumo cuidado ya que todos los que esten ahi tendran acceso al proyecto,desde sus perspectivas y la
+            vista del chat (esto se verá mas adelante).
           </p>
         </div>
         <div class="col-md-1"></div>
       </div>
+
       <div class="py-2"></div>
+
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
           <p class="text-justify">
-            Cuando se crea al Equipo, el sitio redirige a la vista para la creación del proyecto, entonces para ello se tiene que colocar el nombre del equipo que se acaba se crear.
-            Esto redirige a la vista de proyectos, ya para posicion con la vista de la portada para crear los proyectos como se denota en la siguiente figura:
+            Cuando se crea al Equipo, el sitio redirige a la vista para la creación del proyecto, entonces para ello se
+            tiene que colocar el nombre del equipo que se acaba se crear.
+            Esto redirige a la vista de proyectos, ya para posicion con la vista de la portada para crear los proyectos
+            como se denota en la siguiente figura:
           </p>
-          <img src="../images/docs/user_manual/creacionproyectoconportada.jpg" alt="creacion del proyecto seleccionando la imagen de portada" />
+          <img src="../images/docs/user-manual/creation-project-with-cover.user-manual.jpg"
+            alt="creacion del proyecto seleccionando la imagen de portada" />
         </div>
         <div class="col-md-1"></div>
       </div>
+
       <div class="py-2"></div>
+
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
           <p class="text-justify">
-            Cuando se crea el proyecto correctamente el sitio envía un mensaje de exito y redirige a la vista principal de proyectos. El ordenamiento de los proyectos es de acuerdo al orden de creacion, los últimos proyectos creados son los que se muestran primero, accediendo al proyecto se tiene que esperar un tiempo para cargar todos los recursos a utilizar. La siguiente vista es de un usuario con varios proyectos.
+            Cuando se crea el proyecto correctamente el sitio envía un mensaje de exito y redirige a la vista principal
+            de proyectos. El ordenamiento de los proyectos es de acuerdo al orden de creacion, los últimos proyectos
+            creados son los que se muestran primero, accediendo al proyecto se tiene que esperar un tiempo para cargar
+            todos los recursos a utilizar. La siguiente vista es de un usuario con varios proyectos.
           </p>
-          <img src="../images/docs/user_manual/vistaproyectos.jpg" alt="vista central de un usuario con varios proyectos" />
+          <img src="../images/docs/user-manual/projects-view.user-manual.jpg"
+            alt="vista central de un usuario con varios proyectos" />
+
           <div class="py-2"></div>
+
           <p class="text-justify">
-            Se denota el ordenamiento, además de los colores, asi como las perspectivas debajo del nombre del proyecto, este tema se verá mas adelante.
+            Se denota el ordenamiento, además de los colores, asi como las perspectivas debajo del nombre del proyecto,
+            este tema se verá mas adelante.
           </p>
         </div>
         <div class="col-md-1"></div>
@@ -238,11 +305,308 @@
     </div>
   </section>
 
+
+  <section class="aboutus py-3 bg-light" id="aboutus6">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <h4>Perspectivas</h4>
+
+          <div class="py-2"></div>
+
+          <img src="../images/docs/user-manual/projects.user-manual.jpg" alt="Vista de Proyectos" />
+
+          <div class="py-2"></div>
+
+          <p class="text-justify">
+            Dentro de la vista de proyectos, se encuentran las perspectivas, en recuadros pequeños diferenciándolos por
+            colores.
+          </p>
+          <ul>
+            <li><b>Marron Oscuro:</b> Las que están siendo Trabajadas.</li>
+            <li><b>Azul:</b> Las que ya han sido revisadas y validadas por el gestor.</li>
+          </ul>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+      <div class="py-4"></div>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <h4>Diagrama</h4>
+
+          <div class="py-2"></div>
+
+          <p class="text-justify">
+            Al hacer click en cualquier proyecto, este nos redirecciona a la vista principal del proyecto con la
+            inserción del diagramdor.
+          </p>
+
+          <div class="py-2"></div>
+
+          <img src="../images/docs/user-manual/project.user-manual.jpg"
+            alt="Vista Principal del Proyecto Seleccionado" />
+
+          <div class="py-2"></div>
+
+          <p class="text-justify">
+            En esta parte se hace la distinción de las siguientes partes.
+          </p>
+          <ul>
+            <li>El nombre de la perspectiva en la que se esta actualmente trabajando, ubicados con el diagramador.</li>
+            <li>Cada uno de los botones realiza la inserción de su nombre en el panel de nombres de perspectivas.</li>
+          </ul>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <img src="../images/docs/user-manual/general-perspective-select.user-manual.png"
+            alt="Panel con Selección Perspectiva General" />
+        </div>
+        <div class="col-md-4">
+          <img src="../images/docs/user-manual/specific-perspective-select.user-manual.png"
+            alt="Panel con Selección Perspectiva Específica" />
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+      <div class="py-3"></div>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <p class="text-justify">
+            En esta parte esta el Botón de Aumentar las perspectiva
+          </p>
+
+          <div class="py-2"></div>
+
+          <div class="m-auto" style="width:200px">
+            <img src="../images/docs/user-manual/button.add-perspective.user-manual.ico"
+              alt="Botón de Añadir Perspecitva" />
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+      <div class="py-3"></div>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+          <p class="text-justify">
+            Cuando se hace click en el botón, abrirá un panel que permitirá designar las
+            perspectivas del Proyecto a los diferentes miembros del equipo.
+          </p>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <img src="../images/docs/user-manual/panel.add-perspective.user-manual.png"
+            alt="Panel de Aumento de Perspectivas" />
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+  </section>
+
+  <div class="py-4"></div>
+
+  <section class="aboutus py-3" id="aboutus7">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <h4>Reporte</h4>
+
+          <div class="py-3"></div>
+
+          <p class="text-justify">
+            En la parte superior derecha del diagramador, está el botón de reporte. Cuando se presiona lo habilita en
+            una nueva pestaña.
+          </p>
+
+          <div class="py-2"></div>
+
+          <div class="m-auto" style="width:140px">
+            <img src="../images/docs/user-manual/report-project.button.user-manual.png"
+              alt="Botón de Reporte del Proyecto" />
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+      <div class="py-3"></div>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-8 col-sm-8">
+        </div>
+
+        <div class="col-md-1"></div>
+      </div>
+
+      <div class="py-4"></div>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <p class="text-justify">
+            La presentación del informe actualmente está conformado por los diagramas de la perspectiva del proyecto en
+            general y de las perspectivas específicas.
+          </p>
+
+          <div class="py-2"></div>
+
+          <img src="../images/docs/user-manual/report-project.user-manual.jpg" alt="Reporte del Proyecto" />
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <div class="py-4"></div>
+
+  <section class="aboutus py-3 bg-light" id="aboutus8">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <h4>Campo Principal del Diagramador</h4>
+
+          <div class="py-2"></div>
+
+          <p class="text-justify">
+            El principal componente es la vista de las perspectivas en diagramas. En esta parte se hace la edición. Esto
+            se halla en la parte Central de la ventana.
+          </p>
+
+          <div class="py-3"></div>
+
+          <img src="../images/docs/user-manual/graphics-field.project.user-manual.jpg"
+            alt="Campo Principal de Gráfico" />
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+      <div class="py-3"></div>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <div class="d-flex align-items-center">
+            <div class="ml-4" style="width:35px;height:400px;">
+              <img src="../images/docs/user-manual/tool-bar.project.user-manual.png" height="400"
+                alt="Barra de Herramientas" />
+            </div>
+            <p class="text-justify pl-4">
+              En la parte izquierda esta la barra de herramientas, compuestas por iconos que al arrastrarlas en el campo
+              del diagramador genera las figuras.
+            </p>
+
+          </div>
+
+          <div class="py-2"></div>
+
+          <p class="text-justify">
+            En el lado derecho está el campo del Chat, donde el gestor y los analistas pertenecientes al equipo del
+            proyecto mandarán mensajes como guía adicional para hacer los diagramas acordes o comunicar cualquier evento
+            dentro del proyecto.
+          </p>
+
+          <div class="py-2"></div>
+
+          <div class="m-auto" style="width:200px;height:600px;">
+            <img src="../images/docs/user-manual/chat-field.project.user-manual.jpg" height="600" alt="Campo de Chat" />
+          </div>
+
+
+          <div class="py-2"></div>
+
+          <p class="text-justify">
+            En la parte inferior está el panel de Cambio de Tamaño del Diagramador con la opciones de Alejar, Acercar,
+            Ajustar al campo del diagramdor y la obtener la vista Actual (predeterminada).
+          </p>
+
+          <div class="py-2"></div>
+
+          <div class="m-auto" style="width:200px">
+            <img src="../images/docs/user-manual/zoom-panel.project.user-manual.png"
+              alt="Panel de Cambio de Tamaño del Diagramador" />
+          </div>
+
+          <div class="py-3"></div>
+
+          <p class="text-justify">
+            En la parte superior, estan los botones que direccionan a otra página, el primero es el botón que manda a la
+            página anterior de proyectos, el segundo es el botón que sale de toda la aplicación mandando a la página
+            inicial para ingresar el usuario y contraseña, registrarse o ver los documentos relacionados.
+          </p>
+
+          <div class="py-2"></div>
+
+          <div class="m-auto" style="width:180px">
+            <img src="../images/docs/user-manual/logout-projects.button.project.user-manual.png"
+              alt="Botones de Salir e Ir a Proyectos" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    </div>
+  </section>
+
+
+  <div class="py-4"></div>
+
+  <section class="aboutus py-3" id="aboutus9">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+
+          <p class="text-justify">
+            Finalmente, queda completo los componentes de la página de desarrollo mayor. Teniendo en cuenta que esto es
+            referente a cada proyecto.
+          </p>
+
+          <div class="py-3"></div>
+
+          <img src="../images/docs/user-manual/project.user-manual.jpg" alt="Vista General del Proyecto" />
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="aboutus py-3" id="aboutus10">
+    <div class="container">
+      <div class="row"></div>
+    </div>
+  </section>
+
+  <section class="aboutus py-3" id="aboutus11">
+    <div class="container">
+      <div class="row"></div>
+    </div>
+  </section>
+
+
   <script>
-    function imprimirDocumento() {
+    function printDocument(selector) {
+      selector.style.display = 'none';
       print();
+      selector.style.display = '';
     }
   </script>
+
+  <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
+
 </html>
 <!--1132 527-->
